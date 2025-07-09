@@ -121,7 +121,7 @@ public:
         return abs(a - b) <= eps;
     }
 
-    static T abs(T t)
+    static T abs(T x)
     {
         if (x > 0) return  x;
         else       return -x;
