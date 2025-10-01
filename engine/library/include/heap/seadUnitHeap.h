@@ -14,22 +14,22 @@ public:
     UnitHeap(const SafeString& name, Heap* parent, void* address, u32 size, u32, bool);
     virtual ~UnitHeap();
 
-    virtual void destroy();
-    virtual size_t adjust();
-    virtual void* tryAlloc(size_t size, s32 alignment);
-    virtual void free(void* ptr);
-    virtual void* resizeFront(void*, size_t);
-    virtual void* resizeBack(void*, size_t);
-    virtual void freeAll();
-    virtual const void* getStartAddress() const;
-    virtual const void* getEndAddress() const;
-    virtual size_t getSize() const;
-    virtual size_t getFreeSize() const;
-    virtual size_t getMaxAllocatableSize(int) const;
-    virtual bool isInclude(const void*) const;
-    virtual bool isFreeable() const;
-    virtual bool isResizable() const;
-    virtual bool isAdjustable() const;
+    void destroy() override;
+    size_t adjust() override;
+    void* tryAlloc(size_t size, s32 alignment) override;
+    void free(void* ptr) override;
+    void* resizeFront(void*, size_t) override;
+    void* resizeBack(void*, size_t) override;
+    void freeAll() override;
+    const void* getStartAddress() const override;
+    const void* getEndAddress() const override;
+    size_t getSize() const override;
+    size_t getFreeSize() const override;
+    size_t getMaxAllocatableSize(int) const override;
+    bool isInclude(const void*) const override;
+    bool isFreeable() const override;
+    bool isResizable() const override;
+    bool isAdjustable() const override;
 
 public:
     static UnitHeap* tryCreate(u32 size, const SafeString& name, u32 block_size, s32 alignment = 4, Heap* parent = nullptr, bool enable_lock = false);
