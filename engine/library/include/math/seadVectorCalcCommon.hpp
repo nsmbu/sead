@@ -3,6 +3,8 @@
 #ifdef cafe
 
 #include <cafe.h>
+
+#ifndef DISABLE_PS
 #include <ppc_ps.h>
 
 inline f32x2& tof32x2(f32& x)
@@ -14,7 +16,7 @@ inline const f32x2& tof32x2(const f32& x)
 {
     return *reinterpret_cast<const f32x2*>(&x);
 }
-
+#endif // DISABLE_PS
 #endif // cafe
 
 #include <math/seadMathCalcCommon.h>
@@ -176,7 +178,7 @@ Vector3CalcCommon<T>::add(Base& o, const Base& a, const Base& b)
 }
 
 #ifdef cafe
-
+#ifndef DISABLE_PS
 template <>
 inline void
 Vector3CalcCommon<f32>::add(Base& o, const Base& a, const Base& b)
@@ -184,7 +186,7 @@ Vector3CalcCommon<f32>::add(Base& o, const Base& a, const Base& b)
     tof32x2(o.x) = __PS_ADD(tof32x2(a.x), tof32x2(b.x));
     o.z = a.z + b.z;
 }
-
+#endif // DISABLE_PS
 #endif // cafe
 
 template <typename T>
@@ -197,7 +199,7 @@ Vector3CalcCommon<T>::sub(Base& o, const Base& a, const Base& b)
 }
 
 #ifdef cafe
-
+#ifndef DISABLE_PS
 template <>
 inline void
 Vector3CalcCommon<f32>::sub(Base& o, const Base& a, const Base& b)
@@ -205,7 +207,7 @@ Vector3CalcCommon<f32>::sub(Base& o, const Base& a, const Base& b)
     tof32x2(o.x) = __PS_SUB(tof32x2(a.x), tof32x2(b.x));
     o.z = a.z - b.z;
 }
-
+#endif // DISABLE_PS
 #endif // cafe
 
 template <typename T>
@@ -251,7 +253,7 @@ Vector3CalcCommon<T>::dot(const Base& a, const Base& b)
 }
 
 #ifdef cafe
-
+#ifndef DISABLE_PS
 template <>
 inline f32
 Vector3CalcCommon<f32>::dot(const Base& a, const Base& b)
@@ -262,7 +264,7 @@ Vector3CalcCommon<f32>::dot(const Base& a, const Base& b)
 
     return f0[0] + a.z * b.z;
 }
-
+#endif // DISABLE_PS
 #endif // cafe
 
 template <typename T>
@@ -377,7 +379,7 @@ Vector3CalcCommon<T>::multScalar(Base& o, const Base& v, T t)
 }
 
 #ifdef cafe
-
+#ifndef DISABLE_PS
 template <>
 inline void
 Vector3CalcCommon<f32>::multScalar(Base& o, const Base& v, f32 t)
@@ -385,7 +387,7 @@ Vector3CalcCommon<f32>::multScalar(Base& o, const Base& v, f32 t)
     tof32x2(o.x) = __PS_MULS0F(tof32x2(v.x), t);
     o.z = v.z * t;
 }
-
+#endif // DISABLE_PS
 #endif // cafe
 
 template <typename T>
@@ -398,7 +400,7 @@ Vector3CalcCommon<T>::multScalarAdd(Base& o, T t, const Base& a, const Base& b)
 }
 
 #ifdef cafe
-
+#ifndef DISABLE_PS
 template <>
 inline void
 Vector3CalcCommon<f32>::multScalarAdd(Base& o, f32 t, const Base& a, const Base& b)
@@ -406,7 +408,7 @@ Vector3CalcCommon<f32>::multScalarAdd(Base& o, f32 t, const Base& a, const Base&
     tof32x2(o.x) = __PS_MADDS0F(tof32x2(a.x), t, tof32x2(b.x));
     o.z = a.z * t + b.z;
 }
-
+#endif // DISABLE_PS
 #endif // cafe
 
 template <typename T>
