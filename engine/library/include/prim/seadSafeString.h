@@ -247,7 +247,7 @@ public:
         if (size <= 0)
         {
             //SEAD_ASSERT_MSG(false, "Invalied buffer size(%d).\n", size);
-            mStringTop = nullptr;
+            this->mStringTop = nullptr;
             mBufferSize = 0;
             return;
         }
@@ -264,12 +264,12 @@ public:
         if (pos >= original->getBufferSize() || pos < 0)
         {
             //SEAD_ASSERT_MSG(false, "pos(%d) out of bounds[0,%d)", pos, original->getBufferSize());
-            mStringTop = nullptr;
+            this->mStringTop = nullptr;
             mBufferSize = 0;
             return;
         }
 
-        mStringTop = original->mStringTop + pos;
+        this->mStringTop = original->mStringTop + pos;
         mBufferSize = original->getBufferSize() - pos;
         assureTerminationImpl_();
     }
@@ -339,7 +339,7 @@ public:
 private:
     CharType* getMutableStringTop_()
     {
-        return const_cast<CharType*>(mStringTop);
+        return const_cast<CharType*>(this->mStringTop);
     }
 
     template <typename Other>
@@ -367,19 +367,19 @@ public:
     FixedSafeStringBase()
         : BufferedSafeStringBase<CharType>(mBuffer, N)
     {
-        clear();
+        this->clear();
     }
 
     explicit FixedSafeStringBase(const SafeStringBase<CharType>& rhs)
         : BufferedSafeStringBase<CharType>(mBuffer, N)
     {
-        copy(rhs);
+        this->copy(rhs);
     }
 
     FixedSafeStringBase(const FixedSafeStringBase<CharType, N>& rhs)
         : BufferedSafeStringBase<CharType>(mBuffer, N)
     {
-        copy(rhs);
+        this->copy(rhs);
     }
 
     virtual ~FixedSafeStringBase()
@@ -388,13 +388,13 @@ public:
 
     FixedSafeStringBase<CharType, N>& operator=(const FixedSafeStringBase<CharType, N>& rhs)
     {
-        copy(rhs);
+        this->copy(rhs);
         return *this;
     }
 
     FixedSafeStringBase<CharType, N>& operator=(const SafeStringBase<CharType>& rhs)
     {
-        copy(rhs);
+        this->copy(rhs);
         return *this;
     }
 
@@ -435,13 +435,13 @@ public:
 
     FixedSafeString<N>& operator=(const FixedSafeString<N>& rhs)
     {
-        copy(rhs);
+        this->copy(rhs);
         return *this;
     }
 
     FixedSafeString<N>& operator=(const SafeString& rhs)
     {
-        copy(rhs);
+        this->copy(rhs);
         return *this;
     }
 };
@@ -475,7 +475,7 @@ public:
 
     WFixedSafeString<N>& operator=(const WSafeString& rhs)
     {
-        copy(rhs);
+        this->copy(rhs);
         return *this;
     }
 };
@@ -524,8 +524,8 @@ public:
 
     virtual ~HeapSafeStringBase()
     {
-        if (mStringTop)
-            delete[] mStringTop;
+        if (this->mStringTop)
+            delete[] this->mStringTop;
     }
 
 private:
