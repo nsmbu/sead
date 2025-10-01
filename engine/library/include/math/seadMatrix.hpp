@@ -11,25 +11,25 @@ Matrix22<T>::Matrix22(
     T a10, T a11
 )
 {
-    m[0][0] = a00;
-    m[0][1] = a01;
+    this->m[0][0] = a00;
+    this->m[0][1] = a01;
 
-    m[1][0] = a10;
-    m[1][1] = a11;
+    this->m[1][0] = a10;
+    this->m[1][1] = a11;
 }
 
 template <typename T>
 inline T
 Matrix22<T>::operator()(s32 i, s32 j) const
 {
-    return m[i][j];
+    return this->m[i][j];
 }
 
 template <typename T>
 inline T&
 Matrix22<T>::operator()(s32 i, s32 j)
 {
-    return m[i][j];
+    return this->m[i][j];
 }
 
 template <typename T>
@@ -104,17 +104,18 @@ Matrix33<T>::Matrix33(
     T a20, T a21, T a22
 )
 {
-    m[0][0] = a00;
-    m[0][1] = a01;
-    m[0][2] = a02;
+    this->m[0][0] = a00;
+    this->m[0][1] = a01;
+    this->m[0][2] = a02;
 
-    m[1][0] = a10;
-    m[1][1] = a11;
-    m[1][2] = a12;
 
-    m[2][0] = a20;
-    m[2][1] = a21;
-    m[2][2] = a22;
+    this->m[1][0] = a10;
+    this->m[1][1] = a11;
+    this->m[1][2] = a12;
+
+    this->m[2][0] = a20;
+    this->m[2][1] = a21;
+    this->m[2][2] = a22;
 }
 
 template <typename T>
@@ -128,14 +129,14 @@ template <typename T>
 inline T
 Matrix33<T>::operator()(s32 i, s32 j) const
 {
-    return m[i][j];
+    return this->m[i][j];
 }
 
 template <typename T>
 inline T&
 Matrix33<T>::operator()(s32 i, s32 j)
 {
-    return m[i][j];
+    return this->m[i][j];
 }
 
 template <typename T>
@@ -288,20 +289,20 @@ Matrix34<T>::Matrix34(
     T a20, T a21, T a22, T a23
 )
 {
-    m[0][0] = a00;
-    m[0][1] = a01;
-    m[0][2] = a02;
-    m[0][3] = a03;
+    this->m[0][0] = a00;
+    this->m[0][1] = a01;
+    this->m[0][2] = a02;
+    this->m[0][3] = a03;
 
-    m[1][0] = a10;
-    m[1][1] = a11;
-    m[1][2] = a12;
-    m[1][3] = a13;
+    this->m[1][0] = a10;
+    this->m[1][1] = a11;
+    this->m[1][2] = a12;
+    this->m[1][3] = a13;
 
-    m[2][0] = a20;
-    m[2][1] = a21;
-    m[2][2] = a22;
-    m[2][3] = a23;
+    this->m[2][0] = a20;
+    this->m[2][1] = a21;
+    this->m[2][2] = a22;
+    this->m[2][3] = a23;
 }
 
 template <typename T>
@@ -322,14 +323,14 @@ template <typename T>
 inline T
 Matrix34<T>::operator()(s32 i, s32 j) const
 {
-    return m[i][j];
+    return this->m[i][j];
 }
 
 template <typename T>
 inline T&
 Matrix34<T>::operator()(s32 i, s32 j)
 {
-    return m[i][j];
+    return this->m[i][j];
 }
 
 template <typename T>
@@ -787,25 +788,25 @@ Matrix44<T>::Matrix44(
     T a30, T a31, T a32, T a33
 )
 {
-    m[0][0] = a00;
-    m[0][1] = a01;
-    m[0][2] = a02;
-    m[0][3] = a03;
+    this->m[0][0] = a00;
+    this->m[0][1] = a01;
+    this->m[0][2] = a02;
+    this->m[0][3] = a03;
 
-    m[1][0] = a10;
-    m[1][1] = a11;
-    m[1][2] = a12;
-    m[1][3] = a13;
+    this->m[1][0] = a10;
+    this->m[1][1] = a11;
+    this->m[1][2] = a12;
+    this->m[1][3] = a13;
 
-    m[2][0] = a20;
-    m[2][1] = a21;
-    m[2][2] = a22;
-    m[2][3] = a23;
+    this->m[2][0] = a20;
+    this->m[2][1] = a21;
+    this->m[2][2] = a22;
+    this->m[2][3] = a23;
 
-    m[3][0] = a30;
-    m[3][1] = a31;
-    m[3][2] = a32;
-    m[3][3] = a33;
+    this->m[3][0] = a30;
+    this->m[3][1] = a31;
+    this->m[3][2] = a32;
+    this->m[3][3] = a33;
 }
 
 template <typename T>
@@ -826,14 +827,14 @@ template <typename T>
 inline T
 Matrix44<T>::operator()(s32 i, s32 j) const
 {
-    return m[i][j];
+    return this->m[i][j];
 }
 
 template <typename T>
 inline T&
 Matrix44<T>::operator()(s32 i, s32 j)
 {
-    return m[i][j];
+    return this->m[i][j];
 }
 
 template <typename T>
