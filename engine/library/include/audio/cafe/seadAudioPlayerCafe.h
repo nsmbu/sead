@@ -21,19 +21,19 @@ public:
     AudioPlayerCafe();
     virtual ~AudioPlayerCafe();
 
-    virtual void initialize();
-    virtual void finalize();
-    virtual void calc();
-    virtual bool startSound(SoundHandle*, u32);
-    virtual bool startSound(SoundHandle*, const char*);
-    virtual bool holdSound(SoundHandle*, u32);
-    virtual bool holdSound(SoundHandle*, const char*);
-    virtual u32 getSoundCount() const;
-    virtual const char* getSoundName(u32) const;
-    virtual u32 getSoundId(const char*) const;
+    void initialize() override;
+    void finalize() override;
+    void calc() override;
+    bool startSound(SoundHandle*, u32) override;
+    bool startSound(SoundHandle*, const char*) override;
+    bool holdSound(SoundHandle*, u32) override;
+    bool holdSound(SoundHandle*, const char*) override;
+    u32 getSoundCount() const override;
+    const char* getSoundName(u32) const override;
+    u32 getSoundId(const char*) const override;
 
 protected:
-    virtual nw::snd::SoundStartable::StartResult detail_SetupSound(nw::snd::SoundHandle* handle, u32 soundId, bool holdFlag, const nw::snd::SoundStartable::StartInfo* startInfo);
+    nw::snd::SoundStartable::StartResult detail_SetupSound(nw::snd::SoundHandle* handle, u32 soundId, bool holdFlag, const nw::snd::SoundStartable::StartInfo* startInfo) override;
 
 public:
     AudioSoundDataMgrCafe* getSoundDataMgr() const
