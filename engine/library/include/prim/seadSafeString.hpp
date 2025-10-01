@@ -153,7 +153,7 @@ inline s32
 BufferedSafeStringBase<CharType>::copyAt(s32 at, const SafeStringBase<CharType>& src, s32 cpy_length)
 {
     CharType* mutable_string_top = getMutableStringTop_();
-    s32 len = calcLength();
+    s32 len = this->calcLength();
 
     if (at < 0)
     {
@@ -195,7 +195,7 @@ template <typename CharType>
 inline s32
 BufferedSafeStringBase<CharType>::append(CharType src_chr)
 {
-    s32 len = calcLength();
+    s32 len = this->calcLength();
     if (len >= getBufferSize() - 1)
     {
         // SEAD_ASSERT_MSG(false, "Buffer overflow. (Buffer Size: %d, Length: %d)", getBufferSize(), len);
@@ -216,7 +216,7 @@ BufferedSafeStringBase<CharType>::trim(s32 trim_length)
     if (trim_length >= getBufferSize())
     {
         //SEAD_ASSERT_MSG(false, "trim_length(%d) out of bounds. [0,%d) \n", trim_length, getBufferSize());
-        return calcLength();
+        return this->calcLength();
     }
 
     if (trim_length < 0)
@@ -237,7 +237,7 @@ FormatFixedSafeString<N>::FormatFixedSafeString(const char* format_string, ...)
 {
     va_list va;
     va_start(va, format_string);
-    (void)formatV(format_string, va);
+    (void)this->formatV(format_string, va);
     va_end(va);
 }
 
@@ -247,7 +247,7 @@ WFormatFixedSafeString<N>::WFormatFixedSafeString(const char16* format_string, .
 {
     va_list va;
     va_start(va, format_string);
-    (void)formatV(format_string, va);
+    (void)this->formatV(format_string, va);
     va_end(va);
 }
 
