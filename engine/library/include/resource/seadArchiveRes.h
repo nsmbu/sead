@@ -44,10 +44,11 @@ public:
 
     virtual ~ArchiveRes() { }
 
-    virtual u32 getLoadDataAlignment() { return 0x80; }
+    u32 getLoadDataAlignment() override { return 0x80; }
 
 protected:
-    virtual void doCreate_(u8* buf, u32, Heap*);
+    void doCreate_(u8* buf, u32, Heap*) override;
+
     virtual void* getFileImpl_(const SafeString& file_path, FileInfo* file_info) = 0;
     virtual void* getFileFastImpl_(s32 entry_id, FileInfo* file_info) = 0;
     virtual s32 convertPathToEntryIDImpl_(const SafeString& file_path) = 0;
