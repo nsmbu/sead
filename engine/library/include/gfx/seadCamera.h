@@ -70,7 +70,7 @@ public:
     LookAtCamera(const Vector3f& pos, const Vector3f& at, const Vector3f& up);
     virtual ~LookAtCamera();
 
-    virtual void doUpdateMatrix(Matrix34f* dst) const;
+    void doUpdateMatrix(Matrix34f* dst) const override;
 
     Vector3f& getPos() { return mPos; }
     const Vector3f& getPos() const { return mPos; }
@@ -122,7 +122,7 @@ public:
         updateViewMatrix();
     }
 
-    virtual void doUpdateMatrix(Matrix34f* dst) const
+    void doUpdateMatrix(Matrix34f* dst) const override
     {
         *dst = mDirectMatrix;
     }
