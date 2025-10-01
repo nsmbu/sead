@@ -31,7 +31,7 @@ public:
     public:
         explicit Slot()
             : IDisposer()
-            , m_Node()
+            , mNode()
             , mDelegatePtr(nullptr)
             , mConnectedToDelegateEvent(false)
         {
