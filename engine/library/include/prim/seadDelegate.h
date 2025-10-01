@@ -110,14 +110,14 @@ public:
 
     virtual void invoke()
     {
-        if (mObject && mMethod)
-            (mObject->*mMethod)();
+        if (this->mObject && this->mMethod)
+            (this->mObject->*this->mMethod)();
     }
 
     void invoke() const
     {
-        if (mObject && mMethod)
-            (mObject->*mMethod)();
+        if (this->mObject && this->mMethod)
+            (this->mObject->*this->mMethod)();
     }
 
     void operator() () const
@@ -192,14 +192,14 @@ public:
 
     virtual void invoke()
     {
-        if (mObject && mMethod)
-            (mObject->*mMethod)();
+        if (this->mObject && this->mMethod)
+            (this->mObject->*this->mMethod)();
     }
 
     void invoke() const
     {
-        if (mObject && mMethod)
-            (mObject->*mMethod)();
+        if (this->mObject && this->mMethod)
+            (this->mObject->*this->mMethod)();
     }
 
     void operator() () const
@@ -292,14 +292,14 @@ public:
 
     virtual void invoke(A a)
     {
-        if (mObject && mMethod)
-            (mObject->*mMethod)(a);
+        if (this->mObject && this->mMethod)
+            (this->mObject->*this->mMethod)(a);
     }
 
     void invoke(A a) const
     {
-        if (mObject && mMethod)
-            (mObject->*mMethod)(a);
+        if (this->mObject && this->mMethod)
+            (this->mObject->*this->mMethod)(a);
     }
 
     void operator() (A a) const
@@ -327,14 +327,14 @@ public:
 
     virtual void invoke(A a)
     {
-        if (mMethod)
-            (mMethod)(a);
+        if (this->mMethod)
+            (this->mMethod)(a);
     }
 
     void invoke(A a) const
     {
-        if (mMethod)
-            (mMethod)(a);
+        if (this->mMethod)
+            (this->mMethod)(a);
     }
 
     void operator() (A a) const
@@ -362,14 +362,14 @@ public:
 
     virtual void invoke(A a)
     {
-        if (mObject && mMethod)
-            (mObject->*mMethod)(a);
+        if (this->mObject && this->mMethod)
+            (this->mObject->*this->mMethod)(a);
     }
 
     void invoke(A a) const
     {
-        if (mObject && mMethod)
-            (mObject->*mMethod)(a);
+        if (this->mObject && this->mMethod)
+            (this->mObject->*this->mMethod)(a);
     }
 
     void operator() (A a) const
@@ -459,14 +459,14 @@ public:
 
     virtual void invoke(A1 a1, A2 a2)
     {
-        if (mObject && mMethod)
-            (mObject->*mMethod)(a1, a2);
+        if (this->mObject && this->mMethod)
+            (this->mObject->*this->mMethod)(a1, a2);
     }
 
     void invoke(A1 a1, A2 a2) const
     {
-        if (mObject && mMethod)
-            (mObject->*mMethod)(a1, a2);
+        if (this->mObject && this->mMethod)
+            (this->mObject->*this->mMethod)(a1, a2);
     }
 
     void operator() (A1 a1, A2 a2) const
@@ -494,14 +494,14 @@ public:
 
     virtual void invoke(A1 a1, A2 a2)
     {
-        if (mMethod)
-            (mMethod)(a1, a2);
+        if (this->mMethod)
+            (this->mMethod)(a1, a2);
     }
 
     void invoke(A1 a1, A2 a2) const
     {
-        if (mMethod)
-            (mMethod)(a1, a2);
+        if (this->mMethod)
+            (this->mMethod)(a1, a2);
     }
 
     void operator() (A1 a1, A2 a2) const
@@ -529,14 +529,14 @@ public:
 
     virtual void invoke(A1 a1, A2 a2)
     {
-        if (mObject && mMethod)
-            (mObject->*mMethod)(a1, a2);
+        if (this->mObject && this->mMethod)
+            (this->mObject->*this->mMethod)(a1, a2);
     }
 
     void invoke(A1 a1, A2 a2) const
     {
-        if (mObject && mMethod)
-            (mObject->*mMethod)(a1, a2);
+        if (this->mObject && this->mMethod)
+            (this->mObject->*this->mMethod)(a1, a2);
     }
 
     void operator() (A1 a1, A2 a2) const
