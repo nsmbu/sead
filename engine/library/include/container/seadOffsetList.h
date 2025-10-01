@@ -2,6 +2,7 @@
 #define SEAD_OFFSET_LIST_H_
 
 #include <container/seadListImpl.h>
+#include <prim/seadPtrUtil.h>
 
 namespace sead {
 
