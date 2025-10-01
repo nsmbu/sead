@@ -22,10 +22,10 @@ public:
     DualScreenMethodTreeMgr();
     virtual ~DualScreenMethodTreeMgr();
 
-    virtual void attachMethod(s32, MethodTreeNode*);
-    virtual MethodTreeNode* getRootMethodTreeNode(s32);
-    virtual void pauseAll(bool);
-    virtual void pauseAppCalc(bool);
+    void attachMethod(s32, MethodTreeNode*) override;
+    MethodTreeNode* getRootMethodTreeNode(s32) override;
+    void pauseAll(bool) override;
+    void pauseAppCalc(bool) override;
 
     void calc();
     void drawTop();
