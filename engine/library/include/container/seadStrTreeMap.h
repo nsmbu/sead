@@ -243,7 +243,7 @@ protected:
     void freeBuffer();
 
 protected:
-    u8 mWork[N*sizeof(StrTreeMap<KeyStrN, Value>::Node)];
+    u8 mWork[N*sizeof(typename StrTreeMap<KeyStrN, Value>::Node)];
 };
 
 } // namespace sead
