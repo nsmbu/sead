@@ -25,9 +25,9 @@ private:
     void initialize_();
 
 public:
-    virtual void copyToDisplayBuffer(const sead::DisplayBuffer* display_buffer) const;
-    virtual void clear(u32 clr_flag, const sead::Color4f& color, f32 depth, u32 stencil) const;
-    virtual void bindImpl_() const;
+    void copyToDisplayBuffer(const sead::DisplayBuffer* display_buffer) const override;
+    void clear(u32 clr_flag, const sead::Color4f& color, f32 depth, u32 stencil) const override;
+    void bindImpl_() const override;
 
     RenderTargetColor* getRenderTargetColor(u32 target_index = 0) const
     {
