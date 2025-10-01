@@ -15,93 +15,93 @@ public:
     MainFileDevice(Heap* heap);
     virtual ~MainFileDevice();
 
-    virtual void traceFilePath(const SafeString& path) const;
-    virtual void traceDirectoryPath(const SafeString& path) const;
-    virtual void resolveFilePath(BufferedSafeString* out, const SafeString& path) const;
-    virtual void resolveDirectoryPath(BufferedSafeString* out, const SafeString& path) const;
+    void traceFilePath(const SafeString& path) const override;
+    void traceDirectoryPath(const SafeString& path) const override;
+    void resolveFilePath(BufferedSafeString* out, const SafeString& path) const override;
+    void resolveDirectoryPath(BufferedSafeString* out, const SafeString& path) const override;
 
 protected:
-    virtual bool doIsAvailable_() const
+    bool doIsAvailable_() const override
     {
         return mFileDevice->isAvailable();
     }
 
-    virtual FileDevice* doOpen_(FileHandle* handle, const SafeString& filename, FileOpenFlag flag)
+    FileDevice* doOpen_(FileHandle* handle, const SafeString& filename, FileOpenFlag flag) override
     {
         return mFileDevice->tryOpen(handle, filename, flag, handle->getDivSize());
     }
 
-    virtual bool doClose_(FileHandle* handle)
+    bool doClose_(FileHandle* handle) override
     {
         return mFileDevice->tryClose(handle);
     }
 
-    virtual bool doRead_(u32* read_size, FileHandle* handle, u8* buf, u32 size)
+    bool doRead_(u32* read_size, FileHandle* handle, u8* buf, u32 size) override
     {
         return mFileDevice->tryRead(read_size, handle, buf, size);
     }
 
-    virtual bool doWrite_(u32* write_size, FileHandle* handle, const u8* buf, u32 size)
+    bool doWrite_(u32* write_size, FileHandle* handle, const u8* buf, u32 size) override
     {
         return mFileDevice->tryWrite(write_size, handle, buf, size);
     }
 
-    virtual bool doSeek_(FileHandle* handle, s32 offset, SeekOrigin origin)
+    bool doSeek_(FileHandle* handle, s32 offset, SeekOrigin origin) override
     {
         return mFileDevice->trySeek(handle, offset, origin);
     }
 
-    virtual bool doGetCurrentSeekPos_(u32* pos, FileHandle* handle)
+    bool doGetCurrentSeekPos_(u32* pos, FileHandle* handle) override
     {
         return mFileDevice->tryGetCurrentSeekPos(pos, handle);
     }
 
-    virtual bool doGetFileSize_(u32* size, const SafeString& path)
+    bool doGetFileSize_(u32* size, const SafeString& path) override
     {
         return mFileDevice->tryGetFileSize(size, path);
     }
 
-    virtual bool doGetFileSize_(u32* size, FileHandle* handle)
+    bool doGetFileSize_(u32* size, FileHandle* handle) override
     {
         return mFileDevice->tryGetFileSize(size, handle);
     }
 
-    virtual bool doIsExistFile_(bool* is_exist, const SafeString& path)
+    bool doIsExistFile_(bool* is_exist, const SafeString& path) override
     {
         return mFileDevice->tryIsExistFile(is_exist, path);
     }
 
-    virtual bool doIsExistDirectory_(bool* is_exist, const SafeString& path)
+    bool doIsExistDirectory_(bool* is_exist, const SafeString& path) override
     {
         return mFileDevice->tryIsExistDirectory(is_exist, path);
     }
 
-    virtual FileDevice* doOpenDirectory_(DirectoryHandle* handle, const SafeString& dirname)
+    FileDevice* doOpenDirectory_(DirectoryHandle* handle, const SafeString& dirname) override
     {
         return mFileDevice->tryOpenDirectory(handle, dirname);
     }
 
-    virtual bool doCloseDirectory_(DirectoryHandle* handle)
+    bool doCloseDirectory_(DirectoryHandle* handle) override
     {
         return mFileDevice->tryCloseDirectory(handle);
     }
 
-    virtual bool doReadDirectory_(u32* read_num, DirectoryHandle* handle, DirectoryEntry* entry, u32 num)
+    bool doReadDirectory_(u32* read_num, DirectoryHandle* handle, DirectoryEntry* entry, u32 num) override
     {
         return mFileDevice->tryReadDirectory(read_num, handle, entry, num);
     }
 
-    virtual bool doMakeDirectory_(const SafeString& path, u32 permission)
+    bool doMakeDirectory_(const SafeString& path, u32 permission) override
     {
         return mFileDevice->tryMakeDirectory(path, permission);
     }
 
-    virtual bool isMatchDevice_(const HandleBase* handle) const
+    bool isMatchDevice_(const HandleBase* handle) const override
     {
         return mFileDevice->isMatchDevice_(handle);
     }
 
-    virtual RawErrorCode doGetLastRawError_() const
+    RawErrorCode doGetLastRawError_() const override
     {
         return mFileDevice->getLastRawError();
     }
