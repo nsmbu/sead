@@ -38,9 +38,9 @@ public:
     {
     }
 
-    virtual void copyToDisplayBuffer(const DisplayBuffer* display_buffer) const;
-    virtual void clear(u32 clr_flag, const Color4f& color, f32 depth, u32 stencil) const;
-    virtual void bindImpl_() const;
+    void copyToDisplayBuffer(const DisplayBuffer* display_buffer) const override;
+    void clear(u32 clr_flag, const Color4f& color, f32 depth, u32 stencil) const override;
+    void bindImpl_() const override;
 
 private:
     GX2ColorBuffer* mColorBuffer;
@@ -74,7 +74,7 @@ public:
     Resolution getResolution() const { return mResolution; }
 
 private:
-    virtual void initializeImpl_(sead::Heap* heap);
+    void initializeImpl_(sead::Heap* heap) override;
 
 private:
     ScanOutTarget mScanOutTarget;
