@@ -52,7 +52,7 @@ void ParameterBase::copyLerp_(const ParameterBase& parameter_a, const ParameterB
 }
 
 template <>
-void ParameterBase::copyLerp_<f32>(const ParameterBase& parameter_a, const ParameterBase& parameter_b, f32 t)
+inline void ParameterBase::copyLerp_<f32>(const ParameterBase& parameter_a, const ParameterBase& parameter_b, f32 t)
 {
     *static_cast<f32*>(ptr()) = sead::Mathf::lerp(*static_cast<const f32*>(parameter_a.ptr()), *static_cast<const f32*>(parameter_b.ptr()), t);
 }
