@@ -111,8 +111,8 @@ template <typename T>
 inline Vector2<T>&
 Vector2<T>::operator=(const Self& v)
 {
-    x = v.x;
-    y = v.y;
+    this->x = v.x;
+    this->y = v.y;
     return *this;
 }
 
@@ -121,8 +121,8 @@ template <typename VectorType>
 inline Vector2<T>&
 Vector2<T>::operator=(const VectorType& v)
 {
-    x = static_cast<T>(v.x);
-    y = static_cast<T>(v.y);
+    this->x = static_cast<T>(v.x);
+    this->y = static_cast<T>(v.y);
     return *this;
 }
 
@@ -344,9 +344,9 @@ template <typename T>
 inline Vector3<T>&
 Vector3<T>::operator=(const Self& v)
 {
-    x = v.x;
-    y = v.y;
-    z = v.z;
+    this->x = v.x;
+    this->y = v.y;
+    this->z = v.z;
     return *this;
 }
 
@@ -610,10 +610,10 @@ template <typename T>
 inline Vector4<T>&
 Vector4<T>::operator=(const Self& v)
 {
-    x = v.x;
-    y = v.y;
-    z = v.z;
-    w = v.w;
+    this->x = v.x;
+    this->y = v.y;
+    this->z = v.z;
+    this->w = v.w;
     return *this;
 }
 
