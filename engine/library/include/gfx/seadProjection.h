@@ -138,9 +138,9 @@ public:
 
     void setTBLR(f32 top, f32 bottom, f32 left, f32 right);
 
-    virtual Type getProjectionType() const { return Projection::cType_Perspective; }
-    virtual void doUpdateMatrix(Matrix44f* dst) const;
-    virtual void doScreenPosToCameraPosTo(Vector3f* dst, const Vector3f& screen_pos) const;
+    Type getProjectionType() const override { return Projection::cType_Perspective; }
+    void doUpdateMatrix(Matrix44f* dst) const override;
+    void doScreenPosToCameraPosTo(Vector3f* dst, const Vector3f& screen_pos) const override;
 
 private:
     void setFovy_(f32 fovy);
@@ -230,9 +230,9 @@ public:
     f32 getLeft() const { return mLeft; }
     f32 getRight() const { return mRight; }
 
-    virtual Type getProjectionType() const { return Projection::cType_Ortho; }
-    virtual void doUpdateMatrix(Matrix44f* dst) const;
-    virtual void doScreenPosToCameraPosTo(Vector3f* dst, const Vector3f& screen_pos) const;
+    Type getProjectionType() const override { return Projection::cType_Ortho; }
+    void doUpdateMatrix(Matrix44f* dst) const override;
+    void doScreenPosToCameraPosTo(Vector3f* dst, const Vector3f& screen_pos) const override;
 
 private:
     f32 mNear;
@@ -256,9 +256,9 @@ public:
     FrustumProjection(f32 _near, f32 _far, const BoundBox2f& box);
     virtual ~FrustumProjection();
 
-    virtual Type getProjectionType() const { return Projection::cType_Perspective; }
-    virtual void doUpdateMatrix(Matrix44f* dst) const;
-    virtual void doScreenPosToCameraPosTo(Vector3f* dst, const Vector3f& screen_pos) const;
+    Type getProjectionType() const override { return Projection::cType_Perspective; }
+    void doUpdateMatrix(Matrix44f* dst) const override;
+    void doScreenPosToCameraPosTo(Vector3f* dst, const Vector3f& screen_pos) const override;
 
     void setNear(f32 near)
     {
