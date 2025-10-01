@@ -66,14 +66,14 @@ public:
     virtual ~SharcArchiveRes();
 
 protected:
-    virtual void* getFileImpl_(const SafeString& file_path, FileInfo* file_info);
-    virtual void* getFileFastImpl_(s32 entry_id, FileInfo* file_info);
-    virtual s32 convertPathToEntryIDImpl_(const SafeString& file_path);
-    virtual bool setCurrentDirectoryImpl_(const SafeString& file_path);
-    virtual bool openDirectoryImpl_(HandleBuffer* handle_buffer, const SafeString& dir_path);
-    virtual bool closeDirectoryImpl_(HandleBuffer* handle_buffer);
-    virtual u32 readDirectoryImpl_(HandleBuffer* handle_buffer, DirectoryEntry* entry, u32 num);
-    virtual bool prepareArchive_(const void* archive);
+    void* getFileImpl_(const SafeString& file_path, FileInfo* file_info) override;
+    void* getFileFastImpl_(s32 entry_id, FileInfo* file_info) override;
+    s32 convertPathToEntryIDImpl_(const SafeString& file_path) override;
+    bool setCurrentDirectoryImpl_(const SafeString& file_path) override;
+    bool openDirectoryImpl_(HandleBuffer* handle_buffer, const SafeString& dir_path) override;
+    bool closeDirectoryImpl_(HandleBuffer* handle_buffer) override;
+    u32 readDirectoryImpl_(HandleBuffer* handle_buffer, DirectoryEntry* entry, u32 num) override;
+    bool prepareArchive_(const void* archive) override;
 
 protected:
     const ArchiveBlockHeader* mArchiveBlockHeader;
