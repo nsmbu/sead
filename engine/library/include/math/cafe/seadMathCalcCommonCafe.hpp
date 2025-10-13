@@ -1,6 +1,8 @@
 #pragma once
 
+#ifndef DISABLE_PS
 #include <ppc_ghs.h>
+#endif
 
 namespace sead {
 
