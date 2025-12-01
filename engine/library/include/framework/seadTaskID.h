@@ -2,10 +2,10 @@
 #define SEAD_TASK_ID_H_
 
 #include <basis/seadTypes.h>
+#include <framework/seadHeapPolicies.h>
 
 namespace sead {
 
-class HeapArray;
 class TaskBase;
 class TaskMgr;
 class TaskParameter;
