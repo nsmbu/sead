@@ -67,7 +67,7 @@ public:
         return &mBuffer[idx];
     }
 
-    const T* unsafeGet(s32 idx) const
+    const T* unsafeGet(s32 x) const
     {
         s32 idx = mHead + x;
         if (idx >= mNumMax)
