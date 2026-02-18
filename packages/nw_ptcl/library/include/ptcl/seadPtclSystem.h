@@ -111,12 +111,12 @@ public:
     {
     }
 
-    virtual void* Alloc(u32 size, s32 alignment)
+    void* Alloc(u32 size, s32 alignment) override
     {
         return mpHeap->alloc(size, alignment);
     }
 
-    virtual void Free(void* ptr)
+    void Free(void* ptr) override
     {
         mpHeap->free(ptr);
     }
@@ -362,18 +362,18 @@ public:
 
     bool createEmitterSetID(nw::eft::Handle* handle, const Vector3f& pos, s32 emitterSetID, s32 resourceID = 0, s32 groupID = 0, u32 emitterMask = 0xffffffff)
     {
-        return CreateEmitterSetID(handle, reinterpret_cast<const nw::math::VEC3&>(pos.x), emitterSetID, resourceID, groupID, emitterMask);
+        return CreateEmitterSetID(handle, reinterpret_cast<const nw::math::VEC3&>(pos.x), emitterSetID, resourceID, u8(groupID), emitterMask);
     }
 
     bool createEmitterSetID(nw::eft::Handle* handle, const Matrix34f& mtx, s32 emitterSetID, s32 resourceID = 0, s32 groupID = 0, u32 emitterMask = 0xffffffff)
     {
-        return CreateEmitterSetID(handle, reinterpret_cast<const nw::math::MTX34&>(mtx.a[0]), emitterSetID, resourceID, groupID, emitterMask);
+        return CreateEmitterSetID(handle, reinterpret_cast<const nw::math::MTX34&>(mtx.a[0]), emitterSetID, resourceID, u8(groupID), emitterMask);
     }
 
     void calcEmitter(s32 groupID, f32 frameRate = 1.0f)
     {
         if (groupID != cEftViewerGroupID)
-            CalcEmitter(groupID, frameRate);
+            CalcEmitter(u8(groupID), frameRate);
 
         else
         {

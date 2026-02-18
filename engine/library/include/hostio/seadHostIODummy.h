@@ -5,29 +5,29 @@
 
 namespace sead { namespace hostio {
 
-struct LifeCheckable
+class LifeCheckable
 {
 };
 
-struct PropertyEventListener : public LifeCheckable
+class PropertyEventListener : public LifeCheckable
 {
 };
 
-struct NodeEventListener : public PropertyEventListener
+class NodeEventListener : public PropertyEventListener
 {
 };
 
-struct Reflexible : public NodeEventListener
+class Reflexible : public NodeEventListener
 {
 };
 
-struct Node : public Reflexible
+class Node : public Reflexible
 {
 };
 
-struct Context
+class Context
 {
-    struct ContextBufferAccessor
+    class ContextBufferAccessor
     {
     };
 };

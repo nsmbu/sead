@@ -149,7 +149,7 @@ public:
     {
     }
 
-    virtual void invoke()
+    void invoke() override
     {
         if (mMethod)
             (mMethod)();
@@ -166,7 +166,7 @@ public:
         invoke();
     }
 
-    virtual IDelegate* clone(Heap* heap) const
+    IDelegate* clone(Heap* heap) const override
     {
         return new (heap) self(*this);
     }

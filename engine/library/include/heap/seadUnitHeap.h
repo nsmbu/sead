@@ -12,7 +12,7 @@ class UnitHeap : public Heap
 
 public:
     UnitHeap(const SafeString& name, Heap* parent, void* address, u32 size, u32, bool);
-    virtual ~UnitHeap();
+    ~UnitHeap() override;
 
     void destroy() override;
     size_t adjust() override;

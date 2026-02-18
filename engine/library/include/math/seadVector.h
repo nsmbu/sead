@@ -19,6 +19,8 @@ public:
     Vector2()
     {
     }
+    
+    Vector2(const Vector2& other) = default;
 
     //Vector2(const Self& v)
     //{
@@ -97,6 +99,8 @@ public:
     Vector3()
     {
     }
+    
+    Vector3(const Vector3& other) = default;
 
     //Vector3(const Self& v)
     //{

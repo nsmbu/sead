@@ -30,6 +30,9 @@ public:
     {
         //SEAD_ASSERT_MSG(mStringTop, "str must not be nullptr.");
     }
+    
+    SafeStringBase(const SafeStringBase& other) = default;
+    SafeStringBase& operator=(const SafeStringBase& other) = default;
 
     virtual ~SafeStringBase()
     {
@@ -71,7 +74,7 @@ public:
         friend bool operator==(const iterator& a, const iterator& b)
         {
             return a.mString == b.mString && a.mIndex == b.mIndex;
-        };
+        }
 
         friend bool operator!=(const iterator& a_, const iterator& b_)
         {
@@ -127,18 +130,18 @@ public:
     iterator begin() const
     {
         return iterator(this, 0);
-    };
+    }
 
     iterator end() const
     {
         return iterator(this, calcLength() + 1);
-    };
+    }
 
 public:
     token_iterator tokenBegin(const SafeStringBase<CharType>& delimiter) const
     {
         return token_iterator(this, 0, delimiter);
-    };
+    }
 
     token_iterator tokenEnd(const SafeStringBase<CharType>& delimiter = SafeStringBase<CharType>()) const
     {
@@ -279,7 +282,7 @@ private:
     BufferedSafeStringBase<CharType>& operator=(const BufferedSafeStringBase<CharType>&);
 
 public:
-    virtual ~BufferedSafeStringBase()
+    ~BufferedSafeStringBase() override
     {
     }
 
@@ -350,7 +353,7 @@ private:
     static s32 formatImpl_(CharType* dst, s32 dst_size, const CharType* format_string, va_list varg);
 
 protected:
-    virtual void assureTerminationImpl_() const
+    void assureTerminationImpl_() const override
     {
         BufferedSafeStringBase<CharType>* mutable_ptr = const_cast<BufferedSafeStringBase<CharType>*>(this);
         mutable_ptr->getMutableStringTop_()[getBufferSize() - 1] = 0;
@@ -382,7 +385,7 @@ public:
         this->copy(rhs);
     }
 
-    virtual ~FixedSafeStringBase()
+    ~FixedSafeStringBase() override
     {
     }
 

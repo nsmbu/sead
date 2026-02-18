@@ -19,7 +19,7 @@ public:
     {
     }
 
-    virtual ~Decompressor()
+    ~Decompressor() override
     {
         if (ResourceMgr::instance() != nullptr)
             ResourceMgr::instance()->unregisterDecompressor(this);

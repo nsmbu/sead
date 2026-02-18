@@ -26,7 +26,7 @@ public:
             mKey_ = key;
         }
 
-        virtual void erase_()
+        void erase_() override
         {
             mMap->eraseNode(this);
         }

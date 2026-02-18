@@ -19,7 +19,7 @@ public:
     RenderBuffer();
     RenderBuffer(const sead::Vector2f& virtual_size, const sead::BoundBox2f& physical_area);
     RenderBuffer(const sead::Vector2f& virtual_size, f32 physical_x, f32 physical_y, f32 physical_w, f32 physical_h);
-    virtual ~RenderBuffer();
+    ~RenderBuffer() override;
 
 private:
     void initialize_();

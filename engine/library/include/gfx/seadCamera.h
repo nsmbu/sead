@@ -68,7 +68,7 @@ public:
     }
 
     LookAtCamera(const Vector3f& pos, const Vector3f& at, const Vector3f& up);
-    virtual ~LookAtCamera();
+    ~LookAtCamera() override;
 
     void doUpdateMatrix(Matrix34f* dst) const override;
 
@@ -98,7 +98,7 @@ public:
     OrthoCamera();
     OrthoCamera(const Vector2f& center, f32 distance);
     OrthoCamera(const OrthoProjection& proj);
-    virtual ~OrthoCamera();
+    ~OrthoCamera() override;
 
     void setByOrthoProjection(const OrthoProjection& proj);
 

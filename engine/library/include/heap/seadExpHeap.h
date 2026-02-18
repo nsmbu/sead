@@ -11,11 +11,11 @@ class ExpHeap : public Heap
 {
 public:
     ExpHeap(const SafeString& name, Heap* parent, void* start, u32 size, HeapDirection direction, bool enable_lock);
-    virtual ~ExpHeap();
+    ~ExpHeap() override;
 
-    virtual const void* getStartAddress() const;
-    virtual const void* getEndAddress() const;
-    virtual size_t getSize() const;
+    const void* getStartAddress() const override;
+    const void* getEndAddress() const override;
+    size_t getSize() const override;
 
 public:
     static ExpHeap* tryCreate(u32 size, const SafeString& name, Heap* parent = nullptr, HeapDirection direction = cHeapDirection_Forward, bool enable_lock = false);

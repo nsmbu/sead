@@ -19,7 +19,7 @@ private:
     const CriticalSection& operator=(const CriticalSection&);
 
 public:
-    virtual ~CriticalSection();
+    ~CriticalSection() override;
 
     void lock();
     bool tryLock();

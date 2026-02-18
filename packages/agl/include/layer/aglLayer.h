@@ -42,7 +42,7 @@ public:
 
 public:
     Layer();
-    virtual ~Layer();
+    ~Layer() override;
 
     SEAD_RTTI_BASE(Layer)
 

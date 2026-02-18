@@ -15,7 +15,7 @@ class ControllerWrapperBase : public ControllerBase, public IDisposer
 
 public:
     ControllerWrapperBase();
-    virtual ~ControllerWrapperBase();
+    ~ControllerWrapperBase() override;
 
     virtual void calc(u32 prev_hold, bool prev_pointer_on) = 0;
     virtual void setIdle();

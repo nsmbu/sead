@@ -146,6 +146,7 @@ public:
 
     Matrix34(const Mtx33& mtx33, const Vec3& t = Vec3::zero);
     Matrix34(const Mtx44& mtx44);
+    Matrix34(const Matrix34& other) = default;
 
     T operator()(s32 i, s32 j) const;
     T& operator()(s32 i, s32 j);

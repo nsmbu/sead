@@ -33,7 +33,7 @@ public:
 
     LogicalFrameBuffer(const Vector2f& virtual_size, f32 physical_x, f32 physical_y, u32 physical_w, u32 physical_h)
         : mVirtualSize(virtual_size)
-        , mPhysicalArea(physical_x, physical_y, physical_x + physical_w, physical_y + physical_h)
+        , mPhysicalArea(physical_x, physical_y, physical_x + f32(physical_w), physical_y + f32(physical_h))
     {
     }
 
@@ -73,7 +73,7 @@ public:
 
     void setPhysicalArea(f32 x, f32 y, u32 w, u32 h)
     {
-        mPhysicalArea.set(x, y, x + w, y + h);
+        mPhysicalArea.set(x, y, x + f32(w), y + f32(h));
     }
 
 protected:

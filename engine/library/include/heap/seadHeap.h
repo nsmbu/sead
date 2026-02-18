@@ -13,7 +13,7 @@
 
 namespace sead { namespace hostio {
 
-struct Context;
+class Context;
 
 } // namespace sead::hostio
 
@@ -52,7 +52,7 @@ private:
 
 public:
     Heap(const SafeString& name, Heap* parent, void* start, size_t size, HeapDirection direction, bool enable_lock);
-    virtual ~Heap() { }
+    ~Heap() override { }
 
     SEAD_RTTI_BASE(Heap)
 

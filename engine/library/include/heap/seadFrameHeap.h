@@ -11,7 +11,7 @@ class FrameHeap : public Heap
 
 public:
     FrameHeap(const SafeString& name, Heap* parent, void* start, u32 size, HeapDirection direction, bool enable_lock);
-    virtual ~FrameHeap();
+    ~FrameHeap() override;
 
     void destroy() override;
     size_t adjust() override;

@@ -14,7 +14,7 @@ public:
 
 public:
     ControllerWrapper();
-    virtual ~ControllerWrapper() { }
+    ~ControllerWrapper() override { }
 
     void calc(u32 prev_hold, bool prev_pointer_on) override;
 
@@ -22,7 +22,10 @@ public:
     void setPadConfig(s32 padbit_max, const u8* pad_config, bool enable_stickcross_emulation);
 
 protected:
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wshadow-field" // why man
     u8 mPadConfig[cPadIdx_MaxBase];
+#pragma clang diagnostic pop
 };
 #ifdef cafe
 static_assert(sizeof(ControllerWrapper) == 0x194, "sead::ControllerWrapper size mismatch");

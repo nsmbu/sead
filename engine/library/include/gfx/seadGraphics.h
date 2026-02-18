@@ -10,7 +10,7 @@
 
 namespace sead {
 
-class Color4f;
+struct Color4f;
 class Thread;
 
 class Graphics : public sead::IDisposer
@@ -153,7 +153,7 @@ public:
 
 public:
     Graphics();
-    virtual ~Graphics();
+    ~Graphics() override;
 
 private:
     Graphics(const Graphics&);

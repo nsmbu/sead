@@ -42,7 +42,7 @@ public:
     {
     }
 
-    virtual ~ArchiveRes() { }
+    ~ArchiveRes() override { }
 
     u32 getLoadDataAlignment() override { return 0x80; }
 

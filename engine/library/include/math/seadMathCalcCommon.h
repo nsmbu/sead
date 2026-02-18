@@ -171,7 +171,7 @@ public:
 
     static T idx2deg(u32 a)
     {
-        return (s32)a * 180.0f / cHalfRoundIdx;
+        return static_cast<float>(static_cast<s32>(a)) * 180.0f / cHalfRoundIdx;
     }
 
     static T idx2rad(u32 a)

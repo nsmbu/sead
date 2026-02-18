@@ -30,7 +30,7 @@ private:
     const HandleBase& operator=(const HandleBase&);
 
 public:
-    virtual ~HandleBase() { }
+    ~HandleBase() override { }
 
     FileDevice* getDevice() const { return mDevice; }
     FileDevice* getOriginalDevice() const { return mOriginalDevice; }
@@ -130,7 +130,7 @@ public:
         mDriveName.copy(default_drive_name);
     }
 
-    virtual ~FileDevice();
+    ~FileDevice() override;
 
     const SafeString& getDriveName() const
     {
@@ -380,7 +380,7 @@ public:
     {
     }
 
-    virtual ~FileHandle()
+    ~FileHandle() override
     {
         FileDevice* device = mOriginalDevice;
         if (device != nullptr)
@@ -424,7 +424,7 @@ public:
     {
     }
 
-    virtual ~DirectoryHandle()
+    ~DirectoryHandle() override
     {
         FileDevice* device = mOriginalDevice;
         if (device != nullptr)

@@ -104,7 +104,7 @@ MathCalcCommon<f32>::sinIdx(u32 idx)
     u32 index = (idx >> 24) & 0xff;
     u32 rest = idx & 0xffffff;
 
-    return cSinCosTbl[index].sin_val + cSinCosTbl[index].sin_delta * rest / 0x1000000;
+    return cSinCosTbl[index].sin_val + cSinCosTbl[index].sin_delta * (static_cast<float>(rest) / static_cast<float>(0x1000000));
 }
 
 template <>
@@ -114,7 +114,7 @@ MathCalcCommon<f32>::cosIdx(u32 idx)
     u32 index = (idx >> 24) & 0xff;
     u32 rest = idx & 0xffffff;
 
-    return cSinCosTbl[index].cos_val + cSinCosTbl[index].cos_delta * rest / 0x1000000;
+    return cSinCosTbl[index].cos_val + cSinCosTbl[index].cos_delta * (static_cast<float>(rest) / static_cast<float>(0x1000000));
 }
 
 template <>
@@ -206,8 +206,11 @@ template <>
 inline u32
 MathCalcCommon<f32>::atan2Idx(f32 y, f32 x)
 {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wfloat-equal"
     if (x == 0 && y == 0)
         return 0;
+#pragma clang diagnostic pop
 
     if (x >= 0)
     {

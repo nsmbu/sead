@@ -37,7 +37,7 @@ static_assert(sizeof(IDisposer) == 0x10, "sead::IDisposer size mismatch");
         {                                                                         \
         public:                                                                   \
             SingletonDisposer_() : sead::IDisposer() { }                          \
-            virtual ~SingletonDisposer_();                                        \
+            ~SingletonDisposer_() override;                                       \
                                                                                   \
             static SingletonDisposer_* sStaticDisposer;                           \
         };                                                                        \

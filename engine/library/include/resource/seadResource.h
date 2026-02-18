@@ -32,7 +32,7 @@ class DirectResource : public Resource
 
 public:
     DirectResource();
-    virtual ~DirectResource();
+    ~DirectResource() override;
 
     virtual u32 getLoadDataAlignment() { return 4; }
 
@@ -72,7 +72,7 @@ public:
     {
     }
 
-    virtual ~ResourceFactory();
+    ~ResourceFactory() override;
 
     virtual Resource* create(const ResourceMgr::CreateArg& arg) = 0;
     virtual Resource* tryCreate(const ResourceMgr::LoadArg& arg) = 0;
@@ -98,13 +98,13 @@ public:
     {
     }
 
-    virtual ~DirectResourceFactoryBase()
+    ~DirectResourceFactoryBase() override
     {
     }
 
-    virtual Resource* create(const ResourceMgr::CreateArg& arg);
-    virtual Resource* tryCreate(const ResourceMgr::LoadArg& arg);
-    virtual Resource* tryCreateWithDecomp(const ResourceMgr::LoadArg& arg, Decompressor* decomp);
+    Resource* create(const ResourceMgr::CreateArg& arg) override;
+    Resource* tryCreate(const ResourceMgr::LoadArg& arg) override;
+    Resource* tryCreateWithDecomp(const ResourceMgr::LoadArg& arg, Decompressor* decomp) override;
 
 protected:
     virtual DirectResource* newResource_(Heap* heap, s32 alignment) = 0;

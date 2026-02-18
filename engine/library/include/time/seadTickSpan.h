@@ -68,13 +68,13 @@ public:
 
     const TickSpan& operator*=(f32 s)
     {
-        mSpan *= s;
+        mSpan *= s64(s);
         return *this;
     }
 
     const TickSpan& operator/=(f32 s)
     {
-        mSpan /= s;
+        mSpan /= s64(s);
         return *this;
     }
 

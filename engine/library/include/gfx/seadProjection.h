@@ -88,7 +88,7 @@ class PerspectiveProjection : public Projection
 public:
     PerspectiveProjection();
     PerspectiveProjection(f32 near, f32 far, f32 fovy_rad, f32 aspect);
-    virtual ~PerspectiveProjection();
+    ~PerspectiveProjection() override;
 
     void set(f32 _near, f32 _far, f32 fovy_rad, f32 aspect);
 
@@ -178,7 +178,7 @@ public:
     OrthoProjection(f32 _near, f32 _far, f32 top, f32 bottom, f32 left, f32 right);
     OrthoProjection(f32 _near, f32 _far, const BoundBox2f& box);
     OrthoProjection(f32 _near, f32 _far, const Viewport& vp);
-    virtual ~OrthoProjection();
+    ~OrthoProjection() override;
 
     void setNear(f32 near)
     {
@@ -254,7 +254,7 @@ public:
     FrustumProjection();
     FrustumProjection(f32 _near, f32 _far, f32 top, f32 bottom, f32 left, f32 right);
     FrustumProjection(f32 _near, f32 _far, const BoundBox2f& box);
-    virtual ~FrustumProjection();
+    ~FrustumProjection() override;
 
     Type getProjectionType() const override { return Projection::cType_Perspective; }
     void doUpdateMatrix(Matrix44f* dst) const override;

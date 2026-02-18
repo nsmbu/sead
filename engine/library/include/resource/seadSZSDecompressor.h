@@ -40,9 +40,9 @@ public:
 
 public:
     SZSDecompressor(u32 work_size, u8* work_buffer);
-    virtual ~SZSDecompressor() { }
+    ~SZSDecompressor() override { }
 
-    virtual u8* tryDecompFromDevice(const ResourceMgr::LoadArg& arg, Resource* res, u32* out_size, u32* out_buffer_size, bool* out_need_delete);
+    u8* tryDecompFromDevice(const ResourceMgr::LoadArg& arg, Resource* res, u32* out_size, u32* out_buffer_size, bool* out_need_delete) override;
 
     static inline u32 getHeaderSize() { return 0x10; }
     void setWorkSize(u32 work_size);
