@@ -36,8 +36,8 @@ inline f32 MathCafe<f32>::rsqrt(f32 x)
          "fmuls   %[v2], %[v0], %[HALF]       \n\t"
          "fnmsubs %[v1], %[v1], %[x], %[THREE]\n\t"
          "fmuls   %[v0], %[v1], %[v2]             "
-         : [v0] "+f"(v0), [  v1] "+f"(  v1), [   v2] "+f"(   v2)
-         : [ x]  "f"( x), [HALF]  "f"(HALF), [THREE]  "f"(THREE));
+         : [v0] "=&f"(v0), [v1] "=&f"(v1), [   v2] "=&f"( v2)
+         : [x]  "f"( x), [HALF] "f"(HALF), [THREE] "f"(THREE));
 #endif
 
     return v0;
