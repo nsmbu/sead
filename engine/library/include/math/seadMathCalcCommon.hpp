@@ -482,7 +482,7 @@ inline s32
 MathCalcCommon<s32>::roundUpPow2(s32 val, s32 base)
 {
     //SEAD_ASSERT_MSG(val >= 0 && (base - 1u & base) == 0, "illegal param[val:%d, base:%d]", val, base);
-    return val + (base - 1u) & ~(base - 1u);
+    return static_cast<s32>((static_cast<u32>(val) + (static_cast<u32>(base) - 1u)) & ~(static_cast<u32>(base) - 1u));
 }
 
 template <>
@@ -490,7 +490,7 @@ inline u32
 MathCalcCommon<u32>::roundUpPow2(u32 val, s32 base)
 {
     //SEAD_ASSERT_MSG((base - 1u & base) == 0, "illegal param[base:%d]", base);
-    return val + (base - 1u) & ~(base - 1u);
+    return val + (static_cast<u32>(base) - 1u) & ~(static_cast<u32>(base) - 1u);
 }
 
 template <typename T>

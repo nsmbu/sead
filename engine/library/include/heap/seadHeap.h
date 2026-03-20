@@ -132,7 +132,7 @@ public:
 
     u32 childSize() const
     {
-        return mChildren.size();
+        return static_cast<u32>(mChildren.size());
     }
 
     OffsetList<IDisposer>::constIterator disposerBegin() const
@@ -147,7 +147,7 @@ public:
 
     u32 disposerSize() const
     {
-        return mDisposerList.size();
+        return static_cast<u32>(mDisposerList.size());
     }
 
     void pushBackChild_(Heap*);

@@ -142,7 +142,7 @@ BufferedSafeStringBase<CharType>::copy(const SafeStringBase<CharType>& rhs, s32 
         size = getBufferSize() - 1;
     }
 
-    MemUtil::copy(mutable_string_top, rhs.cstr(), size * sizeof(CharType));
+    MemUtil::copy(mutable_string_top, rhs.cstr(), static_cast<size_t>(size) * sizeof(CharType));
     mutable_string_top[size] = 0;
 
     return size;

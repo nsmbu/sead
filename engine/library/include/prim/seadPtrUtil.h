@@ -24,7 +24,7 @@ public:
     static bool isAligned(const void* ptr, s32 alignment)
     {
       //SEAD_ASSERT(alignment != 0);
-        return uintptr(ptr) % alignment == 0;
+        return reinterpret_cast<uintptr_t>(ptr) % static_cast<uintptr_t>(alignment) == 0;
     }
 
     static bool isAlignedPow2(const void* ptr, u32 alignment);

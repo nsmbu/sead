@@ -232,7 +232,7 @@ public:
         if (size > 0)
         {
             Heap* heap = HeapMgr::instance()->getCurrentHeap();
-            T* buffer = static_cast<T*>(heap->alloc(size * sizeof(T), alignment));
+            T* buffer = static_cast<T*>(heap->alloc(static_cast<size_t>(size) * sizeof(T), alignment));
 
             for (s32 i = 0; i < size; i++)
                 new (static_cast<void*>(&buffer[i])) T;
@@ -361,6 +361,19 @@ public:
             return mBuffer[0];
         }
     }
+    
+    T& operator[] (u32 x)
+    {
+        if (x < static_cast<u32>(mSize))
+        {
+            return mBuffer[x];
+        }
+        else
+        {
+            //SEAD_ASSERT_MSG(false, "index exceeded [%u/%d]", x, mSize);
+            return mBuffer[0];
+        }
+    }
 
     const T& operator[] (s32 x) const
     {
@@ -371,6 +384,19 @@ public:
         else
         {
             //SEAD_ASSERT_MSG(false, "index exceeded [%d/%d]", x, mSize);
+            return mBuffer[0];
+        }
+    }
+    
+    const T& operator[] (u32 x) const
+    {
+        if (x < static_cast<u32>(mSize))
+        {
+            return mBuffer[x];
+        }
+        else
+        {
+            //SEAD_ASSERT_MSG(false, "index exceeded [%u/%d]", x, mSize);
             return mBuffer[0];
         }
     }

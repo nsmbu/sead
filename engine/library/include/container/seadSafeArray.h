@@ -33,6 +33,19 @@ public:
             return mBuffer[0];
         }
     }
+    
+    T& operator[](u32 x)
+    {
+        if (x < static_cast<u32>(N))
+        {
+            return mBuffer[x];
+        }
+        else
+        {
+            //SEAD_ASSERT_MSG(false, "range over [0, %d) : %u", N, x);
+            return mBuffer[0];
+        }
+    }
 
     const T& operator[](s32 x) const
     {
@@ -43,6 +56,19 @@ public:
         else
         {
             //SEAD_ASSERT_MSG(false, "range over [0, %d) : %d", N, x);
+            return mBuffer[0];
+        }
+    }
+    
+    const T& operator[](u32 x) const
+    {
+        if (x < static_cast<u32>(N))
+        {
+            return mBuffer[x];
+        }
+        else
+        {
+            //SEAD_ASSERT_MSG(false, "range over [0, %d) : %u", N, x);
             return mBuffer[0];
         }
     }
