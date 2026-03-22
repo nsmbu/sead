@@ -19,7 +19,7 @@ public:
     GameFramework();
     virtual ~GameFramework();
 
-    virtual void createSystemTasks(TaskBase*, const CreateSystemTaskArg&);
+    void createSystemTasks(TaskBase*, const CreateSystemTaskArg&) override;
 
     virtual void createControllerMgr(TaskBase*);
     virtual void createHostIOMgr(TaskBase*, HostIOMgr::Parameter*);
