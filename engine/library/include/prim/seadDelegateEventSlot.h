@@ -101,7 +101,7 @@ public:
         if (slot.mConnectedToDelegateEvent)
             slot.release();
 
-        mList.pushBack(slot);
+        mList.pushBack(&slot.mNode);
         slot.mConnectedToDelegateEvent = true;
     }
 
