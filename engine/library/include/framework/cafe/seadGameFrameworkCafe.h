@@ -39,16 +39,16 @@ public:
     GameFrameworkCafe(const CreateArg& arg);
     virtual ~GameFrameworkCafe();
 
-    virtual FrameBuffer* getMethodFrameBuffer(s32 method_type) const;
-    virtual LogicalFrameBuffer* getMethodLogicalFrameBuffer(s32 method_type) const;
+    FrameBuffer* getMethodFrameBuffer(s32 method_type) const override;
+    LogicalFrameBuffer* getMethodLogicalFrameBuffer(s32 method_type) const override;
 
 protected:
-    virtual void initRun_(Heap*);
-    virtual void runImpl_();
-    virtual MethodTreeMgr* createMethodTreeMgr_(Heap*);
+    void initRun_(Heap*) override;
+    void runImpl_() override;
+    MethodTreeMgr* createMethodTreeMgr_(Heap*) override;
 
 public:
-    virtual f32 calcFps()
+    f32 calcFps() override
     {
         TickSpan sec_span = TickSpan::makeFromSeconds(1);
         return static_cast<f32>(sec_span.toS64()) / static_cast<f32>(mFrameSpan.toS64());
@@ -100,8 +100,8 @@ protected:
     DisplayBuffer* mDisplayBufferDRC;
     FrameBuffer* mFrameBuffer;
     FrameBuffer* mFrameBufferDRC;
-    s32 mCurrentDisplaybuffer;
-    u8 _36c;
+    void (*mCurrentDisplaybuffer)(u32);
+    bool _36c;
     u64* mGpuCounters;
     u32 _374[4 / sizeof(u32)];
 };
