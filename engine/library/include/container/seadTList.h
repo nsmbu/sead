@@ -48,7 +48,7 @@ template <typename T>
 class TList : public ListImpl
 {
 private:
-    typedef s32 (*CompareCallback)(const T*, const T*);
+    using CompareCallback = s32 (*)(const T* a, const T* b);
 
 public:
     TList()
@@ -107,21 +107,41 @@ public:
         }
     }
 
-    void unsafeClear();
-    void sort();
-    void sort(CompareCallback cmp);
-    void mergeSort();
-    void mergeSort(CompareCallback cmp);
-    TListNode<T>* find(const T* obj) const;
-    TListNode<T>* find(const T* obj, CompareCallback cmp) const;
-    void uniq();
-    void uniq(CompareCallback cmp);
+    void unsafeClear() { ListImpl::unsafeClear(); }
+
+    void sort() { sort(&compareT); }
+
+    void sort(CompareCallback cmp)
+    {
+        ListImpl::sort(-static_cast<s32>(offsetof(TListNode<T>, mData)), reinterpret_cast<CompareCallbackImpl>(cmp));
+    }
+
+    void mergeSort() { mergeSort(&compareT); }
+
+    void mergeSort(CompareCallback cmp)
+    {
+        ListImpl::mergeSort(-static_cast<s32>(offsetof(TListNode<T>, mData)), reinterpret_cast<CompareCallbackImpl>(cmp));
+    }
+
+    TListNode<T>* find(const T* obj) const { return find(obj, &compareT); }
+
+    TListNode<T>* find(const T* obj, CompareCallback cmp) const
+    {
+        return static_cast<TListNode<T>*>(ListImpl::find(obj, -static_cast<s32>(offsetof(TListNode<T>, mData)), reinterpret_cast<CompareCallbackImpl>(cmp)));
+    }
+
+    void uniq() { uniq(&compareT); }
+
+    void uniq(CompareCallback cmp)
+    {
+        ListImpl::uniq(-static_cast<s32>(offsetof(TListNode<T>, mData)), reinterpret_cast<CompareCallbackImpl>(cmp));
+    }
 
 public:
     class iterator
     {
     public:
-        iterator(TListNode<T>* ptr)
+        explicit iterator(TListNode<T>* ptr)
             : mPtr(ptr)
         {
         }
@@ -162,7 +182,7 @@ public:
     class constIterator
     {
     public:
-        constIterator(const TListNode<T>* ptr)
+        explicit constIterator(const TListNode<T>* ptr)
             : mPtr(ptr)
         {
         }
@@ -206,7 +226,7 @@ public:
     class robustIterator
     {
     public:
-        robustIterator(TListNode<T>* ptr)
+        explicit robustIterator(TListNode<T>* ptr)
             : mPtr(ptr)
             , mNext(static_cast<TListNode<T>*>(ptr->next()))
         {
@@ -245,63 +265,128 @@ public:
         TListNode<T>* mNext;
     };
 
-    // TODO
-    class reverseIterator { };
+    class reverseIterator
+    {
+    public:
+        explicit reverseIterator(TListNode<T>* ptr)
+            : mPtr(ptr)
+        {
+        }
 
-    // TODO
-    class reverseConstIterator { };
+        reverseIterator& operator++()
+        {
+            mPtr = static_cast<TListNode<T>*>(mPtr->prev());
+            return *this;
+        }
 
-    // TODO
-    class reverseRobustIterator { };
+        T& operator*() const { return mPtr->mData; }
+        T* operator->() const { return &mPtr->mData; }
+
+        friend bool operator==(const reverseIterator& lhs, const reverseIterator& rhs) { return lhs.mPtr == rhs.mPtr; }
+        friend bool operator!=(const reverseIterator& lhs, const reverseIterator& rhs) { return lhs.mPtr != rhs.mPtr; }
+
+    protected:
+        TListNode<T>* mPtr;
+
+        friend class reverseConstIterator;
+    };
+
+    class reverseConstIterator
+    {
+    public:
+        explicit reverseConstIterator(const TListNode<T>* ptr)
+            : mPtr(ptr)
+        {
+        }
+
+        reverseConstIterator(const reverseIterator& it)
+            : mPtr(it.mPtr)
+        {
+        }
+
+        reverseConstIterator& operator++()
+        {
+            mPtr = static_cast<const TListNode<T>*>(mPtr->prev());
+            return *this;
+        }
+
+        const T& operator*() const { return mPtr->mData; }
+        const T* operator->() const { return &mPtr->mData; }
+
+        friend bool operator==(const reverseConstIterator& lhs, const reverseConstIterator& rhs) { return lhs.mPtr == rhs.mPtr; }
+        friend bool operator!=(const reverseConstIterator& lhs, const reverseConstIterator& rhs) { return lhs.mPtr != rhs.mPtr; }
+
+    protected:
+        const TListNode<T>* mPtr;
+    };
+
+    class reverseRobustIterator
+    {
+    public:
+        explicit reverseRobustIterator(TListNode<T>* ptr)
+            : mPtr(ptr)
+            , mPrev(static_cast<TListNode<T>*>(ptr->prev()))
+        {
+        }
+
+        reverseRobustIterator& operator++()
+        {
+            mPtr = mPrev;
+            mPrev = static_cast<TListNode<T>*>(mPrev->prev());
+            return *this;
+        }
+
+        TListNode<T>& operator*() const { return *mPtr; }
+        TListNode<T>* operator->() const { return mPtr; }
+
+        friend bool operator==(const reverseRobustIterator& lhs, const reverseRobustIterator& rhs) { return lhs.mPtr == rhs.mPtr; }
+        friend bool operator!=(const reverseRobustIterator& lhs, const reverseRobustIterator& rhs) { return lhs.mPtr != rhs.mPtr; }
+
+    protected:
+        TListNode<T>* mPtr;
+        TListNode<T>* mPrev;
+    };
 
 public:
-    iterator begin() const
-    {
-        return iterator(static_cast<TListNode<T>*>(mStartEnd.next()));
-    }
+    iterator begin() const { return iterator(static_cast<TListNode<T>*>(mStartEnd.next())); }
+    iterator end() const { return iterator(static_cast<TListNode<T>*>(const_cast<ListNode*>(&mStartEnd))); }
+    iterator toIterator(TListNode<T>* obj) const { return iterator(obj); }
 
-    iterator end() const
-    {
-        return iterator(static_cast<TListNode<T>*>(const_cast<ListNode*>(&mStartEnd)));
-    }
+    constIterator constBegin() const { return constIterator(static_cast<TListNode<T>*>(mStartEnd.next())); }
+    constIterator constEnd() const { return constIterator(static_cast<TListNode<T>*>(const_cast<ListNode*>(&mStartEnd))); }
+    constIterator toConstIterator(const TListNode<T>* obj) const { return constIterator(obj); }
 
-    iterator toIterator(TListNode<T>*) const;
+    robustIterator robustBegin() const { return robustIterator(static_cast<TListNode<T>*>(mStartEnd.next())); }
+    robustIterator robustEnd() const { return robustIterator(static_cast<TListNode<T>*>(const_cast<ListNode*>(&mStartEnd))); }
+    robustIterator toRobustIterator(TListNode<T>* obj) const { return robustIterator(obj); }
 
-    constIterator constBegin() const
-    {
-        return constIterator(static_cast<TListNode<T>*>(mStartEnd.next()));
-    }
+    reverseIterator reverseBegin() const { return reverseIterator(static_cast<TListNode<T>*>(mStartEnd.prev())); }
+    reverseIterator reverseEnd() const { return reverseIterator(static_cast<TListNode<T>*>(const_cast<ListNode*>(&mStartEnd))); }
+    reverseIterator toReverseIterator(TListNode<T>* obj) const { return reverseIterator(obj); }
 
-    constIterator constEnd() const
-    {
-        return constIterator(static_cast<TListNode<T>*>(const_cast<ListNode*>(&mStartEnd)));
-    }
+    reverseConstIterator reverseConstBegin() const { return reverseConstIterator(static_cast<TListNode<T>*>(mStartEnd.prev())); }
+    reverseConstIterator reverseConstEnd() const { return reverseConstIterator(static_cast<TListNode<T>*>(const_cast<ListNode*>(&mStartEnd))); }
+    reverseConstIterator toReverseConstIterator(const TListNode<T>* obj) const { return reverseConstIterator(obj); }
 
-    constIterator toConstIterator(const TListNode<T>*) const;
-
-    robustIterator robustBegin() const
-    {
-        return robustIterator(static_cast<TListNode<T>*>(mStartEnd.next()));
-    }
-
-    robustIterator robustEnd() const
-    {
-        return robustIterator(static_cast<TListNode<T>*>(const_cast<ListNode*>(&mStartEnd)));
-    }
-
-    robustIterator toRobustIterator(TListNode<T>*) const;
-    reverseIterator reverseBegin() const;
-    reverseIterator reverseEnd() const;
-    reverseIterator toReverseIterator(TListNode<T>*) const;
-    reverseConstIterator reverseConstBegin() const;
-    reverseConstIterator reverseConstEnd() const;
-    reverseConstIterator toReverseConstIterator(const TListNode<T>*) const;
-    reverseRobustIterator reverseRobustBegin() const;
-    reverseRobustIterator reverseRobustEnd() const;
-    reverseRobustIterator toReverseRobustIterator(TListNode<T>*) const;
+    reverseRobustIterator reverseRobustBegin() const { return reverseRobustIterator(static_cast<TListNode<T>*>(mStartEnd.prev())); }
+    reverseRobustIterator reverseRobustEnd() const { return reverseRobustIterator(static_cast<TListNode<T>*>(const_cast<ListNode*>(&mStartEnd))); }
+    reverseRobustIterator toReverseRobustIterator(TListNode<T>* obj) const { return reverseRobustIterator(obj); }
 
 protected:
-    static s32 compareT(const T*, const T*);
+    static s32 compareT(const T* a, const T* b)
+    {
+        if (*a < *b)
+        {
+            return -1;
+        }
+
+        if (*b < *a)
+        {
+            return 1;
+        }
+
+        return 0;
+    }
 };
 
 } // namespace sead

@@ -1,7 +1,7 @@
 #ifndef SEAD_LIST_IMPL_H_
 #define SEAD_LIST_IMPL_H_
 
-#include <basis/seadTypes.h>
+#include <random/seadRandom.h>
 
 namespace sead {
 
@@ -23,6 +23,7 @@ private:
 public:
     ListNode* next() const { return mNext; }
     ListNode* prev() const { return mPrev; }
+
     bool isLinked() const { return mNext || mPrev; }
 
 private:
@@ -43,17 +44,18 @@ private:
     friend class ListImpl;
 };
 #ifdef cafe
-static_assert(sizeof(ListNode) == 8, "sead::ListNode size mismatch");
+static_assert(sizeof(ListNode) == 0x8, "sead::ListNode size mismatch");
 #endif // cafe
 
 class ListImpl
 {
-private:
-    typedef s32 (*CompareCallbackImpl)(const void*, const void*);
+protected:
+    using CompareCallbackImpl = s32 (*)(const void* a, const void* b);
 
 public:
     ListImpl()
-        : mStartEnd(), mCount(0)
+        : mStartEnd()
+        , mCount(0)
     {
         mStartEnd.mNext = &mStartEnd;
         mStartEnd.mPrev = &mStartEnd;
@@ -63,10 +65,18 @@ protected:
     ListImpl(const ListImpl&);
 
 public:
-    bool isEmpty() const;
+    bool isEmpty() const { return mCount == 0; }
+
     s32 size() const { return mCount; }
+
     void reverse();
-    void shuffle();
+
+    void shuffle()
+    {
+        Random random;
+        shuffle(&random);
+    }
+
     void shuffle(Random* random);
     bool checkLinks() const;
 
@@ -112,13 +122,23 @@ protected:
 
     ListNode* nth(s32 index) const;
     s32 indexOf(const ListNode* n) const;
+
     void swap(ListNode* n1, ListNode* n2);
     void moveAfter(ListNode* basis, ListNode* n);
     void moveBefore(ListNode* basis, ListNode* n);
+
     ListNode* find(const void* ptr, s32 offset, CompareCallbackImpl cmp) const;
     void uniq(s32 offset, CompareCallbackImpl cmp);
+
     void clear();
-    void unsafeClear();
+
+    void unsafeClear()
+    {
+        mCount = 0;
+        mStartEnd.mPrev = &mStartEnd;
+        mStartEnd.mNext = &mStartEnd;
+    }
+
     static void mergeSortImpl(ListNode* front, ListNode* back, s32 num, s32 offset, CompareCallbackImpl cmp);
     ListImpl& operator=(const ListImpl&);
 
