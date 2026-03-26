@@ -53,6 +53,8 @@ public:
 protected:
     void initLayer_(Layer* p_layer, s32 layer_index, const sead::SafeString& name, DisplayType display_type, sead::Heap* heap);
 
+    bool isDisplayList_() const;
+
 protected:
     u32 _10;
     MultiSampleType mMultiSampleType;
