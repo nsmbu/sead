@@ -19,7 +19,7 @@ public:
     bool pushBack(DrawMethod* p_method);
     s32 remove(const DrawMethod* p_method);
 
-protected:
+// protected:
     sead::FixedPtrArray<DrawMethod, 256> mpDrawMethod;
     sead::BitFlag32 mFlag; // & 1: render
 };

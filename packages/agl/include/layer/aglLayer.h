@@ -8,6 +8,7 @@
 #include <heap/seadDisposer.h>
 #include <heap/seadHeap.h>
 #include <layer/aglLayerEnum.h>
+#include <layer/aglRenderStep.h>
 #include <prim/seadBitFlag.h>
 #include <prim/seadSafeString.h>
 
@@ -16,7 +17,6 @@ namespace agl { namespace lyr {
 class DrawMethod;
 class Renderer;
 class RenderInfo;
-class RenderStep;
 
 class Layer : public sead::IDisposer
 {
