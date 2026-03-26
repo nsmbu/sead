@@ -55,6 +55,11 @@ public:
     
     bool isDisplayList__() const
     {
+        return isDisplayList_();
+    }
+
+    // ----------
+
 protected:
     void initLayer_(Layer* p_layer, s32 layer_index, const sead::SafeString& name, DisplayType display_type, sead::Heap* heap);
 
