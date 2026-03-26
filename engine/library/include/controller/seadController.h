@@ -138,7 +138,7 @@ T Controller::getAddonAs() const
 {
     for (OffsetList<ControllerAddon>::iterator it = mAddons.begin(); it != mAddons.end(); ++it)
     {
-        T addon = DynamicCast<remove_pointer<T>::type>(&(*it));
+        T addon = DynamicCast<typename remove_pointer<T>::type>(&(*it));
         if (addon)
             return addon;
     }

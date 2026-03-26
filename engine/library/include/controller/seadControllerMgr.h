@@ -90,7 +90,7 @@ T ControllerMgr::getControllerByOrderAs(s32 index) const
 {
     for (PtrArray<Controller>::iterator it = mControllers.begin(); it != mControllers.end(); ++it)
     {
-        T controller = DynamicCast<remove_pointer<T>::type>(&(*it));
+        T controller = DynamicCast<typename remove_pointer<T>::type>(&(*it));
         if (controller)
         {
             if (index == 0)
@@ -108,7 +108,7 @@ T ControllerMgr::getControlDeviceAs() const
 {
     for (OffsetList<ControlDevice>::iterator it = mDevices.begin(); it != mDevices.end(); ++it)
     {
-        T device = DynamicCast<remove_pointer<T>::type>(&(*it));
+        T device = DynamicCast<typename remove_pointer<T>::type>(&(*it));
         if (device)
             return device;
     }
