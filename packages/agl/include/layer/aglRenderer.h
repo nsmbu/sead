@@ -50,6 +50,11 @@ public:
         return sead::DynamicCast<T>(mLayer[index]);
     }
 
+    // Public wrappers
+    // ----------
+    
+    bool isDisplayList__() const
+    {
 protected:
     void initLayer_(Layer* p_layer, s32 layer_index, const sead::SafeString& name, DisplayType display_type, sead::Heap* heap);
 
