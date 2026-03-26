@@ -60,12 +60,12 @@ public:
 
     // ----------
 
-// protected:
+protected:
     void initLayer_(Layer* p_layer, s32 layer_index, const sead::SafeString& name, DisplayType display_type, sead::Heap* heap);
 
     bool isDisplayList_() const;
 
-// protected:
+protected:
     u32 _10;
     MultiSampleType mMultiSampleType;
     sead::UnsafeArray<u32[0x6C4 / sizeof(u32)], cDisplayType_Max> mRenderDisplay; // sead::UnsafeArray<agl::lyr::RenderDisplay, cDisplayType_Max>
