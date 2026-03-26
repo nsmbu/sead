@@ -56,6 +56,31 @@ public:
 
     virtual void setCaption(const SafeString&) { }
 
+    void setCurrentDisplaybuffer(void (*currentDisplaybuffer)(u32))
+    {
+        mCurrentDisplaybuffer = currentDisplaybuffer;
+    }
+
+    void set36c(bool b)
+    {
+        _36c = b;
+    }
+
+    // Public wrappers
+    // ----------
+
+    void procDraw__()
+    {
+        procDraw_();
+    }
+
+    void procCalc__()
+    {
+        procCalc_();
+    }
+
+    // -----------
+
 protected:
     virtual void mainLoop_();
     virtual void procFrame_();
