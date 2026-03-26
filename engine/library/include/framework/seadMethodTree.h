@@ -4,7 +4,7 @@
 #include <container/seadTreeNode.h>
 #include <heap/seadDisposer.h>
 #include <prim/seadBitFlag.h>
-//#include <prim/seadDelegate.h>
+#include <prim/seadDelegate.h>
 #include <prim/seadNamable.h>
 #include <prim/seadRuntimeTypeInfo.h>
 //#include <thread/seadCriticalSection.h>
@@ -12,9 +12,6 @@
 namespace sead {
 
 class CriticalSection;
-
-template <typename T, typename U>
-class IDelegate2;
 
 class MethodTreeNode : public TTreeNode<MethodTreeNode*>, public INamable, public IDisposer
 {
@@ -48,6 +45,14 @@ public:
         detachAll();
     }
 
+    MethodTreeNode* getParent() const
+    {
+        if (parent() != nullptr)
+            return parent()->val();
+        else
+            return nullptr;
+    }
+
     MethodTreeNode* getChild() const
     {
         if (child() != nullptr)
@@ -70,6 +75,16 @@ public:
     void unlock_();
 
     void call();
+
+    void setPauseFlag(PauseFlag f)
+    {
+        lock_();
+        if (mPauseEventDelegate)
+            mPauseEventDelegate->invoke(this, f);
+
+        mPauseFlag.setDirect(f);
+        unlock_();
+    }
 
     typedef IDelegate2<MethodTreeNode*, PauseFlag> PauseEventDelegate;
 
