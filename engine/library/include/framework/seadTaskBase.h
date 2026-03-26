@@ -14,6 +14,7 @@
 namespace sead {
 
 class FaderTaskBase;
+class Framework;
 class MethodTreeMgr;
 class MethodTreeNode;
 struct TaskConstructArg;
@@ -128,6 +129,7 @@ public:
         detachDraw();
     }
 
+    Framework* getFramework() const;
     MethodTreeMgr* getMethodTreeMgr() const;
 
     template <typename T>
