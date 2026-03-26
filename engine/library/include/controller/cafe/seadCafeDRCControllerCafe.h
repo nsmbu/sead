@@ -27,12 +27,12 @@ public:
     CafeDRCController(ControllerMgr* mgr);
     virtual ~CafeDRCController() { }
 
-    virtual bool isConnected() const { return mIsConnected; }
+    bool isConnected() const override { return mIsConnected; }
 
     void setTouchPanelSamplingUseNum(u32 num);
 
 private:
-    virtual void calcImpl_();
+    void calcImpl_() override;
 
     static void updateTouchPanelInfo_(TouchPanelInfo* tp_info, bool tp_touch_on, f32 x, f32 y);
 

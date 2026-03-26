@@ -26,7 +26,7 @@ public:
     CafeVPadDevice(ControllerMgr* mgr);
     virtual ~CafeVPadDevice();
 
-    virtual void calc();
+    void calc() override;
 
     const VPadInfo& getVPadInfo() const
     {

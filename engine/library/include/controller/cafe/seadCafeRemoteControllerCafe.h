@@ -13,7 +13,7 @@ public:
     CafeRemoteController(ControllerMgr* mgr, s32 channel);
     virtual ~CafeRemoteController() { }
 
-    virtual bool isConnected() const { return mIsConnected; }
+    bool isConnected() const override { return mIsConnected; }
 
     s32 getChannel() const { return mChannel; }
 
@@ -24,7 +24,7 @@ public:
     void setEnableCL(bool enable) { mIsEnableCL = enable; }
 
 private:
-    virtual void calcImpl_();
+    void calcImpl_() override;
 
     s32 mChannel;
     u8 mDeviceTypeCurrent;
