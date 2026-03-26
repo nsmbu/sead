@@ -121,6 +121,11 @@ public:
         return mClearFlag.isOn(cClearFlag_Depth);
     }
 
+    RenderStep& getRenderStep(s32 i)
+    {
+        return mRenderStep[i];
+    }
+
     // ...
 
 protected:
