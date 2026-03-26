@@ -33,6 +33,11 @@ public:
         return mVPadInfo;
     }
 
+    VPadInfo& getVPadInfo()
+    {
+        return mVPadInfo;
+    }
+
 private:
     VPadInfo mVPadInfo;
 };
