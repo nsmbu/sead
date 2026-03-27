@@ -66,21 +66,6 @@ public:
         _36c = b;
     }
 
-    // Public wrappers
-    // ----------
-
-    void procDraw__()
-    {
-        procDraw_();
-    }
-
-    void procCalc__()
-    {
-        procCalc_();
-    }
-
-    // -----------
-
 protected:
     virtual void mainLoop_();
     virtual void procFrame_();
