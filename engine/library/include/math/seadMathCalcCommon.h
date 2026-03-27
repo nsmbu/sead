@@ -3,14 +3,16 @@
 
 #include <basis/seadTypes.h>
 
+#include <numbers>
+
 namespace sead {
 
 template <typename T>
 class MathCalcCommon
 {
 public:
-    static const u32 cQuarterRoundIdx = 0x40000000; //  90 degrees, PI/2 radians
-    static const u32 cHalfRoundIdx    = 0x80000000; // 180 degrees, PI   radians
+    static constexpr u32 cQuarterRoundIdx = 0x40000000; //  90 degrees, PI/2 radians
+    static constexpr u32 cHalfRoundIdx    = 0x80000000; // 180 degrees, PI   radians
 
 public:
     struct SinCosSample
@@ -40,56 +42,56 @@ public:
     };
 
 public:
-    static T piHalf() { return 1.570796326794896619231; }
-    static T pi()     { return 3.141592653589793238462; }
-    static T pi2()    { return 6.283185307179586476924; }
-    static T zero()   { return 0; }
-    static T one()    { return 1; }
-    static T ln2()    { return 0.69314718055994530942 ; }
-    static T ln2Inv() { return 1.442695040888963407   ; }
+    static constexpr T piHalf() { return std::numbers::pi_v<T> / T(2); }
+    static constexpr T pi()     { return std::numbers::pi_v<T>; }
+    static constexpr T pi2()    { return std::numbers::pi_v<T> * T(2); }
+    static constexpr T zero()   { return 0; }
+    static constexpr T one()    { return 1; }
+    static constexpr T ln2()    { return std::numbers::ln2_v<T>; }
+    static constexpr T ln2Inv() { return std::numbers::log2e_v<T>; }
 
-    static T neg(T t)
+    static constexpr T neg(T t)
     {
         return -t;
     }
 
-    static T inv(T t)
+    static constexpr T inv(T t)
     {
         return 1 / t;
     }
 
-    static T sign(T t)
+    static constexpr T sign(T t)
     {
         if (t >= 0) return  1;
         else        return -1;
     }
 
-    static T fitSign(T x, T y)
+    static constexpr T fitSign(T x, T y)
     {
         // Unsure
         return abs(x) * sign(y);
     }
 
-    static T square(T t)
+    static constexpr T square(T t)
     {
         // Good for temp values
         return t * t;
     }
 
-    static T sqrt(T t);
-    static T rsqrt(T t);
+    static constexpr T sqrt(T t);
+    static constexpr T rsqrt(T t);
 
-    static T pow(T x, T y);
+    static constexpr T pow(T x, T y);
     static T powTable(T, T);
 
-    static T sin(T t);
-    static T cos(T t);
-    static T tan(T t);
+    static constexpr T sin(T t);
+    static constexpr T cos(T t);
+    static constexpr T tan(T t);
 
-    static T asin(T s);
-    static T acos(T c);
-    static T atan(T t);
-    static T atan2(T y, T x);
+    static constexpr T asin(T s);
+    static constexpr T acos(T c);
+    static constexpr T atan(T t);
+    static constexpr T atan2(T y, T x);
 
     static T sinIdx(u32 idx);
     static T cosIdx(u32 idx);
@@ -102,79 +104,79 @@ public:
 
     static void sinCosIdx(T* p_sin, T* p_cos, u32 idx);
 
-    static T exp(T t);
-    static T log(T t);
-    static T log2(T t);
-    static T log10(T t);
+    static constexpr T exp(T t);
+    static constexpr T log(T t);
+    static constexpr T log2(T t);
+    static constexpr T log10(T t);
 
     static T expTable(T x);
     static T logTable(T x);
 
-    static T minNumber();
-    static T maxNumber();
-    static T infinity();
-    static T nan();
-    static T epsilon();
+    static constexpr T minNumber();
+    static constexpr T maxNumber();
+    static constexpr T infinity();
+    static constexpr T nan();
+    static constexpr T epsilon();
 
-    static bool equalsEpsilon(T a, T b, T eps = epsilon())
+    static constexpr bool equalsEpsilon(T a, T b, T eps = epsilon())
     {
         return abs(a - b) <= eps;
     }
 
-    static T abs(T x)
+    static constexpr T abs(T x)
     {
         if (x > 0) return  x;
         else       return -x;
     }
 
-    static T max(T a, T b)
+    static constexpr T max(T a, T b)
     {
         if (a > b) return a;
         else       return b;
     }
 
-    static T min(T a, T b)
+    static constexpr T min(T a, T b)
     {
         if (a < b) return a;
         else       return b;
     }
 
-    static T max3(T a, T b, T c)
+    static constexpr T max3(T a, T b, T c)
     {
         return max(max(a, b), c);
     }
 
-    static T min3(T a, T b, T c)
+    static constexpr T min3(T a, T b, T c)
     {
         return min(min(a, b), c);
     }
 
-    static T deg2rad(T a)
+    static constexpr T deg2rad(T a)
     {
         return a * (pi() / 180.0f);
     }
 
-    static T rad2deg(T a)
+    static constexpr T rad2deg(T a)
     {
         return a * (180.0f / pi());
     }
 
-    static u32 deg2idx(T a)
+    static constexpr u32 deg2idx(T a)
     {
         return (s32)(a * cHalfRoundIdx / 180.0f);
     }
 
-    static u32 rad2idx(T a)
+    static constexpr u32 rad2idx(T a)
     {
         return (s32)(a * cHalfRoundIdx / pi());
     }
 
-    static T idx2deg(u32 a)
+    static constexpr T idx2deg(u32 a)
     {
         return static_cast<float>(static_cast<s32>(a)) * 180.0f / cHalfRoundIdx;
     }
 
-    static T idx2rad(u32 a)
+    static constexpr T idx2rad(u32 a)
     {
         return (s32)a * pi() / cHalfRoundIdx;
     }
@@ -187,18 +189,18 @@ public:
     static T getRandRange(T, T);
     static T getRandSign();
 
-    static s32 roundOff(T val);
-    static s32 floor(T val);
-    static s32 ceil(T val);
+    static constexpr s32 roundOff(T val);
+    static constexpr s32 floor(T val);
+    static constexpr s32 ceil(T val);
 
-    static T roundUpN(T val, s32 multNumber);
-    static T roundUpPow2(T val, s32 base);
-    static T roundDownN(T val, s32 multNumber);
-    static T roundDownPow2(T val, s32 base);
+    static T constexpr roundUpN(T val, s32 multNumber);
+    static T constexpr roundUpPow2(T val, s32 base);
+    static T constexpr roundDownN(T val, s32 multNumber);
+    static T constexpr roundDownPow2(T val, s32 base);
 
-    static T clampMax(T val, T max_);
-    static T clampMin(T val, T min_);
-    static T clamp2(T min_, T val, T max_);
+    static T constexpr clampMax(T val, T max_);
+    static T constexpr clampMin(T val, T min_);
+    static T constexpr clamp2(T min_, T val, T max_);
 
     static T gcd(T m, T n);
     static T lcm(T m, T n);
@@ -214,7 +216,7 @@ public:
     static bool chaseAngle(T*, T, T);
     static bool chaseAngleIdx(u32*, u32, T);
 
-    static T lerp(T a, T b, f32 ratio)
+    static constexpr T lerp(T a, T b, f32 ratio)
     {
         return a + (b - a) * ratio;
     }
@@ -266,10 +268,6 @@ typedef MathCalcCommon<f32> Mathf;
 
 } // namespace sead
 
-#ifdef __cplusplus
-
 #include <math/seadMathCalcCommon.hpp>
-
-#endif // __cplusplus
 
 #endif // SEAD_MATHCALCCOMMON_H_
