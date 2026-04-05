@@ -109,7 +109,7 @@ void Viewport::apply(const LogicalFrameBuffer& frame_buffer) const
     sead::Vector2f real_size;
     getOnFrameBufferSize(&real_size, frame_buffer);
 
-    // SEAD_ASSERT(frame_buffer.getPhysicalArea().isInside(real_pos) && frame_buffer.getPhysicalArea().isInside(real_pos + real_size));
+    SEAD_ASSERT(frame_buffer.getPhysicalArea().isInside(real_pos) && frame_buffer.getPhysicalArea().isInside(real_pos + real_size));
 
     real_pos.y = (frame_buffer.getPhysicalArea().getSizeY() - real_size.y) - real_pos.y;
 

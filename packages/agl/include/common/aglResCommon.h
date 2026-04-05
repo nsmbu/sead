@@ -59,13 +59,13 @@ public:
 
     DataType& ref()
     {
-        // SEAD_ASSERT(isValid());
+        SEAD_ASSERT(isValid());
         return *ptr();
     }
 
     const DataType& ref() const
     {
-        // SEAD_ASSERT(isValid());
+        SEAD_ASSERT(isValid());
         return *ptr();
     }
 
@@ -211,7 +211,7 @@ public:
 
     ElemType get(s32 n) const
     {
-        // SEAD_ASSERT(0 <= n && n <= static_cast< int >( this->getNum() ));
+        SEAD_ASSERT(0 <= n && n <= static_cast< int >( this->getNum() ));
 
         constIterator itr = constBegin();
         constIterator itr_end = constIterator(n, nullptr);

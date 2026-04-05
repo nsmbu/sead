@@ -21,7 +21,7 @@ void IParameterList::setParameterListName_(const sead::SafeString& name)
 
 void IParameterList::addList(IParameterList* child, const sead::SafeString& name)
 {
-    // SEAD_ASSERT(child != nullptr);
+    SEAD_ASSERT(child != nullptr);
     child->setParameterListName_(name);
 
     mChildList.pushBack(child);
@@ -31,7 +31,7 @@ void IParameterList::addList(IParameterList* child, const sead::SafeString& name
 
 void IParameterList::addObj(IParameterObj* child, const sead::SafeString& name)
 {
-    // SEAD_ASSERT(child != nullptr);
+    SEAD_ASSERT(child != nullptr);
     child->mName = name;
     child->mNameHash = ParameterBase::calcHash(child->mName);
 

@@ -140,7 +140,7 @@ public:
 
     ShaderProgram& getShader(ShaderType shader)
     {
-        // SEAD_ASSERT(mProgram[ shader ] != nullptr);
+        SEAD_ASSERT(mProgram[ shader ] != nullptr);
         return *mProgram[shader];
     }
 

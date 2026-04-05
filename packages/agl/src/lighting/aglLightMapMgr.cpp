@@ -24,7 +24,7 @@ LightMapMgr::~LightMapMgr()
 void LightMapMgr::initialize(const env::EnvObjBuffer::AllocateArg& alloc_arg, const CreateArg& create_arg, env::EnvObjMgr* p_env_mgr, sead::Heap* heap)
 {
     s32 light_map_max = create_arg.getNum();
-  //SEAD_ASSERT(0 < light_map_max && light_map_max <= LightMap::cLightMapMax);
+  SEAD_ASSERT(0 < light_map_max && light_map_max <= LightMap::cLightMapMax);
 
     sead::FixedSafeString<32> type("lightmap_array");
     mType.initialize(type, "type", "É^ÉCÉv", &mConfig);

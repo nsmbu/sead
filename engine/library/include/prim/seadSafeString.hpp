@@ -23,7 +23,7 @@ template <typename CharType>
 inline s32
 SafeStringBase<CharType>::calcLength() const
 {
-    // SEAD_ASSERT(mStringTop);
+    SEAD_ASSERT(mStringTop);
 
     assureTerminationImpl_();
     s32 length = 0;

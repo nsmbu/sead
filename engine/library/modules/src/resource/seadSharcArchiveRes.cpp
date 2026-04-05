@@ -191,7 +191,7 @@ SharcArchiveRes::readDirectoryImpl_(
     while (*handle + count < mFATBlockHeader->file_num && count < num)
     {
         u32 id = *handle + count;
-      //SEAD_ASSERT(id >= (*handle));
+      SEAD_ASSERT(id >= (*handle));
 
         u32 offset = mFATEntrys.unsafeGet(id)->name_offset;
         if (offset == 0)

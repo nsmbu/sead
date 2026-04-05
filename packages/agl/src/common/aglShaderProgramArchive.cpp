@@ -175,14 +175,14 @@ void ShaderProgramArchive::createWithOption(ResBinaryShaderArchive res_binary_ar
                         if (index != 0xFFFFFFFF)
                         {
                             const ResShaderBinary binary = mResBinary.getResShaderBinaryArray().get(index);
-                            // SEAD_ASSERT(binary.isValid());
-                            // SEAD_ASSERT(binary.getShaderType() == type);
+                            SEAD_ASSERT(binary.isValid());
+                            SEAD_ASSERT(binary.getShaderType() == type);
 #ifdef cafe
                             DCFlushRangeNoSync(binary.getData(), binary.ref().mDataSize);
 #endif // cafe
                             shader->setBinary(binary.getData());
 
-                            // SEAD_ASSERT(verify_binary_num == index);
+                            SEAD_ASSERT(verify_binary_num == index);
                             verify_binary_num++;
                         }
                     }
@@ -196,7 +196,7 @@ void ShaderProgramArchive::createWithOption(ResBinaryShaderArchive res_binary_ar
             }
         }
 
-        // SEAD_ASSERT(verify_binary_num == mResBinary.getResShaderBinaryArray().getNum());
+        SEAD_ASSERT(verify_binary_num == mResBinary.getResShaderBinaryArray().getNum());
     }
 
     setResShaderArchive_(res_archive, heap);
@@ -262,7 +262,7 @@ void ShaderProgramArchive::setResShaderArchive_(ResShaderArchive res_archive, se
     }
     else
     {
-        // SEAD_ASSERT(mResText.getResShaderProgramNum() == mResBinary.getResBinaryShaderProgramNum());
+        SEAD_ASSERT(mResText.getResShaderProgramNum() == mResBinary.getResBinaryShaderProgramNum());
     }
 
     mSource.allocBuffer(mResText.getResShaderSourceNum(), heap);
@@ -488,7 +488,7 @@ void ShaderProgramArchive::ShaderSource::expand()
         mRawText = nullptr;
     }
 
-    // SEAD_ASSERT(mpArchive->mSource.size() < 1024);
+    SEAD_ASSERT(mpArchive->mSource.size() < 1024);
     bool source_is_used[1024];
 
     mRawText = detail::ShaderTextUtil::createRawText(

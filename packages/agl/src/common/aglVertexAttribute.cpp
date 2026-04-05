@@ -17,7 +17,7 @@ VertexAttribute::~VertexAttribute()
 
 void VertexAttribute::create(u32 buffer_max, sead::Heap* heap)
 {
-    // SEAD_ASSERT(0 < buffer_max && buffer_max <= cVertexAttributeMax);
+    SEAD_ASSERT(0 < buffer_max && buffer_max <= cVertexAttributeMax);
     mVertexBuffer.allocBuffer(buffer_max, heap);
 
     mpFetchShaderBuf = new (heap, GX2_SHADER_ALIGNMENT) u8[GX2CalcFetchShaderSize(cVertexAttributeMax)];
@@ -57,8 +57,8 @@ void VertexAttribute::destroy()
 
 void VertexAttribute::setVertexStream(s16 location, const VertexBuffer* buffer, u32 stream_index)
 {
-    // SEAD_ASSERT(mCreateFinish);
-    // SEAD_ASSERT(buffer->isEnable( stream_index ));
+    SEAD_ASSERT(mCreateFinish);
+    SEAD_ASSERT(buffer->isEnable( stream_index ));
 
     if (location == -1)
         return;
@@ -72,7 +72,7 @@ void VertexAttribute::setVertexStream(s16 location, const VertexBuffer* buffer, 
 
 s32 VertexAttribute::enableVertexBuffer_(Attribute_* attr, const VertexBuffer* buffer, u32 stream_index)
 {
-    // SEAD_ASSERT(attr->mpVertexBuffer == nullptr);
+    SEAD_ASSERT(attr->mpVertexBuffer == nullptr);
 
     attr->mpVertexBuffer = buffer;
     attr->mStreamIndex = stream_index;
@@ -88,7 +88,7 @@ s32 VertexAttribute::enableVertexBuffer_(Attribute_* attr, const VertexBuffer* b
             null_buffer_index = i;
     }
 
-    // SEAD_ASSERT(null_buffer_index != -1);
+    SEAD_ASSERT(null_buffer_index != -1);
     mVertexBuffer[null_buffer_index] = buffer;
     return null_buffer_index;
 }
@@ -110,7 +110,7 @@ s32 VertexAttribute::disableVertexBuffer_(Attribute_* attr)
 
 void VertexAttribute::setUp()
 {
-    // SEAD_ASSERT(mCreateFinish);
+    SEAD_ASSERT(mCreateFinish);
 
     sead::UnsafeArray<GX2AttribStream, cVertexAttributeMax> stream_array;
     u32 stream_num = 0;
@@ -143,7 +143,7 @@ void VertexAttribute::setUp()
 
 void VertexAttribute::activate() const
 {
-    // SEAD_ASSERT(mSetupFinish);
+    SEAD_ASSERT(mSetupFinish);
 
     GX2SetFetchShader(&mFetchShader);
 

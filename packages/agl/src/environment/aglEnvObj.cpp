@@ -104,7 +104,7 @@ s32* EnvObj::registClass(const sead::SafeString& name, const sead::SafeString& l
 
 void EnvObj::initialize_(s32 index, s32 view_max, EnvObjMgr* p_env_mgr, sead::Heap* heap)
 {
-  //SEAD_ASSERT(p_env_mgr != nullptr);
+  SEAD_ASSERT(p_env_mgr != nullptr);
     mpMgr = p_env_mgr;
     mIndex = index;
     getEnvObjName();

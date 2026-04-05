@@ -19,7 +19,7 @@ public:
         , mId(ControllerDefine::cAddon_Null)
         , mController(controller)
     {
-        //SEAD_ASSERT(controller);
+        SEAD_ASSERT(controller);
     }
 
     virtual ~ControllerAddon()

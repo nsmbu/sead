@@ -71,7 +71,7 @@ public:
 
     static T makeMask(s32 bit)
     {
-        //SEAD_ASSERT(static_cast<u32>(bit) < sizeof(T)*8);
+        SEAD_ASSERT(static_cast<u32>(bit) < sizeof(T)*8);
         return T(1) << bit;
     }
 

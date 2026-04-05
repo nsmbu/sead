@@ -34,8 +34,8 @@ namespace agl { namespace g3d {
 
 void TextureDataInitializerG3D::initialize(TextureData* p_texture_data, void* p_bfres_file_data, u32 index)
 {
-    // SEAD_ASSERT(p_bfres_file_data != nullptr);
-    // SEAD_ASSERT(nw::g3d::res::ResFile::IsValid( p_bfres_file_data ));
+    SEAD_ASSERT(p_bfres_file_data != nullptr);
+    SEAD_ASSERT(nw::g3d::res::ResFile::IsValid( p_bfres_file_data ));
 
     nw::g3d::res::ResFile* p_res_file = nw::g3d::res::ResFile::ResCast(p_bfres_file_data);
   //p_res_file->Setup(); // <--- Nintendo forgot to do this
@@ -51,8 +51,8 @@ void TextureDataInitializerG3D::initialize(TextureData* p_texture_data, void* p_
 
 void TextureDataInitializerG3D::initialize(TextureData* p_texture_data, void* p_bfres_file_data, const char* name)
 {
-    // SEAD_ASSERT(p_bfres_file_data != nullptr);
-    // SEAD_ASSERT(nw::g3d::res::ResFile::IsValid( p_bfres_file_data ));
+    SEAD_ASSERT(p_bfres_file_data != nullptr);
+    SEAD_ASSERT(nw::g3d::res::ResFile::IsValid( p_bfres_file_data ));
 
     nw::g3d::res::ResFile* p_res_file = nw::g3d::res::ResFile::ResCast(p_bfres_file_data);
   //p_res_file->Setup(); // <--- Nintendo forgot to do this
@@ -68,7 +68,7 @@ void TextureDataInitializerG3D::initialize(TextureData* p_texture_data, void* p_
 
 void TextureDataInitializerG3D::initialize(TextureData* p_texture_data, nw::g3d::res::ResTexture& res_texture)
 {
-    // SEAD_ASSERT(p_texture_data != nullptr);
+    SEAD_ASSERT(p_texture_data != nullptr);
 
     GX2Texture texture = *res_texture.GetGfxTexture()->GetGX2Texture();
     texture.surface.imagePtr = res_texture.GetData();

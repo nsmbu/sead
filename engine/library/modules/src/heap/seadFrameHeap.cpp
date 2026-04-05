@@ -32,7 +32,7 @@ FrameHeap::tryCreate(u32 size, const SafeString& name, Heap* parent, HeapDirecti
         return nullptr;
     }
 
-  //SEAD_ASSERT(isEnableDebugFillSystem_(parent));
+  SEAD_ASSERT(isEnableDebugFillSystem_(parent));
   //setEnableDebugFillSystem_(parent, false);
     void* ptr = parent->tryAlloc(size, s32(direction) * 4);
   //setEnableDebugFillSystem_(parent, true);

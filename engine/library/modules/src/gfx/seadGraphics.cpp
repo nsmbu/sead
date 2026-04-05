@@ -19,8 +19,8 @@ void Graphics::lockDrawContext()
     else
     {
         mContextCriticalSection.lock();
-        // SEAD_ASSERT(mContextHolderThread == nullptr);
-        // SEAD_ASSERT(mContextRefCounter == 0);
+        SEAD_ASSERT(mContextHolderThread == nullptr);
+        SEAD_ASSERT(mContextRefCounter == 0);
         lockDrawContextImpl();
         mContextHolderThread = current;
         mContextRefCounter = 1;
@@ -30,8 +30,8 @@ void Graphics::lockDrawContext()
 void Graphics::unlockDrawContext()
 {
     sead::Thread* current = ThreadMgr::instance()->getCurrentThread();
-    // SEAD_ASSERT(mContextHolderThread == current);
-    // SEAD_ASSERT(mContextRefCounter > 0);
+    SEAD_ASSERT(mContextHolderThread == current);
+    SEAD_ASSERT(mContextRefCounter > 0);
     if (--mContextRefCounter == 0)
     {
         mContextHolderThread = nullptr;

@@ -73,7 +73,7 @@ TextureMemoryAllocator::MemoryBlock* TextureMemoryAllocator::alloc(const Texture
 
 bool TextureMemoryAllocator::alloc_(MemoryBlock* p_memory, const AllocArg& arg, bool allocate_from_head)
 {
-    // SEAD_ASSERT(p_memory != nullptr);
+    SEAD_ASSERT(p_memory != nullptr);
 
     if (arg.mSize >= p_memory->mSize)
     {
@@ -83,7 +83,7 @@ bool TextureMemoryAllocator::alloc_(MemoryBlock* p_memory, const AllocArg& arg, 
     else
     {
         MemoryBlock* p_new_free = mMemoryBlockEmpty.popBack();
-        // SEAD_ASSERT(p_new_free != nullptr);
+        SEAD_ASSERT(p_new_free != nullptr);
         p_new_free->mSize = p_memory->mSize - arg.mSize;
 
         if (allocate_from_head)
@@ -140,7 +140,7 @@ bool TextureMemoryAllocator::alloc_(MemoryBlock* p_memory, const AllocArg& arg, 
 
 void TextureMemoryAllocator::free(MemoryBlock* p_memory)
 {
-    // SEAD_ASSERT(p_memory != nullptr);
+    SEAD_ASSERT(p_memory != nullptr);
 
     mUsedSize -= p_memory->mSize;
 
@@ -208,7 +208,7 @@ void TextureMemoryAllocator::free(MemoryBlock* p_memory)
 
 bool TextureMemoryAllocator::isOverwrapperd(const TextureMemoryAllocator& allocator) const
 {
-    // SEAD_ASSERT(&allocator != this);
+    SEAD_ASSERT(&allocator != this);
 
     const void* buffer1 = nullptr;
     const void* buffer2 = nullptr;

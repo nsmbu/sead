@@ -67,7 +67,7 @@ public:
 
     void setCurveType(CurveType curveType)
     {
-      //SEAD_ASSERT(mInfo.curveType < cNumCurveType);
+      SEAD_ASSERT(mInfo.curveType < cNumCurveType);
         mInfo.curveType = curveType;
     }
 
@@ -88,7 +88,7 @@ public:
 
     void setNumUse(u32 numUse)
     {
-      //SEAD_ASSERT(numUse <= 0xff);
+      SEAD_ASSERT(numUse <= 0xff);
         mInfo.numUse = numUse;
     }
 

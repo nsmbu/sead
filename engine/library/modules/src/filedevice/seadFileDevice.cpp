@@ -56,7 +56,7 @@ u8* FileDevice::doLoad_(LoadArg& arg)
     if (!tryGetFileSize(&file_size, &handle))
         return nullptr;
 
-    //SEAD_ASSERT(file_size != 0);
+    SEAD_ASSERT(file_size != 0);
 
     u32 buffer_size = arg.buffer_size;
     if (buffer_size == 0)

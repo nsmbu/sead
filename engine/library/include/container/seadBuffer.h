@@ -228,7 +228,7 @@ public:
 public:
     void allocBuffer(s32 size, s32 alignment = 4)
     {
-        // SEAD_ASSERT(mBuffer == nullptr);
+        SEAD_ASSERT(mBuffer == nullptr);
 
         if (size > 0)
         {
@@ -248,7 +248,7 @@ public:
 
     void allocBuffer(s32 size, Heap* heap, s32 alignment = 4)
     {
-        // SEAD_ASSERT(mBuffer == nullptr);
+        SEAD_ASSERT(mBuffer == nullptr);
 
         if (size > 0)
         {
@@ -268,7 +268,7 @@ public:
 
     bool tryAllocBuffer(s32 size, s32 alignment = 4)
     {
-        // SEAD_ASSERT(mBuffer == nullptr);
+        SEAD_ASSERT(mBuffer == nullptr);
 
         if (size > 0)
         {
@@ -290,7 +290,7 @@ public:
 
     bool tryAllocBuffer(s32 size, Heap* heap, s32 alignment = 4)
     {
-        // SEAD_ASSERT(mBuffer == nullptr);
+        SEAD_ASSERT(mBuffer == nullptr);
 
         if (size > 0)
         {

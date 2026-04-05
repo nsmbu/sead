@@ -117,7 +117,7 @@ void Matrix22CalcCommon<T>::transpose(Base& o)
 template <typename T>
 void Matrix22CalcCommon<T>::transposeTo(Base& o, const Base& n)
 {
-    //SEAD_ASSERT(&o != &n);
+    SEAD_ASSERT(&o != &n);
 
     o.m[0][0] = n.m[0][0];
     o.m[0][1] = n.m[1][0];
@@ -424,7 +424,7 @@ void Matrix33CalcCommon<T>::transpose(Base& o)
 template <typename T>
 void Matrix33CalcCommon<T>::transposeTo(Base& o, const Base& n)
 {
-    //SEAD_ASSERT(&o != &n);
+    SEAD_ASSERT(&o != &n);
 
     o.m[0][0] = n.m[0][0];
     o.m[0][1] = n.m[1][0];
@@ -1151,7 +1151,7 @@ void Matrix34CalcCommon<T>::transpose(Base& o)
 template <typename T>
 void Matrix34CalcCommon<T>::transposeTo(Base& o, const Base& n)
 {
-    //SEAD_ASSERT(&o != &n);
+    SEAD_ASSERT(&o != &n);
 
     o.m[0][0] = n.m[0][0];
     o.m[0][1] = n.m[1][0];
@@ -2405,7 +2405,7 @@ void Matrix44CalcCommon<T>::transpose(Base& o)
 template <typename T>
 void Matrix44CalcCommon<T>::transposeTo(Base& o, const Base& n)
 {
-    //SEAD_ASSERT(&o != &n);
+    SEAD_ASSERT(&o != &n);
 
     o.m[0][0] = n.m[0][0];
     o.m[0][1] = n.m[1][0];

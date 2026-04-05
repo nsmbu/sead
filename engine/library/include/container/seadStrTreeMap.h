@@ -97,7 +97,7 @@ public:
 
     void allocBuffer(s32 node_max, Heap* heap, s32 alignment = 4)
     {
-        // SEAD_ASSERT(mFreeList.work() == nullptr);
+        SEAD_ASSERT(mFreeList.work() == nullptr);
         if (node_max > 0)
         {
             void* buf = new (heap, alignment) u8[node_max * sizeof(Node)]; // NewArray<u8>(node_max * sizeof(Node), heap, alignment)

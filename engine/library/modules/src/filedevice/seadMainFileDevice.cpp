@@ -17,7 +17,7 @@ MainFileDevice::MainFileDevice(Heap* heap)
     #error "Unknown platform"
 #endif // cafe
 
-    //SEAD_ASSERT(mFileDevice);
+    SEAD_ASSERT(mFileDevice);
 }
 
 MainFileDevice::~MainFileDevice()

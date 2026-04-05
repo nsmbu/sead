@@ -77,7 +77,7 @@ ResourcePtr ResourceMgr::tryLoadWithoutDecomp(const LoadArg& arg)
         else
         {
             factory = findFactory(ext);
-            // SEAD_ASSERT(factory);
+            SEAD_ASSERT(factory);
         }
     }
     return factory->tryCreate(arg);
@@ -110,7 +110,7 @@ ResourcePtr ResourceMgr::tryLoad(const LoadArg& arg, const SafeString& convert_e
     else
     {
         factory = findFactory(factory_ext);
-        // SEAD_ASSERT(factory);
+        SEAD_ASSERT(factory);
     }
 
     if (decomp != nullptr)

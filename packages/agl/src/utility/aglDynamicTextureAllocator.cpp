@@ -65,7 +65,7 @@ TextureData* DynamicTextureAllocator::alloc_(
     bool invalidate_gpu_cache
 )
 {
-    // SEAD_ASSERT(p_ctx != nullptr);
+    SEAD_ASSERT(p_ctx != nullptr);
 
     u16 index = sead::MathCalcCommon<u16>::maxNumber();
     TextureDataEx* p_tex = nullptr;
@@ -100,7 +100,7 @@ TextureData* DynamicTextureAllocator::alloc_(
         }
     }
 
-    // SEAD_ASSERT(p_tex != nullptr);
+    SEAD_ASSERT(p_tex != nullptr);
 
     if (!match_found)
     {
@@ -192,7 +192,7 @@ TextureData* DynamicTextureAllocator::alloc_(
 
 void DynamicTextureAllocator::free(const TextureData* ptr)
 {
-    // SEAD_ASSERT(ptr != nullptr);
+    SEAD_ASSERT(ptr != nullptr);
 
     if (!free_(&mContext[s32(sead::CoreInfo::getCurrentCoreId())], ptr))
     {
@@ -210,13 +210,13 @@ void DynamicTextureAllocator::free(const TextureData* ptr)
 
 bool DynamicTextureAllocator::free_(Context* p_ctx, const TextureData* ptr)
 {
-    // SEAD_ASSERT(ptr != nullptr);
+    SEAD_ASSERT(ptr != nullptr);
     TextureDataEx* p_tex = static_cast<TextureDataEx*>(const_cast<TextureData*>(ptr));
 
     if (p_tex->mpContext != p_ctx)
         return false;
 
-    // SEAD_ASSERT(p_tex->mpMemoryBlock != nullptr);
+    SEAD_ASSERT(p_tex->mpMemoryBlock != nullptr);
     p_tex->mpMemoryAllocator->free(p_tex->mpMemoryBlock);
     p_tex->mpMemoryBlock = nullptr;
 

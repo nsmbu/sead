@@ -185,7 +185,7 @@ const char* ResShaderVariation::getID() const
 
 const char* ResShaderVariation::getValue(s32 index) const
 {
-    // SEAD_ASSERT(0 <= index && index < static_cast< int >( ref().mValueNum ));
+    SEAD_ASSERT(0 <= index && index < static_cast< int >( ref().mValueNum ));
 
     const char* value = getName() + ref().mNameLen;
 
@@ -278,7 +278,7 @@ ResShaderSymbolArray ResBinaryShaderProgram::getResShaderSymbolArray(ShaderSymbo
 
 bool ResShaderArchive::setUp()
 {
-    // SEAD_ASSERT(isValid());
+    SEAD_ASSERT(isValid());
 
     if (!isEndianResolved())
     {
@@ -318,7 +318,7 @@ bool ResShaderArchive::setUp()
 
 bool ResBinaryShaderArchive::setUp(bool le_resolve_pointers)
 {
-    // SEAD_ASSERT(isValid());
+    SEAD_ASSERT(isValid());
 
     bool endian_resolved = isEndianResolved();
 

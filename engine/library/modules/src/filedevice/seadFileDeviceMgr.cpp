@@ -161,7 +161,7 @@ FileDeviceMgr::findDeviceFromPath(
     if (success)
     {
         device = findDevice(drive);
-        //SEAD_ASSERT(device);
+        SEAD_ASSERT(device);
     }
     else
     {
@@ -224,7 +224,7 @@ u8* FileDeviceMgr::tryLoad(FileDevice::LoadArg& arg)
 
 void FileDeviceMgr::unload(u8* data)
 {
-    //SEAD_ASSERT(data);
+    SEAD_ASSERT(data);
     delete data;
 }
 

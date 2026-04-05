@@ -37,7 +37,7 @@ public:
 
     void setMipLevel(u32 mip_level)
     {
-        // SEAD_ASSERT(mip_level < cMipLevelMax);
+        SEAD_ASSERT(mip_level < cMipLevelMax);
         if (mMipLevel != mip_level)
         {
             mMipLevel = mip_level;

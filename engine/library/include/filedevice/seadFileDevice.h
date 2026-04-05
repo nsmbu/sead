@@ -166,7 +166,7 @@ public:
 
     void unload(u8* data)
     {
-        //SEAD_ASSERT(data);
+        SEAD_ASSERT(data);
         delete data;
     }
 

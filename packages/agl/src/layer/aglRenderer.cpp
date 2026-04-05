@@ -7,7 +7,7 @@ Renderer* Renderer::sInstance = nullptr;
 
 void Renderer::removeDrawMethod(const DrawMethod* p_draw_method)
 {
-    // SEAD_ASSERT(p_draw_method != nullptr);
+    SEAD_ASSERT(p_draw_method != nullptr);
     for (sead::Buffer<Layer*>::iterator itr = mLayer.begin(), itr_end = mLayer.end(); itr != itr_end; ++itr)
     {
         Layer* p_layer = *itr;

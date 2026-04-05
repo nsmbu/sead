@@ -5,8 +5,8 @@ namespace agl {
 
 void ModifyEndianU32(bool is_le, void* p_data, size_t size)
 {
-    // SEAD_ASSERT(p_data != nullptr);
-    // SEAD_ASSERT(size % 4 == 0);
+    SEAD_ASSERT(p_data != nullptr);
+    SEAD_ASSERT(size % 4 == 0);
 
     u32* p_data_u32 = static_cast<u32*>(p_data);
     u32 count = size / sizeof(u32);

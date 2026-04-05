@@ -354,7 +354,7 @@ inline Vector2<T> curveStep2DVec2_(f32 t, const CurveDataInfo* info, const T* bu
 template <typename T>
 inline Vector2<T> curveNonuniformSplineVec2_(f32 t, const CurveDataInfo* info, const T* buf)
 {
-  //SEAD_ASSERT(info->numUse / 2 < RNS::cMaxCtrlPoint);
+  SEAD_ASSERT(info->numUse / 2 < RNS::cMaxCtrlPoint);
 
     RNS rns;
     Vector4f result;

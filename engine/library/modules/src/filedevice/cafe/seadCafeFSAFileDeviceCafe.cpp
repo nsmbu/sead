@@ -179,7 +179,7 @@ CafeFSAFileDevice::doSeek_(
         offset += handle_inner->mPosition;
         break;
     case FileDevice::cSeekOrigin_End:
-        //SEAD_ASSERT(offset <= 0);
+        SEAD_ASSERT(offset <= 0);
         {
             u32 size = 0;
             if (doGetFileSize_(&size, handle))

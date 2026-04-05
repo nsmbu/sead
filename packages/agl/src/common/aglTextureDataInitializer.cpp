@@ -7,9 +7,9 @@ namespace agl {
 
 void TextureDataInitializerRAW::initialize(TextureData* p_texture_data, void* p_raw_image, u32 raw_image_byte_syze, TextureFormat format, s32 width, s32 height, sead::Heap* heap)
 {
-  //SEAD_ASSERT(p_texture_data != nullptr);
-  //SEAD_ASSERT(p_raw_image != nullptr);
-  //SEAD_ASSERT(p_texture_data->getImageByteSize() <= raw_image_byte_syze);
+  SEAD_ASSERT(p_texture_data != nullptr);
+  SEAD_ASSERT(p_raw_image != nullptr);
+  SEAD_ASSERT(p_texture_data->getImageByteSize() <= raw_image_byte_syze);
 
     GX2Surface surface;
     surface.dim = GX2_SURFACE_DIM_2D;

@@ -151,7 +151,7 @@ u8* ArchiveFileDevice::doLoadWithEntryID_(s32 entry_id, LoadArg& arg)
             if (!success)
                 return nullptr;
 
-            // SEAD_ASSERT(file_size != 0);
+            SEAD_ASSERT(file_size != 0);
 
             u32 roundup_size = Mathi::roundUpPow2(file_size, 32);
             buffer_size = roundup_size;
@@ -195,7 +195,7 @@ u8* ArchiveFileDevice::doLoadWithEntryID_(s32 entry_id, LoadArg& arg)
         if (ret == nullptr)
             return nullptr;
 
-        // SEAD_ASSERT(arg.alignment == 0 || PtrUtil::isAligned( ret, Mathi::abs( arg.alignment )));
+        SEAD_ASSERT(arg.alignment == 0 || PtrUtil::isAligned( ret, Mathi::abs( arg.alignment )));
 
         arg.read_size = info.getLength();
         arg.roundup_size = info.getLength();
@@ -223,7 +223,7 @@ u8* ArchiveFileDevice::doLoad_(LoadArg& arg)
         if (ret == nullptr)
             return nullptr;
 
-        // SEAD_ASSERT(arg.alignment == 0 || PtrUtil::isAligned( ret, Mathi::abs( arg.alignment )));
+        SEAD_ASSERT(arg.alignment == 0 || PtrUtil::isAligned( ret, Mathi::abs( arg.alignment )));
 
         arg.read_size = info.getLength();
         arg.roundup_size = info.getLength();

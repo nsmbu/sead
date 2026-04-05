@@ -24,7 +24,7 @@ void IParameterIO::applyResParameterArchive(ResParameterArchive arc)
 {
     sead::Graphics::instance()->lockDrawContext();
     {
-        // SEAD_ASSERT(arc.isValid());
+        SEAD_ASSERT(arc.isValid());
 
         if (mVersion != arc.ref().mTypeVersion)
             callbackInvalidVersion_(arc);

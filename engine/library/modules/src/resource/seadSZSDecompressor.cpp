@@ -127,7 +127,7 @@ SZSDecompressor::DecompContext::DecompContext()
 
 SZSDecompressor::DecompContext::DecompContext(void* dst)
 {
-  //SEAD_ASSERT(dst);
+  SEAD_ASSERT(dst);
     initialize(dst);
 }
 
@@ -210,7 +210,7 @@ SZSDecompressor::tryDecompFromDevice(
     }
 
     decomp_size = getDecompSize(work_buf);
-    //SEAD_ASSERT(decomp_size > 0);
+    SEAD_ASSERT(decomp_size > 0);
     decomp_alignment = getDecompAlignment(work_buf);
     SEAD_ASSERT_MSG(decomp_alignment == 0 || Mathu::isPow2(decomp_alignment), "decomp_alignment[%d] must be power of 2.", decomp_alignment);
 
@@ -267,7 +267,7 @@ SZSDecompressor::tryDecompFromDevice(
     }
     else
     {
-        //SEAD_ASSERT(arg.load_data_buffer_size >= decomp_size);
+        SEAD_ASSERT(arg.load_data_buffer_size >= decomp_size);
 
         SEAD_ASSERT_MSG(decomp_alignment == 0 || PtrUtil::isAlignedPow2(dst_buf, decomp_alignment), "load_data_buffer is not aligned with decomp_alignment[%d]", decomp_alignment);
     }
@@ -403,8 +403,8 @@ SZSDecompressor::readHeader_(DecompContext* context, const u8* srcp, u32 src_siz
 s32
 SZSDecompressor::streamDecomp(DecompContext* context, const void* src, u32 len)
 {
-    //SEAD_ASSERT(context);
-    //SEAD_ASSERT(src);
+    SEAD_ASSERT(context);
+    SEAD_ASSERT(src);
 
     const u8* srcp = static_cast<const u8*>(src);
 
@@ -518,9 +518,9 @@ SZSDecompressor::streamDecomp(DecompContext* context, const void* src, u32 len)
 s32
 SZSDecompressor::decomp(void* dst, u32 dst_size, const void* src, u32 src_size)
 {
-    //SEAD_ASSERT(src_size >= getHeaderSize());
-    //SEAD_ASSERT(dst);
-    //SEAD_ASSERT(src);
+    SEAD_ASSERT(src_size >= getHeaderSize());
+    SEAD_ASSERT(dst);
+    SEAD_ASSERT(src);
 
     //
     SEAD_ASSERT_MSG(((uintptr_t)dst & 0x20-1u) == 0, "dst[0x%x] must be aligned to 32.", (uintptr_t)dst);

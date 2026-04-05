@@ -32,7 +32,7 @@ void PrimitiveRenderer::doPrepare_(Heap* heap)
     #error "Unknown platform"
 #endif // cafe
 
-  //SEAD_ASSERT(mRendererImpl);
+  SEAD_ASSERT(mRendererImpl);
 }
 
 void PrimitiveRenderer::prepareFromBinary(Heap* heap, const void* bin_data, u32 bin_size)

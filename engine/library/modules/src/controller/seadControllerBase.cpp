@@ -137,7 +137,7 @@ void ControllerBase::updateDerivativeParams_(u32 prev_hold, bool prev_pointer_on
 
 u32 ControllerBase::getPadHoldCount(s32 bit) const
 {
-    //SEAD_ASSERT(bit < mPadBitMax);
+    SEAD_ASSERT(bit < mPadBitMax);
     return mPadHoldCounts[bit];
 }
 

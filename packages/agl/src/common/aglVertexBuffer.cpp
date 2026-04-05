@@ -30,8 +30,8 @@ void VertexBuffer::setUpBuffer(const void* buffer, u32 stride, u32 buffer_byte_s
 {
     cleanUp_();
 
-    // SEAD_ASSERT(buffer != nullptr);
-    // SEAD_ASSERT(buffer_byte_size != 0);
+    SEAD_ASSERT(buffer != nullptr);
+    SEAD_ASSERT(buffer_byte_size != 0);
 
     mpBuffer = buffer;
     mStride = stride;
@@ -47,7 +47,7 @@ void VertexBuffer::setUpBuffer(const void* buffer, u32 stride, u32 buffer_byte_s
         mBufferByteSize = stride * mVertexNum;
     }
 
-    // SEAD_ASSERT(buffer_byte_size == mBufferByteSize);
+    SEAD_ASSERT(buffer_byte_size == mBufferByteSize);
 
     DCFlushRangeNoSync(mpBuffer, mBufferByteSize);
 }

@@ -132,7 +132,7 @@ TreeNode* TreeNode::findRoot()
     TreeNode* p = node->mParent;
     while (p != nullptr)
     {
-        //SEAD_ASSERT(p != this);
+        SEAD_ASSERT(p != this);
         node = p;
         p = p->mParent;
     }
@@ -146,7 +146,7 @@ const TreeNode* TreeNode::findRoot() const
     const TreeNode* p = node->mParent;
     while (p != nullptr)
     {
-        //SEAD_ASSERT(p != this);
+        SEAD_ASSERT(p != this);
         node = p;
         p = p->mParent;
     }

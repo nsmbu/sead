@@ -18,7 +18,7 @@ LookAtCamera::LookAtCamera(const Vector3f& pos, const Vector3f& at, const Vector
     , mAt(at)
     , mUp(up)
 {
-    // SEAD_ASSERT(mPos != mAt);
+    SEAD_ASSERT(mPos != mAt);
     mUp.normalize();
 }
 

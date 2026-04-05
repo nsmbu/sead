@@ -22,7 +22,7 @@ void PtrArrayImpl::setBuffer(s32 ptrNumMax, void* buf)
 
 void PtrArrayImpl::allocBuffer(s32 ptrNumMax, Heap* heap, s32 alignment)
 {
-    //SEAD_ASSERT(mPtrs == nullptr);
+    SEAD_ASSERT(mPtrs == nullptr);
     if (ptrNumMax > 0)
         setBuffer(ptrNumMax, new (heap, alignment) u8[sizeof(void*) * ptrNumMax]);
     else

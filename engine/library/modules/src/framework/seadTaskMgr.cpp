@@ -47,14 +47,14 @@ bool TaskMgr::changeTaskState_(TaskBase* task, TaskBase::State state)
         return false;
 
     case TaskBase::cPrepareDone:
-        //SEAD_ASSERT(curr_state == TaskBase::cPrepare);
+        SEAD_ASSERT(curr_state == TaskBase::cPrepare);
         task->mState = TaskBase::cPrepareDone;
         task->mTaskListNode.erase();
 
         return true;
 
     case TaskBase::cRunning:
-        //SEAD_ASSERT(curr_state == TaskBase::cPrepareDone);
+        SEAD_ASSERT(curr_state == TaskBase::cPrepareDone);
         task->mState = TaskBase::cRunning;
         task->mTaskListNode.erase();
         appendToList_(mActiveList, task);
@@ -107,7 +107,7 @@ bool TaskMgr::changeTaskState_(TaskBase* task, TaskBase::State state)
 void TaskMgr::destroyTaskSync(TaskBase* task)
 {
     bool b = getFramework()->getMethodTreeMgr()->getTreeCriticalSection()->tryLock();
-    //SEAD_ASSERT(b);
+    SEAD_ASSERT(b);
 
     if (b)
     {

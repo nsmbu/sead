@@ -70,7 +70,7 @@ public:
 
         void setViewMax(s32 view_max)
         {
-            // SEAD_ASSERT(0 < view_max);
+            SEAD_ASSERT(0 < view_max);
             mViewMax = view_max;
         }
 
@@ -81,7 +81,7 @@ public:
 
         void setSizeSphere(s32 size_sphere)
         {
-            // SEAD_ASSERT(0 < size_sphere);
+            SEAD_ASSERT(0 < size_sphere);
             mSizeSphere = size_sphere;
         }
 
@@ -92,7 +92,7 @@ public:
 
         void setSizeCube(s32 size_cube)
         {
-            // SEAD_ASSERT(0 < size_cube);
+            SEAD_ASSERT(0 < size_cube);
             mSizeCube = size_cube;
         }
 
@@ -103,7 +103,7 @@ public:
 
         void setNum(s32 num)
         {
-            // SEAD_ASSERT(0 < num);
+            SEAD_ASSERT(0 < num);
             mNum = num;
         }
 

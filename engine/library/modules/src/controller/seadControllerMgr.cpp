@@ -240,7 +240,7 @@ ControllerAddon* ControllerMgr::getControllerAddon(s32 index, ControllerDefine::
 
 s32 ControllerMgr::findControllerPort(const Controller* controller) const
 {
-    //SEAD_ASSERT(controller);
+    SEAD_ASSERT(controller);
 
      s32 i = 0;
      for (PtrArray<Controller>::iterator it = mControllers.begin(); it != mControllers.end(); ++it)
