@@ -1,5 +1,6 @@
 #pragma once
 
+#include <basis/seadAssert.h>
 #include <prim/seadMemUtil.h>
 
 namespace sead {
@@ -11,7 +12,7 @@ SafeStringBase<CharType>::at(s32 idx) const
     s32 len = calcLength();
     if (idx < 0 || idx > len)
     {
-        // SEAD_ASSERT_MSG(false, "index(%d) out of range[0, %d]", idx, len);
+        SEAD_ASSERT_MSG(false, "index(%d) out of range[0, %d]", idx, len);
         return cNullChar;
     }
 
@@ -37,7 +38,7 @@ SafeStringBase<CharType>::calcLength() const
 
     if (length > cMaximumLength)
     {
-        // SEAD_ASSERT_MSG(false, "too long string\n");
+        SEAD_ASSERT_MSG(false, "too long string\n");
         return 0;
     }
 
@@ -51,7 +52,7 @@ SafeStringBase<CharType>::getPart(s32 at) const
     s32 len = calcLength();
     if (at < 0 || at > len)
     {
-        // SEAD_ASSERT_MSG(false, "index(%d) out of range[0, %d]", at, len);
+        SEAD_ASSERT_MSG(false, "index(%d) out of range[0, %d]", at, len);
         return cEmptyString;
     }
 
@@ -75,7 +76,7 @@ SafeStringBase<CharType>::isEqual(const SafeStringBase<CharType>& rhs) const
             return true;
     }
 
-    // SEAD_ASSERT_MSG(false, "too long string\n");
+    SEAD_ASSERT_MSG(false, "too long string\n");
     return false;
 }
 
@@ -89,7 +90,7 @@ SafeStringBase<CharType>::comparen(const SafeStringBase<CharType>& rhs, s32 n) c
 
     if (n > cMaximumLength)
     {
-        //SEAD_ASSERT_MSG(false, "paramater(%d) out of bounds [0, %d]", n, cMaximumLength);
+        SEAD_ASSERT_MSG(false, "paramater(%d) out of bounds [0, %d]", n, cMaximumLength);
         n = cMaximumLength;
     }
 
@@ -138,7 +139,7 @@ BufferedSafeStringBase<CharType>::copy(const SafeStringBase<CharType>& rhs, s32 
 
     if (size >= getBufferSize())
     {
-        //SEAD_ASSERT_MSG(false, "Buffer overflow. (Buffer Size: %d, Copy Size: %d)", getBufferSize(), size);
+        SEAD_ASSERT_MSG(false, "Buffer overflow. (Buffer Size: %d, Copy Size: %d)", getBufferSize(), size);
         size = getBufferSize() - 1;
     }
 
@@ -160,7 +161,7 @@ BufferedSafeStringBase<CharType>::copyAt(s32 at, const SafeStringBase<CharType>&
         at = len + at + 1;
         if (at < 0)
         {
-            //SEAD_ASSERT_MSG(false, "at(%d) out of range[0, %d]", at, len);
+            SEAD_ASSERT_MSG(false, "at(%d) out of range[0, %d]", at, len);
             at = 0;
         }
     }
@@ -170,7 +171,7 @@ BufferedSafeStringBase<CharType>::copyAt(s32 at, const SafeStringBase<CharType>&
 
     if (at + cpy_length >= getBufferSize())
     {
-        //SEAD_ASSERT_MSG(false, "Buffer overflow. (Buffer Size: %d, At: %d, Copy Length: %d)", getBufferSize(), at, cpy_length);
+        SEAD_ASSERT_MSG(false, "Buffer overflow. (Buffer Size: %d, At: %d, Copy Length: %d)", getBufferSize(), at, cpy_length);
         cpy_length = getBufferSize() - at - 1;
     }
 
@@ -198,7 +199,7 @@ BufferedSafeStringBase<CharType>::append(CharType src_chr)
     s32 len = this->calcLength();
     if (len >= getBufferSize() - 1)
     {
-        // SEAD_ASSERT_MSG(false, "Buffer overflow. (Buffer Size: %d, Length: %d)", getBufferSize(), len);
+        SEAD_ASSERT_MSG(false, "Buffer overflow. (Buffer Size: %d, Length: %d)", getBufferSize(), len);
         return 0;
     }
 
@@ -215,13 +216,13 @@ BufferedSafeStringBase<CharType>::trim(s32 trim_length)
 {
     if (trim_length >= getBufferSize())
     {
-        //SEAD_ASSERT_MSG(false, "trim_length(%d) out of bounds. [0,%d) \n", trim_length, getBufferSize());
+        SEAD_ASSERT_MSG(false, "trim_length(%d) out of bounds. [0,%d) \n", trim_length, getBufferSize());
         return this->calcLength();
     }
 
     if (trim_length < 0)
     {
-        //SEAD_ASSERT_MSG(false, "trim_length(%d) out of bounds. [0,%d) \n", trim_length, getBufferSize());
+        SEAD_ASSERT_MSG(false, "trim_length(%d) out of bounds. [0,%d) \n", trim_length, getBufferSize());
         trim_length = 0;
     }
 

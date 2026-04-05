@@ -1,6 +1,7 @@
 #ifndef SEAD_FILEDEVICE_H_
 #define SEAD_FILEDEVICE_H_
 
+#include <basis/seadAssert.h>
 #include <container/seadSafeArray.h>
 #include <container/seadTList.h>
 #include <heap/seadDisposer.h>
@@ -157,7 +158,7 @@ public:
     u8* load(LoadArg& arg)
     {
         u8* ret = tryLoad(arg);
-        //SEAD_ASSERT_MSG(ret != nullptr, "load failed. [%s]", arg.path.cstr());
+        SEAD_ASSERT_MSG(ret != nullptr, "load failed. [%s]", arg.path.cstr());
         return ret;
     }
 
@@ -172,7 +173,7 @@ public:
     FileDevice* open(FileHandle* handle, const SafeString& filename, FileOpenFlag flag, u32 div_size)
     {
         FileDevice* device = tryOpen(handle, filename, flag, div_size);
-        //SEAD_ASSERT_MSG(device != nullptr, "open failed. [%s]", filename.cstr());
+        SEAD_ASSERT_MSG(device != nullptr, "open failed. [%s]", filename.cstr());
         return device;
     }
 
@@ -181,7 +182,7 @@ public:
     bool close(FileHandle* handle)
     {
         bool success = tryClose(handle);
-        //SEAD_ASSERT_MSG(success, "file close error");
+        SEAD_ASSERT_MSG(success, "file close error");
         return success;
     }
 
@@ -191,7 +192,7 @@ public:
     {
         u32 read_size = 0;
         bool success = tryRead(&read_size, handle, buf, size);
-        //SEAD_ASSERT_MSG(success, "file read error");
+        SEAD_ASSERT_MSG(success, "file read error");
         return read_size;
     }
 
@@ -201,7 +202,7 @@ public:
     {
         u32 write_size = 0;
         bool success = tryWrite(&write_size, handle, buf, size);
-        //SEAD_ASSERT_MSG(success, "file write error");
+        SEAD_ASSERT_MSG(success, "file write error");
         return write_size;
     }
 
@@ -210,7 +211,7 @@ public:
     bool seek(FileHandle* handle, s32 offset, SeekOrigin origin)
     {
         bool success = trySeek(handle, offset, origin);
-        //SEAD_ASSERT_MSG(success, "file seek error");
+        SEAD_ASSERT_MSG(success, "file seek error");
         return success;
     }
 
@@ -220,7 +221,7 @@ public:
     {
         u32 pos = 0;
         bool success = tryGetCurrentSeekPos(&pos, handle);
-        //SEAD_ASSERT_MSG(success, "getCurrentSeekPos error");
+        SEAD_ASSERT_MSG(success, "getCurrentSeekPos error");
         return pos;
     }
 
@@ -230,7 +231,7 @@ public:
     {
         u32 size = 0;
         bool success = tryGetFileSize(&size, path);
-        //SEAD_ASSERT_MSG(success, "getFileSize error");
+        SEAD_ASSERT_MSG(success, "getFileSize error");
         return size;
     }
 
@@ -238,7 +239,7 @@ public:
     {
         u32 size = 0;
         bool success = tryGetFileSize(&size, handle);
-        //SEAD_ASSERT_MSG(success, "getFileSize error");
+        SEAD_ASSERT_MSG(success, "getFileSize error");
         return size;
     }
 
@@ -249,7 +250,7 @@ public:
     {
         bool is_exist = false;
         bool success = tryIsExistFile(&is_exist, path);
-        //SEAD_ASSERT_MSG(success, "isExistFile failed");
+        SEAD_ASSERT_MSG(success, "isExistFile failed");
         return is_exist;
     }
 
@@ -259,7 +260,7 @@ public:
     {
         bool is_exist = false;
         bool success = tryIsExistDirectory(&is_exist, path);
-        //SEAD_ASSERT_MSG(success, "isExistDirectory failed");
+        SEAD_ASSERT_MSG(success, "isExistDirectory failed");
         return is_exist;
     }
 
@@ -268,7 +269,7 @@ public:
     FileDevice* openDirectory(DirectoryHandle* handle, const SafeString& dirname)
     {
         FileDevice* device = tryOpenDirectory(handle, dirname);
-        //SEAD_ASSERT_MSG(device != nullptr, "open directory failed. [%s]", dirname.cstr());
+        SEAD_ASSERT_MSG(device != nullptr, "open directory failed. [%s]", dirname.cstr());
         return device;
     }
 
@@ -277,7 +278,7 @@ public:
     bool closeDirectory(DirectoryHandle* handle)
     {
         bool success = tryCloseDirectory(handle);
-        //SEAD_ASSERT_MSG(success, "directory close error");
+        SEAD_ASSERT_MSG(success, "directory close error");
         return success;
     }
 
@@ -287,7 +288,7 @@ public:
     {
         u32 read_num = 0;
         bool success = tryReadDirectory(&read_num, handle, entry, num);
-        //SEAD_ASSERT_MSG(success, "readDirectory failed");
+        SEAD_ASSERT_MSG(success, "readDirectory failed");
         return read_num;
     }
 
@@ -296,7 +297,7 @@ public:
     bool makeDirectory(const SafeString& path, u32 permission)
     {
         bool success = tryMakeDirectory(path, permission);
-        //SEAD_ASSERT_MSG(success, "makeDirectory failed");
+        SEAD_ASSERT_MSG(success, "makeDirectory failed");
         return success;
     }
 
@@ -305,7 +306,7 @@ public:
     bool makeDirectoryWithParent(const SafeString& path, u32 permission)
     {
         bool success = tryMakeDirectoryWithParent(path, permission);
-        //SEAD_ASSERT_MSG(success, "makeDirectoryWithParent failed");
+        SEAD_ASSERT_MSG(success, "makeDirectoryWithParent failed");
         return success;
     }
 

@@ -1,5 +1,6 @@
 #include <random/seadRandom.h>
 #include <time/seadTickTime.h>
+#include <basis/seadAssert.h>
 
 namespace sead {
 
@@ -21,7 +22,7 @@ void Random::init(u32 seed_0, u32 seed_1, u32 seed_2, u32 seed_3)
 {
     if (seed_0 == 0 && seed_1 == 0 && seed_2 == 0 && seed_3 == 0)
     {
-      //SEAD_ASSERT_MSG(false, "seeds must not be all zero.");
+      SEAD_ASSERT_MSG(false, "seeds must not be all zero.");
         init(0);
     }
     else

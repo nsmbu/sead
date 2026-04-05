@@ -6,6 +6,7 @@
 #include <prim/seadScopedLock.h>
 #include <resource/seadResourceMgr.h>
 #include <thread/seadDelegateThread.h>
+#include <basis/seadAssert.h>
 
 namespace sead {
 
@@ -32,7 +33,7 @@ bool TaskMgr::changeTaskState_(TaskBase* task, TaskBase::State state)
 
                 else
                 {
-                    //SEAD_ASSERT_MSG(false, "failed to wakeup prepare thread for[%s]", task->getName().cstr());
+                    SEAD_ASSERT_MSG(false, "failed to wakeup prepare thread for[%s]", task->getName().cstr());
                     return false;
                 }
             }
@@ -42,7 +43,7 @@ bool TaskMgr::changeTaskState_(TaskBase* task, TaskBase::State state)
             }
         }
 
-        //SEAD_ASSERT_MSG(false, "err");
+        SEAD_ASSERT_MSG(false, "err");
         return false;
 
     case TaskBase::cPrepareDone:
@@ -92,12 +93,12 @@ bool TaskMgr::changeTaskState_(TaskBase* task, TaskBase::State state)
         return true;
 
     case TaskBase::cCreated:
-        //SEAD_ASSERT_MSG(false, "Cannot Change State to cCreated\n");
+        SEAD_ASSERT_MSG(false, "Cannot Change State to cCreated\n");
         break;
 
     case TaskBase::cSleep: // ?
     default:
-        //SEAD_ASSERT_MSG(false, "Unknown State %d\n", (s32)state);
+        SEAD_ASSERT_MSG(false, "Unknown State %d\n", (s32)state);
     }
 
     return false;

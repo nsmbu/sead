@@ -1,6 +1,7 @@
 #ifndef SEAD_SAFE_ARRAY_H_
 #define SEAD_SAFE_ARRAY_H_
 
+#include <basis/seadAssert.h>
 #include <basis/seadTypes.h>
 
 namespace sead {
@@ -29,7 +30,7 @@ public:
         }
         else
         {
-            //SEAD_ASSERT_MSG(false, "range over [0, %d) : %d", N, x);
+            SEAD_ASSERT_MSG(false, "range over [0, %d) : %d", N, x);
             return mBuffer[0];
         }
     }
@@ -42,7 +43,7 @@ public:
         }
         else
         {
-            //SEAD_ASSERT_MSG(false, "range over [0, %d) : %u", N, x);
+            SEAD_ASSERT_MSG(false, "range over [0, %d) : %u", N, x);
             return mBuffer[0];
         }
     }
@@ -55,7 +56,7 @@ public:
         }
         else
         {
-            //SEAD_ASSERT_MSG(false, "range over [0, %d) : %d", N, x);
+            SEAD_ASSERT_MSG(false, "range over [0, %d) : %d", N, x);
             return mBuffer[0];
         }
     }
@@ -68,7 +69,7 @@ public:
         }
         else
         {
-            //SEAD_ASSERT_MSG(false, "range over [0, %d) : %u", N, x);
+            SEAD_ASSERT_MSG(false, "range over [0, %d) : %u", N, x);
             return mBuffer[0];
         }
     }
@@ -197,7 +198,7 @@ public:
         }
         else
         {
-            // SEAD_ASSERT_MSG(false, "range over [0,%d] : %d", N, x);
+            SEAD_ASSERT_MSG(false, "range over [0,%d] : %d", N, x);
             return end();
         }
     }
@@ -210,7 +211,7 @@ public:
         }
         else
         {
-            // SEAD_ASSERT_MSG(false, "range over [0,%d] : %d", N, x);
+            SEAD_ASSERT_MSG(false, "range over [0,%d] : %d", N, x);
             return end();
         }
     }
@@ -228,7 +229,7 @@ public:
         }
         else
         {
-            // SEAD_ASSERT_MSG(false, "range over [0,%d] : %d", N, x);
+            SEAD_ASSERT_MSG(false, "range over [0,%d] : %d", N, x);
             return constEnd();
         }
     }

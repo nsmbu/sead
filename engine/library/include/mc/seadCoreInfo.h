@@ -1,6 +1,7 @@
 #ifndef SEAD_CORE_INFO_H_
 #define SEAD_CORE_INFO_H_
 
+#include <basis/seadAssert.h>
 #include <basis/seadTypes.h>
 
 #include <cafe/os.h>
@@ -67,7 +68,7 @@ public:
 
     CoreId(s32 value)
     {
-        // SEAD_ASSERT_MSG(value >= cMain && value < s32(cEnumMax) + 1, "range over: %d, [%d - %d)", value, s32(cMain), s32(cEnumMax) + 1);
+        SEAD_ASSERT_MSG(value >= cMain && value < s32(cEnumMax) + 1, "range over: %d, [%d - %d)", value, s32(cMain), s32(cEnumMax) + 1);
         mValue = value;
     }
 

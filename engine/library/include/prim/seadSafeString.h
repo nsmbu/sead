@@ -3,6 +3,7 @@
 
 #include <stdarg.h>
 
+#include <basis/seadAssert.h>
 #include <basis/seadTypes.h>
 
 namespace sead {
@@ -28,7 +29,7 @@ public:
     SafeStringBase(const CharType* str)
         : mStringTop(str)
     {
-        //SEAD_ASSERT_MSG(mStringTop, "str must not be nullptr.");
+        SEAD_ASSERT_MSG(mStringTop, "str must not be nullptr.");
     }
     
     SafeStringBase(const SafeStringBase& other) = default;
@@ -249,7 +250,7 @@ public:
     {
         if (size <= 0)
         {
-            //SEAD_ASSERT_MSG(false, "Invalied buffer size(%d).\n", size);
+            SEAD_ASSERT_MSG(false, "Invalied buffer size(%d).\n", size);
             this->mStringTop = nullptr;
             mBufferSize = 0;
             return;
@@ -262,11 +263,11 @@ public:
         : SafeStringBase<CharType>(original->cstr())
         , mBufferSize(0)
     {
-        //SEAD_ASSERT_MSG(original, "original string must not be nullptr.");
+        SEAD_ASSERT_MSG(original, "original string must not be nullptr.");
 
         if (pos >= original->getBufferSize() || pos < 0)
         {
-            //SEAD_ASSERT_MSG(false, "pos(%d) out of bounds[0,%d)", pos, original->getBufferSize());
+            SEAD_ASSERT_MSG(false, "pos(%d) out of bounds[0,%d)", pos, original->getBufferSize());
             this->mStringTop = nullptr;
             mBufferSize = 0;
             return;

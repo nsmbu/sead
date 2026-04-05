@@ -3,6 +3,7 @@
 #include <nn/save.h>
 #endif // cafe
 
+#include <basis/seadAssert.h>
 #include <heap/seadDisposer.h>
 #include <filedevice/seadFileDeviceMgr.h>
 #include <filedevice/seadPath.h>
@@ -23,7 +24,7 @@ FileDeviceMgr::FileDeviceMgr()
     HeapMgr* heap_mgr = HeapMgr::instance();
     if (heap_mgr == nullptr)
     {
-        //SEAD_ASSERT_MSG(false, "FileDeviceMgr need HeapMgr");
+        SEAD_ASSERT_MSG(false, "FileDeviceMgr need HeapMgr");
         return;
     }
 
@@ -166,7 +167,7 @@ FileDeviceMgr::findDeviceFromPath(
     {
         if (mDefaultFileDevice == nullptr)
         {
-            //SEAD_ASSERT_MSG(false, "drive name not found and default file device is null");
+            SEAD_ASSERT_MSG(false, "drive name not found and default file device is null");
             return nullptr;
         }
         device = mDefaultFileDevice;
@@ -201,7 +202,7 @@ FileDevice* FileDeviceMgr::tryOpen(FileHandle* handle, const SafeString& filenam
 
 u8* FileDeviceMgr::tryLoad(FileDevice::LoadArg& arg)
 {
-    //SEAD_ASSERT_MSG(arg.path != SafeString::cEmptyString, "path is null");
+    SEAD_ASSERT_MSG(arg.path != SafeString::cEmptyString, "path is null");
 
     FixedSafeString<cNoDrivePathBufferSize> no_drive_path;
     FileDevice* device = findDeviceFromPath(arg.path, &no_drive_path);

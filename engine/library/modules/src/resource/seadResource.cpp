@@ -2,6 +2,7 @@
 #include <math/seadMathCalcCommon.h>
 #include <prim/seadSafeString.h>
 #include <resource/seadResource.h>
+#include <basis/seadAssert.h>
 
 namespace sead {
 
@@ -33,7 +34,7 @@ void DirectResource::create(u8* data, u32 size, u32 buffer_size, bool need_delet
 {
     if (mRawData != nullptr)
     {
-        //SEAD_ASSERT_MSG(false, "read twice");
+        SEAD_ASSERT_MSG(false, "read twice");
         return;
     }
 
@@ -57,13 +58,13 @@ Resource* DirectResourceFactoryBase::create(const ResourceMgr::CreateArg& arg)
     DirectResource* res = newResource_(arg.heap, arg.alignment);
     if (res == nullptr)
     {
-        //SEAD_ASSERT_MSG(false, "resource new failed.");
+        SEAD_ASSERT_MSG(false, "resource new failed.");
         return nullptr;
     }
 
     if (!PtrUtil::isAligned(arg.buffer, res->getLoadDataAlignment()))
     {
-        //SEAD_ASSERT_MSG(false, "buffer alignment invalid: %p, %d", arg.buffer, res->getLoadDataAlignment());
+        SEAD_ASSERT_MSG(false, "buffer alignment invalid: %p, %d", arg.buffer, res->getLoadDataAlignment());
         delete res;
         return nullptr;
     }
@@ -77,7 +78,7 @@ Resource* DirectResourceFactoryBase::tryCreate(const ResourceMgr::LoadArg& arg)
     DirectResource* res = newResource_(arg.instance_heap, arg.instance_alignment);
     if (res == nullptr)
     {
-        //SEAD_ASSERT_MSG(false, "resource new failed.");
+        SEAD_ASSERT_MSG(false, "resource new failed.");
         return nullptr;
     }
 
@@ -119,7 +120,7 @@ DirectResourceFactoryBase::tryCreateWithDecomp(
     DirectResource* res = newResource_(arg.instance_heap, arg.instance_alignment);
     if (res == nullptr)
     {
-        //SEAD_ASSERT_MSG(false, "resource new failed.");
+        SEAD_ASSERT_MSG(false, "resource new failed.");
         return nullptr;
     }
 

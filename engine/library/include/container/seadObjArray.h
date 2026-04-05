@@ -1,6 +1,7 @@
 #pragma once
 
 #include <algorithm>
+#include <basis/seadAssert.h>
 #include <basis/seadNew.h>
 #include <container/seadFreeList.h>
 #include <container/seadPtrArray.h>
@@ -22,7 +23,7 @@ public:
 
         if (capacity < 1)
         {
-            //SEAD_ASSERT_MSG(false, "capacity[%d] must be larger than zero", capacity);
+            SEAD_ASSERT_MSG(false, "capacity[%d] must be larger than zero", capacity);
             return;
         }
 
@@ -35,7 +36,7 @@ public:
 
         if (capacity < 1)
         {
-            //SEAD_ASSERT_MSG(false, "capacity[%d] must be larger than zero", capacity);
+            SEAD_ASSERT_MSG(false, "capacity[%d] must be larger than zero", capacity);
             return false;
         }
 
@@ -51,7 +52,7 @@ public:
     {
         if (!buf)
         {
-            //SEAD_ASSERT_MSG(false, "buf is null");
+            SEAD_ASSERT_MSG(false, "buf is null");
             return;
         }
 
@@ -87,7 +88,7 @@ public:
     {
         if (isFull())
         {
-            //SEAD_ASSERT_MSG(false, "buffer full.");
+            SEAD_ASSERT_MSG(false, "buffer full.");
             
         }
         else
@@ -101,7 +102,7 @@ public:
     {
         if (isFull())
         {
-            //SEAD_ASSERT_MSG(false, "buffer full.");
+            SEAD_ASSERT_MSG(false, "buffer full.");
             return nullptr;
         }
         T* item = new (mFreeList.get()) T(std::forward<Args>(args)...);

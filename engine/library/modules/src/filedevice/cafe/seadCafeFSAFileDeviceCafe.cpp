@@ -1,5 +1,5 @@
 #include <cafe.h>
-
+#include <basis/seadAssert.h>
 #include <filedevice/cafe/seadCafeFSAFileDeviceCafe.h>
 #include <filedevice/seadFileDevice.h>
 #include <filedevice/seadFileDeviceMgr.h>
@@ -65,7 +65,7 @@ CafeFSAFileDevice::doOpen_(
         mode = "w+";
         break;
     default:
-        //SEAD_ASSERT_MSG(false, "illegal open flag[%d]", (s32)flag);
+        SEAD_ASSERT_MSG(false, "illegal open flag[%d]", (s32)flag);
         mode = "r";
     }
 
@@ -106,7 +106,7 @@ CafeFSAFileDevice::doRead_(
     u8* buf, u32 size
 )
 {
-    //SEAD_ASSERT_MSG(((uintptr_t)buf & LL_CACHE_FETCH_SIZE - 1u) == 0, "buf[0x%p] is not aligned with LL_CACHE_FETCH_SIZE[%d]", buf, LL_CACHE_FETCH_SIZE);
+    SEAD_ASSERT_MSG(((uintptr_t)buf & LL_CACHE_FETCH_SIZE - 1u) == 0, "buf[0x%p] is not aligned with LL_CACHE_FETCH_SIZE[%d]", buf, LL_CACHE_FETCH_SIZE);
 
     FSCmdBlock block;
     FSInitCmdBlock(&block);
@@ -136,7 +136,7 @@ CafeFSAFileDevice::doWrite_(
     const u8* buf, u32 size
 )
 {
-    //SEAD_ASSERT_MSG(((uintptr_t)buf & LL_CACHE_FETCH_SIZE - 1u) == 0, "buf[0x%p] is not aligned with LL_CACHE_FETCH_SIZE[%d]", buf, LL_CACHE_FETCH_SIZE);
+    SEAD_ASSERT_MSG(((uintptr_t)buf & LL_CACHE_FETCH_SIZE - 1u) == 0, "buf[0x%p] is not aligned with LL_CACHE_FETCH_SIZE[%d]", buf, LL_CACHE_FETCH_SIZE);
 
     FSCmdBlock block;
     FSInitCmdBlock(&block);

@@ -3,6 +3,7 @@
 #include <math/seadMathCalcCommon.h>
 #include <prim/seadPtrUtil.h>
 #include <prim/seadScopedLock.h>
+#include <basis/seadAssert.h>
 
 namespace sead {
 
@@ -16,7 +17,7 @@ FrameHeap::tryCreate(u32 size, const SafeString& name, Heap* parent, HeapDirecti
         parent = HeapMgr::instance()->getCurrentHeap();
         if (parent == nullptr)
         {
-            // SEAD_ASSERT_MSG(false, "current heap is null");
+            SEAD_ASSERT_MSG(false, "current heap is null");
             return nullptr;
         }
     }

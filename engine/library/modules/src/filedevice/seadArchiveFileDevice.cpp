@@ -1,11 +1,12 @@
 #include <filedevice/seadArchiveFileDevice.h>
 #include <math/seadMathCalcCommon.h>
+#include <basis/seadAssert.h>
 
 namespace sead {
 
 u8* ArchiveFileDevice::tryLoadWithEntryID(s32 entry_id, LoadArg& arg)
 {
-    // SEAD_ASSERT_MSG(hasPermission(), "Device permission error.");
+    SEAD_ASSERT_MSG(hasPermission(), "Device permission error.");
     if (!hasPermission())
         return nullptr;
 
@@ -14,7 +15,7 @@ u8* ArchiveFileDevice::tryLoadWithEntryID(s32 entry_id, LoadArg& arg)
 
 FileDevice* ArchiveFileDevice::tryOpenWithEntryID(FileHandle* handle, s32 entry_id, FileOpenFlag flag, u32 div_size)
 {
-    // SEAD_ASSERT_MSG(hasPermission(), "Device permission error.");
+    SEAD_ASSERT_MSG(hasPermission(), "Device permission error.");
     if (!hasPermission())
         return nullptr;
 
@@ -31,7 +32,7 @@ s32 ArchiveFileDevice::tryConvertPathToEntryID(const SafeString& filename)
 
 bool ArchiveFileDevice::setCurrentDirectory(const SafeString& path)
 {
-    // SEAD_ASSERT_MSG(hasPermission(), "Device permission error.");
+    SEAD_ASSERT_MSG(hasPermission(), "Device permission error.");
     if (!hasPermission())
         return false;
 
@@ -42,13 +43,13 @@ bool ArchiveFileDevice::doGetFileSize_(u32* size, const SafeString& path)
 {
     if (mArchive == nullptr)
     {
-        // SEAD_ASSERT_MSG(false, "no archive mounted");
+        SEAD_ASSERT_MSG(false, "no archive mounted");
         return false;
     }
 
     if (path.cstr() == nullptr)
     {
-        // SEAD_ASSERT_MSG(false, "invalid path");
+        SEAD_ASSERT_MSG(false, "invalid path");
         return false;
     }
 
@@ -56,7 +57,7 @@ bool ArchiveFileDevice::doGetFileSize_(u32* size, const SafeString& path)
     u8* ret = mArchive->getFile(path, &finfo);
     if (ret == nullptr)
     {
-        // SEAD_ASSERT_MSG(false, "Can\'t open %s", path.cstr());
+        SEAD_ASSERT_MSG(false, "Can\'t open %s", path.cstr());
         return false;
     }
 
@@ -68,13 +69,13 @@ bool ArchiveFileDevice::doGetFileSize_(u32* size, FileHandle* handle)
 {
     if (handle == nullptr)
     {
-        // SEAD_ASSERT_MSG(false, "invalid handle");
+        SEAD_ASSERT_MSG(false, "invalid handle");
         return false;
     }
 
     if (mArchive == nullptr)
     {
-        // SEAD_ASSERT_MSG(false, "no archive mounted");
+        SEAD_ASSERT_MSG(false, "no archive mounted");
         return false;
     }
 
@@ -87,13 +88,13 @@ bool ArchiveFileDevice::doIsExistFile_(bool* is_exist, const SafeString& path)
 {
     if (mArchive == nullptr)
     {
-        // SEAD_ASSERT_MSG(false, "no archive mounted");
+        SEAD_ASSERT_MSG(false, "no archive mounted");
         return false;
     }
 
     if (path.cstr() == nullptr)
     {
-        // SEAD_ASSERT_MSG(false, "invalid path");
+        SEAD_ASSERT_MSG(false, "invalid path");
         return false;
     }
 
@@ -106,13 +107,13 @@ bool ArchiveFileDevice::doIsExistDirectory_(bool* is_exist, const SafeString& pa
 {
     if (mArchive == nullptr)
     {
-        // SEAD_ASSERT_MSG(false, "no archive mounted");
+        SEAD_ASSERT_MSG(false, "no archive mounted");
         return false;
     }
 
     if (path.cstr() == nullptr)
     {
-        // SEAD_ASSERT_MSG(false, "invalid path");
+        SEAD_ASSERT_MSG(false, "invalid path");
         return false;
     }
 
@@ -129,7 +130,7 @@ u8* ArchiveFileDevice::doLoadWithEntryID_(s32 entry_id, LoadArg& arg)
 {
     if (entry_id == -1)
     {
-        // SEAD_ASSERT_MSG(false, "Invalid entry_id");
+        SEAD_ASSERT_MSG(false, "Invalid entry_id");
         return nullptr;
     }
 
@@ -208,7 +209,7 @@ u8* ArchiveFileDevice::doLoad_(LoadArg& arg)
 {
     if (mArchive == nullptr)
     {
-        // SEAD_ASSERT_MSG(false, "no archive mounted");
+        SEAD_ASSERT_MSG(false, "no archive mounted");
         return nullptr;
     }
 
@@ -236,19 +237,19 @@ FileDevice* ArchiveFileDevice::doOpen_(FileHandle* handle, const SafeString& fil
 {
     if (handle == nullptr)
     {
-        // SEAD_ASSERT_MSG(false, "invalid handle");
+        SEAD_ASSERT_MSG(false, "invalid handle");
         return nullptr;
     }
 
     if (mArchive == nullptr)
     {
-        // SEAD_ASSERT_MSG(false, "no archive mounted");
+        SEAD_ASSERT_MSG(false, "no archive mounted");
         return nullptr;
     }
 
     if (filename.cstr() == nullptr)
     {
-        // SEAD_ASSERT_MSG(false, "invalid filename");
+        SEAD_ASSERT_MSG(false, "invalid filename");
         return nullptr;
     }
 
@@ -267,13 +268,13 @@ FileDevice* ArchiveFileDevice::doOpenWithEntryID_(FileHandle* handle, s32 entry_
 {
     if (handle == nullptr)
     {
-        // SEAD_ASSERT_MSG(false, "invalid handle");
+        SEAD_ASSERT_MSG(false, "invalid handle");
         return nullptr;
     }
 
     if (mArchive == nullptr)
     {
-        // SEAD_ASSERT_MSG(false, "no archive mounted");
+        SEAD_ASSERT_MSG(false, "no archive mounted");
         return nullptr;
     }
 
@@ -292,7 +293,7 @@ s32 ArchiveFileDevice::doConvertPathToEntryID_(const SafeString& filename)
 {
     if (mArchive == nullptr)
     {
-        // SEAD_ASSERT_MSG(false, "no archive mounted");
+        SEAD_ASSERT_MSG(false, "no archive mounted");
         return 0;
     }
 
@@ -336,7 +337,7 @@ bool ArchiveFileDevice::doSeek_(FileHandle* handle, s32 offset, SeekOrigin origi
         pos = arc_handle->file_info.getLength() + offset;
         break;
     default:
-        // SEAD_ASSERT_MSG(false, "Unexpected origin.");
+        SEAD_ASSERT_MSG(false, "Unexpected origin.");
         return false;
     }
 
@@ -351,13 +352,13 @@ bool ArchiveFileDevice::doGetCurrentSeekPos_(u32* pos, FileHandle* handle)
 {
     if (handle == nullptr)
     {
-        // SEAD_ASSERT_MSG(false, "invalid handle");
+        SEAD_ASSERT_MSG(false, "invalid handle");
         return false;
     }
 
     if (mArchive == nullptr)
     {
-        // SEAD_ASSERT_MSG(false, "no archive mounted");
+        SEAD_ASSERT_MSG(false, "no archive mounted");
         return false;
     }
 
@@ -369,13 +370,13 @@ FileDevice* ArchiveFileDevice::doOpenDirectory_(DirectoryHandle* handle, const S
 {
     if (handle == nullptr)
     {
-        // SEAD_ASSERT_MSG(false, "invalid handle");
+        SEAD_ASSERT_MSG(false, "invalid handle");
         return nullptr;
     }
 
     if (mArchive == nullptr)
     {
-        // SEAD_ASSERT_MSG(false, "no archive mounted");
+        SEAD_ASSERT_MSG(false, "no archive mounted");
         return nullptr;
     }
 
@@ -387,7 +388,7 @@ bool ArchiveFileDevice::doCloseDirectory_(DirectoryHandle* handle)
 {
     if (mArchive == nullptr)
     {
-        // SEAD_ASSERT_MSG(false, "no archive mounted");
+        SEAD_ASSERT_MSG(false, "no archive mounted");
         return false;
     }
 
@@ -398,7 +399,7 @@ bool ArchiveFileDevice::doReadDirectory_(u32* read_num, DirectoryHandle* handle,
 {
     if (mArchive == nullptr)
     {
-        // SEAD_ASSERT_MSG(false, "no archive mounted");
+        SEAD_ASSERT_MSG(false, "no archive mounted");
         return false;
     }
 
@@ -413,13 +414,13 @@ bool ArchiveFileDevice::doSetCurrentDirectory_(const SafeString& path)
 {
     if (mArchive == nullptr)
     {
-        // SEAD_ASSERT_MSG(false, "no archive mounted");
+        SEAD_ASSERT_MSG(false, "no archive mounted");
         return false;
     }
 
     if (path.cstr() == nullptr)
     {
-        // SEAD_ASSERT_MSG(false, "invalid filename");
+        SEAD_ASSERT_MSG(false, "invalid filename");
         return false;
     }
 
@@ -433,7 +434,7 @@ bool ArchiveFileDevice::doMakeDirectory_(const SafeString& path, u32 permission)
 
 RawErrorCode ArchiveFileDevice::doGetLastRawError_() const
 {
-    // SEAD_ASSERT_MSG(false, "not impremented");
+    SEAD_ASSERT_MSG(false, "not impremented");
     return 0;
 }
 

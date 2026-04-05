@@ -3,6 +3,7 @@
 #include <detail/aglRootNode.h>
 #include <detail/aglShaderTextUtil.h>
 #include <time/seadTickTime.h>
+#include <basis/seadAssert.h>
 
 #ifdef cafe
 #include <cafe.h>
@@ -110,7 +111,7 @@ void ShaderProgramArchive::destroyResFile_()
 void ShaderProgramArchive::createWithOption(ResBinaryShaderArchive res_binary_archive, ResShaderArchive res_archive, u32 flag, sead::Heap* heap)
 {
     mResBinary = res_binary_archive;
-    // SEAD_ASSERT_MSG(uintptr_t(mResBinary.ptr()) % cShaderArchiveAlignment == 0, "agl::ResBinaryShaderArchive must be aligned agl::cShaderArchiveAlignment byte.");
+    SEAD_ASSERT_MSG(uintptr_t(mResBinary.ptr()) % cShaderArchiveAlignment == 0, "agl::ResBinaryShaderArchive must be aligned agl::cShaderArchiveAlignment byte.");
 
     if (flag & 2)
         mFlag.set(1);
@@ -206,7 +207,7 @@ void ShaderProgramArchive::createWithOption(ResBinaryShaderArchive res_binary_ar
     if (mProgram.size() > 0)
         return;
 
-    // SEAD_ASSERT_MSG(false, "No shader program.");
+    SEAD_ASSERT_MSG(false, "No shader program.");
 }
 
 bool ShaderProgramArchive::setUp()

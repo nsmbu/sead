@@ -1,6 +1,7 @@
 #include <controller/cafe/seadCafeDRCControllerCafe.h>
 #include <controller/cafe/seadCafeVPadDeviceCafe.h>
 #include <controller/seadControllerMgr.h>
+#include <basis/seadAssert.h>
 
 namespace sead {
 
@@ -22,7 +23,7 @@ void CafeDRCController::setTouchPanelSamplingUseNum(u32 num)
     }
     else
     {
-        //SEAD_ASSERT_MSG(false, "illegal sampling use num");
+        SEAD_ASSERT_MSG(false, "illegal sampling use num");
     }
 }
 

@@ -1,5 +1,6 @@
 #include <hostio/seadHostIOCurve.h>
 #include <math/seadMatrix.h>
+#include <basis/seadAssert.h>
 
 namespace sead { namespace hostio {
 
@@ -292,7 +293,7 @@ inline T curveStep2D_(f32 x, const CurveDataInfo* info, const T* buf)
 template <typename T>
 inline T curveNonuniformSpline_(f32, const CurveDataInfo*, const T*)
 {
-  //SEAD_ASSERT_MSG(false, "You must call ICurve::interpolateToVec2f at this curve type.");
+  SEAD_ASSERT_MSG(false, "You must call ICurve::interpolateToVec2f at this curve type.");
     return 0;
 }
 

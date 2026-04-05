@@ -1,6 +1,7 @@
 #ifndef SEAD_RING_BUFFER_H_
 #define SEAD_RING_BUFFER_H_
 
+#include <basis/seadAssert.h>
 #include <basis/seadTypes.h>
 
 namespace sead {
@@ -32,12 +33,12 @@ public:
             }
             else
             {
-                // SEAD_ASSERT_MSG(false, "buf is null");
+                SEAD_ASSERT_MSG(false, "buf is null");
             }
         }
         else
         {
-            // SEAD_ASSERT_MSG(false, "numMax[%d] must be larger than zero", numMax);
+            SEAD_ASSERT_MSG(false, "numMax[%d] must be larger than zero", numMax);
         }
     }
 
@@ -66,7 +67,7 @@ public:
         }
         else
         {
-            // SEAD_ASSERT_MSG(false, "index exceeded [%d/%d/%d]", x, mNum, mNumMax);
+            SEAD_ASSERT_MSG(false, "index exceeded [%d/%d/%d]", x, mNum, mNumMax);
             return mBuffer[0];
         }
     }
@@ -79,7 +80,7 @@ public:
         }
         else
         {
-            // SEAD_ASSERT_MSG(false, "index exceeded [%d/%d/%d]", x, mNum, mNumMax);
+            SEAD_ASSERT_MSG(false, "index exceeded [%d/%d/%d]", x, mNum, mNumMax);
             return mBuffer[0];
         }
     }
@@ -92,7 +93,7 @@ public:
         }
         else
         {
-            // SEAD_ASSERT_MSG(false, "index exceeded [%d/%d/%d]", x, mNum, mNumMax);
+            SEAD_ASSERT_MSG(false, "index exceeded [%d/%d/%d]", x, mNum, mNumMax);
             return nullptr;
         }
     }
@@ -105,20 +106,20 @@ public:
         }
         else
         {
-            // SEAD_ASSERT_MSG(false, "index exceeded [%d/%d/%d]", x, mNum, mNumMax);
+            SEAD_ASSERT_MSG(false, "index exceeded [%d/%d/%d]", x, mNum, mNumMax);
             return nullptr;
         }
     }
 
     T* unsafeGet(s32 x)
     {
-        // SEAD_ASSERT_MSG(static_cast<u32>(x) < static_cast<u32>(mNum), "index exceeded [%d/%d/%d]", x, mNum, mNumMax);
+        SEAD_ASSERT_MSG(static_cast<u32>(x) < static_cast<u32>(mNum), "index exceeded [%d/%d/%d]", x, mNum, mNumMax);
         return &mBuffer[calcRealIndex(x)];
     }
 
     const T* unsafeGet(s32 x) const
     {
-        // SEAD_ASSERT_MSG(static_cast<u32>(x) < static_cast<u32>(mNum), "index exceeded [%d/%d/%d]", x, mNum, mNumMax);
+        SEAD_ASSERT_MSG(static_cast<u32>(x) < static_cast<u32>(mNum), "index exceeded [%d/%d/%d]", x, mNum, mNumMax);
         return &mBuffer[calcRealIndex(x)];
     }
 
@@ -140,7 +141,7 @@ public:
         }
         else
         {
-            // SEAD_ASSERT_MSG(false, "no element");
+            SEAD_ASSERT_MSG(false, "no element");
             return mBuffer[0];
         }
     }
@@ -151,7 +152,7 @@ public:
             return *unsafeGet(mNum - 1);
         else
         {
-            // SEAD_ASSERT_MSG(false, "no element");
+            SEAD_ASSERT_MSG(false, "no element");
             return mBuffer[0];
         }
     }
@@ -162,7 +163,7 @@ public:
     {
         if (isFull())
         {
-            // SEAD_ASSERT_MSG(false, "list is full.");
+            SEAD_ASSERT_MSG(false, "list is full.");
             return;
         }
 

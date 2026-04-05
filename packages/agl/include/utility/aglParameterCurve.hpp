@@ -1,5 +1,6 @@
 #pragma once
 
+#include <basis/seadAssert.h>
 #include <prim/seadMemUtil.h>
 
 namespace agl { namespace utl {
@@ -101,7 +102,7 @@ ParameterCurve<N>::copyUnsafe(const ParameterBase& src)
 {
     if (getParameterType() != src.getParameterType())
     {
-      //SEAD_ASSERT_MSG(false, "getParameterType() == src.getParameterType()");
+      SEAD_ASSERT_MSG(false, "getParameterType() == src.getParameterType()");
         return;
     }
 

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <basis/seadAssert.h>
 #include <basis/seadTypes.h>
 
 namespace agl {
@@ -33,14 +34,14 @@ public:
         if (ref().mSigWord != DataType::cSignature)
         {
             const char* signature = ptr()->mSignature;
-            // SEAD_ASSERT_MSG(false, "Wrong binary. [%c%c%c%c].",
+            SEAD_ASSERT_MSG(false, "Wrong binary. [%c%c%c%c].",
             //                        signature[0], signature[1],
             //                        signature[2], signature[3]);
         }
 
         if (ref().mVersion != DataType::cVersion)
         {
-            // SEAD_ASSERT_MSG(false, "Version error.current:%d binary:%d",
+            SEAD_ASSERT_MSG(false, "Version error.current:%d binary:%d",
             //                        DataType::cVersion,
             //                        ref().mVersion);
         }

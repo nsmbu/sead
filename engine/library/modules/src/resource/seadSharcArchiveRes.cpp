@@ -1,6 +1,7 @@
 #include <container/seadBuffer.h>
 #include <prim/seadSafeString.h>
 #include <resource/seadSharcArchiveRes.h>
+#include <basis/seadAssert.h>
 
 #include <cstring>
 
@@ -158,7 +159,7 @@ SharcArchiveRes::convertPathToEntryIDImpl_(
 bool
 SharcArchiveRes::setCurrentDirectoryImpl_(const SafeString&)
 {
-  //SEAD_ASSERT_MSG(false, "Not support.");
+  SEAD_ASSERT_MSG(false, "Not support.");
     return false;
 }
 
@@ -222,7 +223,7 @@ SharcArchiveRes::prepareArchive_(const void* archive)
 {
     if (archive == nullptr)
     {
-      //SEAD_ASSERT_MSG(false, "archive must not be nullptr.");
+      SEAD_ASSERT_MSG(false, "archive must not be nullptr.");
         return false;
     }
 
@@ -231,45 +232,45 @@ SharcArchiveRes::prepareArchive_(const void* archive)
     mArchiveBlockHeader = reinterpret_cast<const ArchiveBlockHeader*>(archive8);
     if (MemUtil::compare(mArchiveBlockHeader->signature, "SARC", 4) != 0)
     {
-      //SEAD_ASSERT_MSG(false, "Invalid ArchiveBlockHeader");
+      SEAD_ASSERT_MSG(false, "Invalid ArchiveBlockHeader");
         return false;
     }
 
     mEndianType = Endian::markToEndian(mArchiveBlockHeader->byte_order);
     if (mEndianType != Endian::getHostEndian())
     {
-      //SEAD_ASSERT_MSG(false, "Invalid Endian Type");
+      SEAD_ASSERT_MSG(false, "Invalid Endian Type");
         return false;
     }
 
     if (mArchiveBlockHeader->version != cArchiveVersion)
     {
-      //SEAD_ASSERT_MSG(false, "unmatching version ( expect: %x, actual: %x )", cArchiveVersion, mArchiveBlockHeader->version);
+      SEAD_ASSERT_MSG(false, "unmatching version ( expect: %x, actual: %x )", cArchiveVersion, mArchiveBlockHeader->version);
         return false;
     }
 
     if (mArchiveBlockHeader->header_size != sizeof(ArchiveBlockHeader))
     {
-      //SEAD_ASSERT_MSG(false, "Invalid ArchiveBlockHeader");
+      SEAD_ASSERT_MSG(false, "Invalid ArchiveBlockHeader");
         return false;
     }
 
     mFATBlockHeader = reinterpret_cast<const FATBlockHeader*>(archive8 + mArchiveBlockHeader->header_size);
     if (MemUtil::compare(mFATBlockHeader->signature, "SFAT", 4) != 0)
     {
-      //SEAD_ASSERT_MSG(false, "Invalid FATBlockHeader");
+      SEAD_ASSERT_MSG(false, "Invalid FATBlockHeader");
         return false;
     }
 
     if (mFATBlockHeader->header_size != sizeof(FATBlockHeader))
     {
-      //SEAD_ASSERT_MSG(false, "Invalid FATBlockHeader");
+      SEAD_ASSERT_MSG(false, "Invalid FATBlockHeader");
         return false;
     }
 
     if (mFATBlockHeader->file_num > cArchiveEntryMax)
     {
-      //SEAD_ASSERT_MSG(false, "Invalid FATBlockHeader");
+      SEAD_ASSERT_MSG(false, "Invalid FATBlockHeader");
         return false;
     }
 
@@ -284,20 +285,20 @@ SharcArchiveRes::prepareArchive_(const void* archive)
     );
     if (MemUtil::compare(fnt_header->signature, "SFNT", 4) != 0)
     {
-      //SEAD_ASSERT_MSG(false, "Invalid FNTBlockHeader");
+      SEAD_ASSERT_MSG(false, "Invalid FNTBlockHeader");
         return false;
     }
 
     if (fnt_header->header_size != sizeof(FNTBlockHeader))
     {
-      //SEAD_ASSERT_MSG(false, "Invalid FNTBlockHeader");
+      SEAD_ASSERT_MSG(false, "Invalid FNTBlockHeader");
         return false;
     }
 
     mFNTBlock = reinterpret_cast<const char*>(fnt_header) + fnt_header->header_size;
     if (mArchiveBlockHeader->data_block_offset < PtrUtil::diff(mFNTBlock, mArchiveBlockHeader))
     {
-      //SEAD_ASSERT_MSG(false, "Invalid data block offset");
+      SEAD_ASSERT_MSG(false, "Invalid data block offset");
         return false;
     }
 

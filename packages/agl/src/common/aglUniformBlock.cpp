@@ -1,4 +1,5 @@
 #include <common/aglUniformBlock.h>
+#include <basis/seadAssert.h>
 
 // TODO: Move to the proper headers
 #define SEAD_MACRO_UTIL_ROUNDUP(x, y) ((x) + ((y) - 1) & ~((y) - 1))
@@ -197,7 +198,7 @@ void UniformBlock::setData_(void* p_memory, s32 index, const void* p_data, s32 a
 
     Member& member = mpHeader->mpMember[index];
 
-    // SEAD_ASSERT_MSG(member.mType <  6 ||
+    SEAD_ASSERT_MSG(member.mType <  6 ||
     //                 member.mType > 11, "not implemented yet.");
 
     u8 stride_array = sTypeInfo[member.mType][2];

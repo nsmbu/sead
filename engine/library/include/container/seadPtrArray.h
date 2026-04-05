@@ -1,6 +1,7 @@
 #ifndef SEAD_PTR_ARRAY_H_
 #define SEAD_PTR_ARRAY_H_
 
+#include <basis/seadAssert.h>
 #include <basis/seadTypes.h>
 
 namespace sead {
@@ -46,7 +47,7 @@ protected:
     {
         if (u32(mPtrNum) <= u32(n))
         {
-            // SEAD_ASSERT_MSG(false, "index exceeded [%d/%d]", n, mPtrNum);
+            SEAD_ASSERT_MSG(false, "index exceeded [%d/%d]", n, mPtrNum);
             return nullptr;
         }
         return mPtrs[n];
@@ -60,7 +61,7 @@ protected:
     {
         if (isFull())
         {
-            // SEAD_ASSERT_MSG(false, "list is full.");
+            SEAD_ASSERT_MSG(false, "list is full.");
             return;
         }
 

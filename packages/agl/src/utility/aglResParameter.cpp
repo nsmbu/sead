@@ -1,5 +1,6 @@
 #include <utility/aglParameter.h>
 #include <utility/aglResParameter.h>
+#include <basis/seadAssert.h>
 
 namespace agl { namespace utl {
 
@@ -46,7 +47,7 @@ void ResParameterObj::modifyEndianObj(bool is_le)
             ModifyEndianU32(is_le, const_cast<void*>(parameter.getValue()), parameter.ptr()->mSize - sizeof(ResParameterData));
             break;
         default:
-            // SEAD_ASSERT_MSG(false, "illigal type:%d", type);
+            SEAD_ASSERT_MSG(false, "illigal type:%d", type);
         }
     }
 }

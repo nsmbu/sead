@@ -1,6 +1,7 @@
 #include <container/seadBuffer.h>
 #include <mc/seadCoreInfo.h>
 #include <utility/aglDynamicTextureAllocator.h>
+#include <basis/seadAssert.h>
 
 namespace agl { namespace utl {
 
@@ -126,7 +127,7 @@ TextureData* DynamicTextureAllocator::alloc_(
             p_tex->initializeMultiSample(format, width, height, multi_sample_type);
             break;
         default:
-            // SEAD_ASSERT_MSG(false, "illigal texture type:%d", s32(type));
+            SEAD_ASSERT_MSG(false, "illigal texture type:%d", s32(type));
             break;
         }
     }
