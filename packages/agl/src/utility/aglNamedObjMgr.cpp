@@ -1,6 +1,7 @@
 #include <detail/aglRootNode.h>
 #include <utility/aglNamedObjIndex.h>
 #include <utility/aglNamedObjMgr.h>
+#include <basis/seadAssert.h>
 
 namespace {
 

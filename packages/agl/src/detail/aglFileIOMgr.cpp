@@ -1,6 +1,7 @@
 #include <detail/aglFileIOMgr.h>
 #include <detail/aglPrivateResource.h>
 #include <prim/seadMemUtil.h>
+#include <basis/seadAssert.h>
 
 namespace agl { namespace detail {
 

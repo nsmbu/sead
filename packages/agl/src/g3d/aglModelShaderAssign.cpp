@@ -2,6 +2,7 @@
 #include <common/aglShaderProgram.h>
 #include <container/seadBuffer.h>
 #include <g3d/aglModelShaderAssign.h>
+#include <basis/seadAssert.h>
 
 namespace agl { namespace g3d {
 
@@ -13,7 +14,7 @@ ModelShaderAttribute::ModelShaderAttribute()
 ModelShaderAttribute::~ModelShaderAttribute()
 {
     if (mFetchShader.GetShaderPtr())
-        delete mFetchShader.GetShaderPtr(); // Nintendo forgot to do delete[] again
+        delete mFetchShader.GetShaderPtr(); //! Nintendo forgot to do delete[] again
 }
 
 void ModelShaderAttribute::create(sead::Heap* heap)

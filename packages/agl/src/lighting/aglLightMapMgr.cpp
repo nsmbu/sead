@@ -3,6 +3,7 @@
 #include <heap/seadSeparateHeap.h>
 #include <lighting/aglLightMapMgr.h>
 #include <prim/seadEndian.h>
+#include <basis/seadAssert.h>
 
 namespace agl { namespace lght {
 

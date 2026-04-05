@@ -1,4 +1,5 @@
 #include <common/aglVertexBuffer.h>
+#include <basis/seadAssert.h>
 
 namespace agl {
 

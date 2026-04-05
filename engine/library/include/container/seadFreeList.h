@@ -1,6 +1,7 @@
 #ifndef SEAD_FREE_LIST_H_
 #define SEAD_FREE_LIST_H_
 
+#include <basis/seadAssert.h>
 #include <basis/seadTypes.h>
 
 namespace sead {

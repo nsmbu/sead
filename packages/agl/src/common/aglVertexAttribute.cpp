@@ -1,5 +1,6 @@
 #include <common/aglVertexAttribute.h>
 #include <common/aglVertexBuffer.h>
+#include <basis/seadAssert.h>
 
 namespace agl {
 

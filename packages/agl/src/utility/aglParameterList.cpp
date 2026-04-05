@@ -1,6 +1,7 @@
 #include <utility/aglParameter.h>
 #include <utility/aglParameterList.h>
 #include <utility/aglParameterObj.h>
+#include <basis/seadAssert.h>
 
 namespace agl { namespace utl {
 

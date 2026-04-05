@@ -1,4 +1,5 @@
 #include <gfx/cafe/seadTextureCafeGX2.h>
+#include <basis/seadAssert.h>
 
 namespace sead {
 

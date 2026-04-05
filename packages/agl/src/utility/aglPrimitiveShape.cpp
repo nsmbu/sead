@@ -1,4 +1,5 @@
 #include <utility/aglPrimitiveShape.h>
+#include <basis/seadAssert.h>
 
 namespace agl { namespace utl {
 

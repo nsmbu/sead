@@ -1,5 +1,7 @@
 #pragma once
 
+#include <basis/seadAssert.h>
+
 namespace agl {
 
 inline void

@@ -2,6 +2,7 @@
 
 #include <common/aglTextureData.h>
 #include <gfx/cafe/seadFrameBufferCafe.h>
+#include <basis/seadAssert.h>
 
 namespace agl {
 

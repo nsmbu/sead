@@ -7,6 +7,7 @@
 #include <utility/aglPrimitiveShape.h>
 #include <utility/aglPrimitiveTexture.h>
 #include <utility/aglVertexAttributeHolder.h>
+#include <basis/seadAssert.h>
 
 namespace agl { namespace lght {
 

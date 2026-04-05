@@ -8,6 +8,7 @@
 #include <utility/aglImageFilter2D.h>
 #include <utility/aglPrimitiveShape.h>
 #include <utility/aglVertexAttributeHolder.h>
+#include <basis/seadAssert.h>
 
 namespace agl { namespace pfx {
 

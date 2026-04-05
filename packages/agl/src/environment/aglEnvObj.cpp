@@ -1,6 +1,7 @@
 #include <detail/aglRootNode.h>
 #include <environment/aglEnvObj.h>
 #include <environment/aglEnvObjMgr.h>
+#include <basis/seadAssert.h>
 
 #include <algorithm>
 
@@ -8,9 +9,9 @@ namespace {
 
 inline u8 getBoolParamValue(const agl::utl::Parameter<bool>& param)
 {
-    BOOL value = FALSE;
+    BOOL value = 0;
     if (*param)
-        value = TRUE;
+        value = 1;
 
     return value;
 }

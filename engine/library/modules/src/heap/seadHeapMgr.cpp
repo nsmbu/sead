@@ -2,6 +2,7 @@
 #include <heap/seadHeapMgr.h>
 #include <prim/seadScopedLock.h>
 #include <thread/seadThread.h>
+#include <basis/seadAssert.h>
 
 namespace sead {
 

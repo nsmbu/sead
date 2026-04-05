@@ -2,6 +2,7 @@
 #include <detail/aglShaderTextUtil.h>
 #include <prim/seadMemUtil.h>
 #include <prim/seadSafeString.h>
+#include <basis/seadAssert.h>
 
 // TODO: Custom implementations of std::strchr && std::strspn
 #include <cstring>

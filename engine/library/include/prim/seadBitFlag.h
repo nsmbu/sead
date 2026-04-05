@@ -1,6 +1,7 @@
 #ifndef SEAD_BIT_FLAG_H_
 #define SEAD_BIT_FLAG_H_
 
+#include <basis/seadAssert.h>
 #include <basis/seadTypes.h>
 
 namespace sead {

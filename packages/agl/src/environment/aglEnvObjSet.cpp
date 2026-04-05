@@ -1,6 +1,7 @@
 #include <detail/aglRootNode.h>
 #include <environment/aglEnvObjMgr.h>
 #include <environment/aglEnvObjSet.h>
+#include <basis/seadAssert.h>
 
 namespace agl { namespace env {
 

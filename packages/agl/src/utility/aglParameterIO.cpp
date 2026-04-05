@@ -1,5 +1,6 @@
 #include <gfx/seadGraphics.h>
 #include <utility/aglParameterIO.h>
+#include <basis/seadAssert.h>
 
 namespace agl { namespace utl {
 

@@ -1,4 +1,5 @@
 #include <common/aglIndexStream.h>
+#include <basis/seadAssert.h>
 
 namespace agl {
 

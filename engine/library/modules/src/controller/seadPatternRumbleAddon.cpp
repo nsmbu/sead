@@ -1,4 +1,5 @@
 #include <controller/seadPatternRumbleAddon.h>
+#include <basis/seadAssert.h>
 
 namespace sead {
 

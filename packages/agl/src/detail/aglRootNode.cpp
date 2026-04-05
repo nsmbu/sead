@@ -1,5 +1,6 @@
 #include <detail/aglPrivateResource.h>
 #include <detail/aglRootNode.h>
+#include <basis/seadAssert.h>
 
 namespace agl { namespace detail {
 

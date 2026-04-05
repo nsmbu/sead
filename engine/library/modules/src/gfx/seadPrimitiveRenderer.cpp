@@ -7,6 +7,7 @@
 #include <math/seadMatrixCalcCommon.h>
 #include <math/seadQuatCalcCommon.h>
 #include <math/seadVectorCalcCommon.h>
+#include <basis/seadAssert.h>
 
 namespace sead {
 

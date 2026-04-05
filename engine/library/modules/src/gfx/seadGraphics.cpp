@@ -1,5 +1,6 @@
 #include <gfx/seadGraphics.h>
 #include <thread/seadThread.h>
+#include <basis/seadAssert.h>
 
 namespace sead {
 

@@ -2,6 +2,7 @@
 #include <environment/aglEnvObjMgr.h>
 #include <gfx/seadGraphics.h>
 #include <utility/aglDevTools.h>
+#include <basis/seadAssert.h>
 
 namespace agl { namespace env {
 

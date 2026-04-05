@@ -1,5 +1,6 @@
 #include <common/aglResCommon.h>
 #include <prim/seadEndian.h>
+#include <basis/seadAssert.h>
 
 namespace agl {
 

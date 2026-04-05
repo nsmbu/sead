@@ -1,5 +1,6 @@
 #include <basis/seadNew.h>
 #include <container/seadPtrArray.h>
+#include <basis/seadAssert.h>
 
 namespace sead {
 

@@ -1,4 +1,5 @@
 #include <container/seadTreeNode.h>
+#include <basis/seadAssert.h>
 
 namespace sead {
 

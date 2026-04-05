@@ -1,5 +1,6 @@
 #include <common/aglDisplayList.h>
 #include <detail/aglPrivateResource.h>
+#include <basis/seadAssert.h>
 
 namespace agl {
 

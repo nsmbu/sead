@@ -3,6 +3,7 @@
 #include <common/aglResShaderSymbol.h>
 #include <common/aglShader.h>
 #include <prim/seadEndian.h>
+#include <basis/seadAssert.h>
 
 #ifdef cafe
 #include <cafe/gx2.h>

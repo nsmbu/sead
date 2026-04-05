@@ -1,5 +1,6 @@
 #include <controller/seadControllerWrapperBase.h>
 #include <prim/seadMemUtil.h>
+#include <basis/seadAssert.h>
 
 namespace sead {
 

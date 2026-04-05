@@ -5,6 +5,7 @@
 #include <detail/aglGX2.h>
 #include <detail/aglPrivateResource.h>
 #include <gfx/seadGraphics.h>
+#include <basis/seadAssert.h>
 
 namespace agl {
 

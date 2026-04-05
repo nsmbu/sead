@@ -2,6 +2,7 @@
 #include <common/aglTextureDataInitializer.h>
 #include <detail/aglPrivateResource.h>
 #include <detail/aglTextureDataUtil.h>
+#include <basis/seadAssert.h>
 
 namespace agl {
 

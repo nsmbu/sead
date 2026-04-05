@@ -1,6 +1,7 @@
 #ifndef SEAD_HOST_IO_CURVE_H_
 #define SEAD_HOST_IO_CURVE_H_
 
+#include <basis/seadAssert.h>
 #include <math/seadVector.h>
 
 namespace sead { namespace hostio {

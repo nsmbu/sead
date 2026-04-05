@@ -1,4 +1,5 @@
 #include <utility/aglTextureMemoryAllocator.h>
+#include <basis/seadAssert.h>
 
 namespace agl { namespace utl {
 

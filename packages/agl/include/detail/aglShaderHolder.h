@@ -4,6 +4,7 @@
 #include <container/seadPtrArray.h>
 #include <container/seadSafeArray.h>
 #include <heap/seadDisposer.h>
+#include <basis/seadAssert.h>
 
 namespace sead {
 

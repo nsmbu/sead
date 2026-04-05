@@ -2,6 +2,7 @@
 #include <common/aglShaderEnum.h>
 #include <detail/aglShaderTextUtil.h>
 #include <detail/aglPrivateResource.h>
+#include <basis/seadAssert.h>
 
 namespace agl {
 

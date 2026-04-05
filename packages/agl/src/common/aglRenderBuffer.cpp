@@ -1,6 +1,7 @@
 #include <common/aglRenderBuffer.h>
 #include <common/aglRenderTarget.h>
 #include <mc/seadCoreInfo.h>
+#include <basis/seadAssert.h>
 
 namespace agl {
 

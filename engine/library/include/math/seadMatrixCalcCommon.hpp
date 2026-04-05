@@ -4,6 +4,7 @@
 #include <cafe.h>
 #endif // cafe
 
+#include <basis/seadAssert.h>
 #include <math/seadMathCalcCommon.h>
 
 namespace sead {

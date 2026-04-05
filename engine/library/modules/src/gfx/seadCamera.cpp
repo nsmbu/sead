@@ -1,4 +1,5 @@
 #include <gfx/seadCamera.h>
+#include <basis/seadAssert.h>
 
 namespace sead {
 

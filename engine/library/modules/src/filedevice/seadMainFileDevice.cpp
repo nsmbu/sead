@@ -4,6 +4,7 @@
 
 #include <filedevice/seadMainFileDevice.h>
 #include <prim/seadSafeString.h>
+#include <basis/seadAssert.h>
 
 namespace sead {
 

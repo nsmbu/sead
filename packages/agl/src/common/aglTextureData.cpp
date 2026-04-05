@@ -3,6 +3,7 @@
 #include <detail/aglGX2.h>
 #include <detail/aglTextureDataUtil.h>
 #include <prim/seadMemUtil.h>
+#include <basis/seadAssert.h>
 
 namespace agl {
 

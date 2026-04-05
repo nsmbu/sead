@@ -1,5 +1,6 @@
 #include <layer/aglLayer.h>
 #include <layer/aglRenderStep.h>
+#include <basis/seadAssert.h>
 
 namespace agl { namespace lyr {
 

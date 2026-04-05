@@ -1,6 +1,7 @@
 #ifndef SEAD_ARCHIVE_RES_H_
 #define SEAD_ARCHIVE_RES_H_
 
+#include <basis/seadAssert.h>
 #include <filedevice/seadFileDevice.h>
 #include <heap/seadHeap.h>
 #include <prim/seadSafeString.h>

@@ -1,6 +1,7 @@
 #include <stream/seadBinaryStreamFormat.h>
 #include <stream/seadStream.h>
 #include <stream/seadStreamSrc.h>
+#include <basis/seadAssert.h>
 
 namespace sead {
 

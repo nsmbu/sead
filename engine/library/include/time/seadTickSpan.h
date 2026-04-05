@@ -1,6 +1,7 @@
 #ifndef SEAD_TICK_SPAN_H_
 #define SEAD_TICK_SPAN_H_
 
+#include <basis/seadAssert.h>
 #include <basis/seadTypes.h>
 
 namespace sead {

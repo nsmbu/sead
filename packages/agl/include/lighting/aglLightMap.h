@@ -6,6 +6,7 @@
 #include <common/aglUniformBlock.h>
 #include <environment/aglEnvObjSet.h>
 #include <gfx/seadGraphicsContextMRT.h>
+#include <basis/seadAssert.h>
 
 namespace agl { namespace lght {
 

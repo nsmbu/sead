@@ -10,6 +10,7 @@
 #include <utility/aglParameterObj.h>
 #include <utility/aglParameterCurve.h>
 #include <utility/aglParameterIO.h>
+#include <basis/seadAssert.h>
 
 namespace agl { namespace lght {
 

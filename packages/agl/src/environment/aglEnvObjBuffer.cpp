@@ -1,4 +1,5 @@
 #include <environment/aglEnvObjBuffer.h>
+#include <basis/seadAssert.h>
 
 namespace {
 
