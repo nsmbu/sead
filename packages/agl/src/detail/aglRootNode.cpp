@@ -1,5 +1,6 @@
 #include <detail/aglPrivateResource.h>
 #include <detail/aglRootNode.h>
+#include <basis/seadAssert.h>
 
 namespace agl { namespace detail {
 
@@ -17,7 +18,7 @@ RootNode::~RootNode()
 
 void RootNode::setNodeMeta(sead::hostio::Node* p_node, const sead::SafeString& meta)
 {
-    // SEAD_ASSERT(p_node != nullptr);
+    SEAD_ASSERT(p_node != nullptr);
 
     if (!instance() || !PrivateResource::instance()->getDebugHeap())
         return;

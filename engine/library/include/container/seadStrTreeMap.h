@@ -1,6 +1,7 @@
 #ifndef SEAD_STR_TREE_MAP_H_
 #define SEAD_STR_TREE_MAP_H_
 
+#include <basis/seadAssert.h>
 #include <container/seadTreeMapImpl.h>
 #include <container/seadFreeList.h>
 #include <prim/seadDelegate.h>
@@ -85,18 +86,18 @@ public:
             }
             else
             {
-                // SEAD_ASSERT_MSG(false, "buf is null");
+                SEAD_ASSERT_MSG(false, "buf is null");
             }
         }
         else
         {
-            // SEAD_ASSERT_MSG(false, "node_max[%d] must be larger than zero", node_max);
+            SEAD_ASSERT_MSG(false, "node_max[%d] must be larger than zero", node_max);
         }
     }
 
     void allocBuffer(s32 node_max, Heap* heap, s32 alignment = 4)
     {
-        // SEAD_ASSERT(mFreeList.work() == nullptr);
+        SEAD_ASSERT(mFreeList.work() == nullptr);
         if (node_max > 0)
         {
             void* buf = new (heap, alignment) u8[node_max * sizeof(Node)]; // NewArray<u8>(node_max * sizeof(Node), heap, alignment)
@@ -104,7 +105,7 @@ public:
         }
         else
         {
-            // SEAD_ASSERT_MSG(false, "node_max[%d] must be larger than zero", node_max);
+            SEAD_ASSERT_MSG(false, "node_max[%d] must be larger than zero", node_max);
         }
     }
 
@@ -173,7 +174,7 @@ public:
                 new (p_value) Value(value); // ???
             else
             {
-                // SEAD_ASSERT_MSG(false, "map is full.");
+                SEAD_ASSERT_MSG(false, "map is full.");
             }
         }
     }

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <basis/seadAssert.h>
 #include <prim/seadPtrUtil.h>
 
 #include <cafe.h>
@@ -20,8 +21,8 @@ inline void* MemUtil::fillZero(void* addr, size_t size)
 
 inline void* MemUtil::copy(void* dst, const void* src, size_t size)
 {
-    //SEAD_ASSERT_MSG(!PtrUtil::isInclude(src, dst, PtrUtil::addOffset(dst, size))
-    //             && !PtrUtil::isInclude(dst, src, PtrUtil::addOffset(src, size)), "cross copy area");
+    SEAD_ASSERT_MSG(!PtrUtil::isInclude(src, dst, PtrUtil::addOffset(dst, size))
+                 && !PtrUtil::isInclude(dst, src, PtrUtil::addOffset(src, size)), "cross copy area");
     return OSBlockMove(dst, src, size, 0);
 }
 

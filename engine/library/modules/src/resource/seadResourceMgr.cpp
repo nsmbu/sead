@@ -4,6 +4,7 @@
 #include <prim/seadSafeString.h>
 #include <resource/seadResource.h>
 #include <resource/seadResourceMgr.h>
+#include <basis/seadAssert.h>
 
 namespace sead {
 
@@ -18,7 +19,7 @@ ResourceMgr::ResourceMgr()
     HeapMgr* heap_mgr = HeapMgr::instance();
     if (heap_mgr == nullptr)
     {
-        //SEAD_ASSERT_MSG(false, ResourceMgr need HeapMgr);
+        SEAD_ASSERT_MSG(false, ResourceMgr need HeapMgr);
         return;
     }
 
@@ -76,7 +77,7 @@ ResourcePtr ResourceMgr::tryLoadWithoutDecomp(const LoadArg& arg)
         else
         {
             factory = findFactory(ext);
-            // SEAD_ASSERT(factory);
+            SEAD_ASSERT(factory);
         }
     }
     return factory->tryCreate(arg);
@@ -91,7 +92,7 @@ ResourcePtr ResourceMgr::tryLoad(const LoadArg& arg, const SafeString& convert_e
     {
         if (!Path::getExt(&ext, arg.path))
         {
-            // SEAD_ASSERT_MSG(false, "no file extention");
+            SEAD_ASSERT_MSG(false, "no file extention");
             return nullptr;
         }
         decomp = findDecompressor(ext);
@@ -109,7 +110,7 @@ ResourcePtr ResourceMgr::tryLoad(const LoadArg& arg, const SafeString& convert_e
     else
     {
         factory = findFactory(factory_ext);
-        // SEAD_ASSERT(factory);
+        SEAD_ASSERT(factory);
     }
 
     if (decomp != nullptr)

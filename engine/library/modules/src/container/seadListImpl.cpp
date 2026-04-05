@@ -1,10 +1,12 @@
 #include <container/seadListImpl.h>
 
+#include <basis/seadAssert.h>
+
 namespace sead {
 
 void ListNode::insertBack_(ListNode* n)
 {
-    // SEAD_ASSERT_MSG(!n->isLinked(), "node is already linked.");
+    SEAD_ASSERT_MSG(!n->isLinked(), "node is already linked.");
 
     ListNode* next = mNext;
 
@@ -18,7 +20,7 @@ void ListNode::insertBack_(ListNode* n)
 
 void ListNode::insertFront_(ListNode* n)
 {
-    // SEAD_ASSERT_MSG(!n->isLinked(), "node is already linked.");
+    SEAD_ASSERT_MSG(!n->isLinked(), "node is already linked.");
 
     ListNode* prev = mPrev;
 
@@ -32,7 +34,7 @@ void ListNode::insertFront_(ListNode* n)
 
 void ListNode::erase_()
 {
-    // SEAD_ASSERT_MSG(n->isLinked(), "node is not linked.");
+    SEAD_ASSERT_MSG(n->isLinked(), "node is not linked.");
 
     if (mPrev != nullptr)
         mPrev->mNext = mNext;

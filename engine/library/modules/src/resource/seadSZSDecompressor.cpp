@@ -5,6 +5,7 @@
 #include <prim/seadEndian.h>
 #include <prim/seadSafeString.h>
 #include <resource/seadSZSDecompressor.h>
+#include <basis/seadAssert.h>
 
 namespace {
 
@@ -126,7 +127,7 @@ SZSDecompressor::DecompContext::DecompContext()
 
 SZSDecompressor::DecompContext::DecompContext(void* dst)
 {
-  //SEAD_ASSERT(dst);
+  SEAD_ASSERT(dst);
     initialize(dst);
 }
 
@@ -155,9 +156,9 @@ SZSDecompressor::SZSDecompressor(u32 work_size, u8* work_buffer)
 
     else
     {
-        //SEAD_ASSERT_MSG(Mathu::isMultiplePow2(work_size, FileDevice::cBufferMinAlignment), "work_size[%d] must be multiple of FileDevice::cBufferMinAlignment", work_size);
+        SEAD_ASSERT_MSG(Mathu::isMultiplePow2(work_size, FileDevice::cBufferMinAlignment), "work_size[%d] must be multiple of FileDevice::cBufferMinAlignment", work_size);
 
-        //SEAD_ASSERT_MSG(PtrUtil::isAlignedPow2(work_buffer, FileDevice::cBufferMinAlignment), "work_buffer[0x%x] must be aligned to FileDevice::cBufferMinAlignment");
+        SEAD_ASSERT_MSG(PtrUtil::isAlignedPow2(work_buffer, FileDevice::cBufferMinAlignment), "work_buffer[0x%x] must be aligned to FileDevice::cBufferMinAlignment");
 
         mWorkSize = work_size;
         mWorkBuffer = work_buffer;
@@ -190,7 +191,7 @@ SZSDecompressor::tryDecompFromDevice(
 
     if (work_buf == nullptr)
     {
-        //SEAD_ASSERT_MSG(false, "cannot alloc work buf");
+        SEAD_ASSERT_MSG(false, "cannot alloc work buf");
         return nullptr;
     }
 
@@ -200,7 +201,7 @@ SZSDecompressor::tryDecompFromDevice(
     u32 read_size = handle.read(work_buf, mWorkSize);
     if (read_size < getHeaderSize())
     {
-        //SEAD_ASSERT_MSG(false, "Invalid header size.");
+        SEAD_ASSERT_MSG(false, "Invalid header size.");
 
         if (mWorkBuffer == nullptr)
             delete[] work_buf;
@@ -209,9 +210,9 @@ SZSDecompressor::tryDecompFromDevice(
     }
 
     decomp_size = getDecompSize(work_buf);
-    //SEAD_ASSERT(decomp_size > 0);
+    SEAD_ASSERT(decomp_size > 0);
     decomp_alignment = getDecompAlignment(work_buf);
-    //SEAD_ASSERT_MSG(decomp_alignment == 0 || Mathu::isPow2(decomp_alignment), "decomp_alignment[%d] must be power of 2.", decomp_alignment);
+    SEAD_ASSERT_MSG(decomp_alignment == 0 || Mathu::isPow2(decomp_alignment), "decomp_alignment[%d] must be power of 2.", decomp_alignment);
 
     if (decomp_size > arg.load_data_buffer_size && arg.load_data_buffer_size != 0)
         decomp_size = arg.load_data_buffer_size;
@@ -231,7 +232,7 @@ SZSDecompressor::tryDecompFromDevice(
             if (arg.load_data_alignment != 0)
             {
                 align = Mathi::max(arg.load_data_alignment, 0x20);
-                //SEAD_ASSERT_MSG(decomp_alignment == 0 || align % decomp_alignment == 0, "load_data_alignment[%d] doesn\'t meet decomp_alignment[%d].", arg.load_data_alignment, decomp_alignment);
+                SEAD_ASSERT_MSG(decomp_alignment == 0 || align % decomp_alignment == 0, "load_data_alignment[%d] doesn\'t meet decomp_alignment[%d].", arg.load_data_alignment, decomp_alignment);
             }
             else
             {
@@ -252,7 +253,7 @@ SZSDecompressor::tryDecompFromDevice(
 
         if (dst_buf == nullptr)
         {
-            //SEAD_ASSERT_MSG(false, "cannot alloc dst buf");
+            SEAD_ASSERT_MSG(false, "cannot alloc dst buf");
 
             if (mWorkBuffer == nullptr)
                 delete[] work_buf;
@@ -266,9 +267,9 @@ SZSDecompressor::tryDecompFromDevice(
     }
     else
     {
-        //SEAD_ASSERT(arg.load_data_buffer_size >= decomp_size);
+        SEAD_ASSERT(arg.load_data_buffer_size >= decomp_size);
 
-        //SEAD_ASSERT_MSG(decomp_alignment == 0 || PtrUtil::isAlignedPow2(dst_buf, decomp_alignment), "load_data_buffer is not aligned with decomp_alignment[%d]", decomp_alignment);
+        SEAD_ASSERT_MSG(decomp_alignment == 0 || PtrUtil::isAlignedPow2(dst_buf, decomp_alignment), "load_data_buffer is not aligned with decomp_alignment[%d]", decomp_alignment);
     }
 
     if (read_size < mWorkSize)
@@ -276,7 +277,7 @@ SZSDecompressor::tryDecompFromDevice(
         s32 dret = decomp(dst_buf, buffer_size, work_buf, mWorkSize);
         if (dret < 0)
         {
-            //SEAD_ASSERT_MSG(false, "decompSZS returned error(%d).", dret);
+            SEAD_ASSERT_MSG(false, "decompSZS returned error(%d).", dret);
 
             if (need_delete)
                 delete[] dst_buf;
@@ -300,7 +301,7 @@ SZSDecompressor::tryDecompFromDevice(
 
             if (dret < 0)
             {
-                //SEAD_ASSERT_MSG(false, "streamDecompSZS returned error(%d).", dret);
+                SEAD_ASSERT_MSG(false, "streamDecompSZS returned error(%d).", dret);
 
                 if (need_delete)
                     delete[] dst_buf;
@@ -338,7 +339,7 @@ SZSDecompressor::setWorkSize(u32 work_size)
 
     else
     {
-        //SEAD_ASSERT_MSG(false, "cannot change work_size when work buffer is given");
+        SEAD_ASSERT_MSG(false, "cannot change work_size when work buffer is given");
     }
 }
 
@@ -402,8 +403,8 @@ SZSDecompressor::readHeader_(DecompContext* context, const u8* srcp, u32 src_siz
 s32
 SZSDecompressor::streamDecomp(DecompContext* context, const void* src, u32 len)
 {
-    //SEAD_ASSERT(context);
-    //SEAD_ASSERT(src);
+    SEAD_ASSERT(context);
+    SEAD_ASSERT(src);
 
     const u8* srcp = static_cast<const u8*>(src);
 
@@ -517,13 +518,13 @@ SZSDecompressor::streamDecomp(DecompContext* context, const void* src, u32 len)
 s32
 SZSDecompressor::decomp(void* dst, u32 dst_size, const void* src, u32 src_size)
 {
-    //SEAD_ASSERT(src_size >= getHeaderSize());
-    //SEAD_ASSERT(dst);
-    //SEAD_ASSERT(src);
+    SEAD_ASSERT(src_size >= getHeaderSize());
+    SEAD_ASSERT(dst);
+    SEAD_ASSERT(src);
 
     //
-    //SEAD_ASSERT_MSG(((uintptr_t)dst & 0x20-1u) == 0, "dst[0x%x] must be aligned to 32.", (uintptr_t)dst);
-    //SEAD_ASSERT_MSG((dst_size & 0x20-1u) == 0, "dst_size[%u] must be multiple of 32.", dst_size);
+    SEAD_ASSERT_MSG(((uintptr_t)dst & 0x20-1u) == 0, "dst[0x%x] must be aligned to 32.", (uintptr_t)dst);
+    SEAD_ASSERT_MSG((dst_size & 0x20-1u) == 0, "dst_size[%u] must be multiple of 32.", dst_size);
 
     if (Endian::toHostU32(Endian::cBig, *static_cast<const u32*>(src)) != 0x59617A30) // Yaz0
         return -1;

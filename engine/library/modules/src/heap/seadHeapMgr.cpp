@@ -2,6 +2,7 @@
 #include <heap/seadHeapMgr.h>
 #include <prim/seadScopedLock.h>
 #include <thread/seadThread.h>
+#include <basis/seadAssert.h>
 
 namespace sead {
 
@@ -51,7 +52,7 @@ Heap*
 HeapMgr::getCurrentHeap() const
 {
     ThreadMgr* thread_mgr = ThreadMgr::instance();
-  //SEAD_ASSERT(thread_mgr);
+  SEAD_ASSERT(thread_mgr);
     return thread_mgr->getCurrentThread()->getCurrentHeap();
 }
 

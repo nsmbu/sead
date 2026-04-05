@@ -1,11 +1,12 @@
 #include <filedevice/seadPath.h>
 #include <prim/seadSafeString.h>
+#include <basis/seadAssert.h>
 
 namespace sead {
 
 bool Path::getDriveName(BufferedSafeString* dst, const SafeString& src)
 {
-    //SEAD_ASSERT_MSG(dst, "destination buffer is null");
+    SEAD_ASSERT_MSG(dst, "destination buffer is null");
 
     dst->trim(0);
 
@@ -19,7 +20,7 @@ bool Path::getDriveName(BufferedSafeString* dst, const SafeString& src)
 
 void Path::getPathExceptDrive(BufferedSafeString* dst, const SafeString& src)
 {
-    //SEAD_ASSERT_MSG(dst, "destination buffer is null");
+    SEAD_ASSERT_MSG(dst, "destination buffer is null");
 
     dst->trim(0);
 

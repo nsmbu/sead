@@ -1,11 +1,12 @@
 #include <utility/aglParameter.h>
 #include <utility/aglResParameter.h>
+#include <basis/seadAssert.h>
 
 namespace agl { namespace utl {
 
 ResParameter ResParameterObj::getResParameter(u32 index) const
 {
-    // SEAD_ASSERT(index < getNum());
+    SEAD_ASSERT(index < getNum());
 
     constIterator itr = begin();
     constIterator itr_end = constIterator(index, nullptr);
@@ -46,14 +47,14 @@ void ResParameterObj::modifyEndianObj(bool is_le)
             ModifyEndianU32(is_le, const_cast<void*>(parameter.getValue()), parameter.ptr()->mSize - sizeof(ResParameterData));
             break;
         default:
-            // SEAD_ASSERT_MSG(false, "illigal type:%d", type);
+            SEAD_ASSERT_MSG(false, "illigal type:%d", type);
         }
     }
 }
 
 ResParameterList ResParameterList::getResParameterList(u32 index) const
 {
-    // SEAD_ASSERT(index < getResParameterListNum());
+    SEAD_ASSERT(index < getResParameterListNum());
 
     listConstIterator itr = listConstBegin();
     while (static_cast<u32>(itr.getIndex()) < index)
@@ -64,7 +65,7 @@ ResParameterList ResParameterList::getResParameterList(u32 index) const
 
 ResParameterObj ResParameterList::getResParameterObj(u32 index) const
 {
-    // SEAD_ASSERT(index < getResParameterObjNum());
+    SEAD_ASSERT(index < getResParameterObjNum());
 
     objConstIterator itr = objConstBegin();
     while (static_cast<u32>(itr.getIndex()) < index)
@@ -92,7 +93,7 @@ ResParameterArchive::ResParameterArchive(const void* p_data)
     if (!isValid())
         return;
 
-    // SEAD_ASSERT(sead::PtrUtil::isAlignedN( p_data, 4 ));
+    SEAD_ASSERT(sead::PtrUtil::isAlignedN( p_data, 4 ));
 
     if (!isEndianResolved())
     {

@@ -4,6 +4,8 @@
 #include <math/cafe/seadMathCalcCommonCafe.h>
 #endif // cafe
 
+#include <basis/seadAssert.h>
+
 #include <cmath>
 #include <limits>
 #include <bit>
@@ -133,7 +135,7 @@ template <>
 inline u32
 MathCalcCommon<f32>::asinIdx(f32 s)
 {
-    //SEAD_ASSERT_MSG(s <= 1 && s >= -1, "s(%f) is not in [-1, 1].", s);
+    SEAD_ASSERT_MSG(s <= 1 && s >= -1, "s(%f) is not in [-1, 1].", s);
 
     const f32 rsqrt_2 = 0.7071067690849304f; // rsqrt(2)
 
@@ -159,7 +161,7 @@ template <>
 inline u32
 MathCalcCommon<f32>::acosIdx(f32 c)
 {
-    //SEAD_ASSERT_MSG(c <= 1 && c >= -1, "c(%f) is not in [-1, 1].", c);
+    SEAD_ASSERT_MSG(c <= 1 && c >= -1, "c(%f) is not in [-1, 1].", c);
 
     const f32 rsqrt_2 = 0.7071067690849304f; // rsqrt(2)
 
@@ -476,7 +478,7 @@ template <>
 inline constexpr s32
 MathCalcCommon<s32>::roundUpPow2(s32 val, s32 base)
 {
-    //SEAD_ASSERT_MSG(val >= 0 && (base - 1u & base) == 0, "illegal param[val:%d, base:%d]", val, base);
+    SEAD_ASSERT_MSG(val >= 0 && (base - 1u & base) == 0, "illegal param[val:%d, base:%d]", val, base);
     return static_cast<s32>((static_cast<u32>(val) + (static_cast<u32>(base) - 1u)) & ~(static_cast<u32>(base) - 1u));
 }
 
@@ -484,7 +486,7 @@ template <>
 inline constexpr u32
 MathCalcCommon<u32>::roundUpPow2(u32 val, s32 base)
 {
-    //SEAD_ASSERT_MSG((base - 1u & base) == 0, "illegal param[base:%d]", base);
+    SEAD_ASSERT_MSG((base - 1u & base) == 0, "illegal param[base:%d]", base);
     return val + (static_cast<u32>(base) - 1u) & ~(static_cast<u32>(base) - 1u);
 }
 

@@ -1,6 +1,7 @@
 #include <common/aglTextureData.h>
 #include <detail/aglTextureDataUtil.h>
 #include <g3d/aglTextureDataInitializerG3D.h>
+#include <basis/seadAssert.h>
 
 #include <nw/g3d/res/g3d_ResFile.h>
 
@@ -33,8 +34,8 @@ namespace agl { namespace g3d {
 
 void TextureDataInitializerG3D::initialize(TextureData* p_texture_data, void* p_bfres_file_data, u32 index)
 {
-    // SEAD_ASSERT(p_bfres_file_data != nullptr);
-    // SEAD_ASSERT(nw::g3d::res::ResFile::IsValid( p_bfres_file_data ));
+    SEAD_ASSERT(p_bfres_file_data != nullptr);
+    SEAD_ASSERT(nw::g3d::res::ResFile::IsValid( p_bfres_file_data ));
 
     nw::g3d::res::ResFile* p_res_file = nw::g3d::res::ResFile::ResCast(p_bfres_file_data);
   //p_res_file->Setup(); // <--- Nintendo forgot to do this
@@ -42,7 +43,7 @@ void TextureDataInitializerG3D::initialize(TextureData* p_texture_data, void* p_
     nw::g3d::res::ResTexture* p_res_texture = p_res_file->GetTexture(index);
     if (p_res_texture == nullptr)
     {
-        // SEAD_ASSERT_MSG(false, "invalid texture index : %d", index);
+        SEAD_ASSERT_MSG(false, "invalid texture index : %d", index);
     }
 
     initialize(p_texture_data, *p_res_texture);
@@ -50,8 +51,8 @@ void TextureDataInitializerG3D::initialize(TextureData* p_texture_data, void* p_
 
 void TextureDataInitializerG3D::initialize(TextureData* p_texture_data, void* p_bfres_file_data, const char* name)
 {
-    // SEAD_ASSERT(p_bfres_file_data != nullptr);
-    // SEAD_ASSERT(nw::g3d::res::ResFile::IsValid( p_bfres_file_data ));
+    SEAD_ASSERT(p_bfres_file_data != nullptr);
+    SEAD_ASSERT(nw::g3d::res::ResFile::IsValid( p_bfres_file_data ));
 
     nw::g3d::res::ResFile* p_res_file = nw::g3d::res::ResFile::ResCast(p_bfres_file_data);
   //p_res_file->Setup(); // <--- Nintendo forgot to do this
@@ -59,7 +60,7 @@ void TextureDataInitializerG3D::initialize(TextureData* p_texture_data, void* p_
     nw::g3d::res::ResTexture* p_res_texture = p_res_file->GetTexture(name);
     if (p_res_texture == nullptr)
     {
-        // SEAD_ASSERT_MSG(false, "invalid texture name : \"%s\"", name);
+        SEAD_ASSERT_MSG(false, "invalid texture name : \"%s\"", name);
     }
 
     initialize(p_texture_data, *p_res_texture);
@@ -67,7 +68,7 @@ void TextureDataInitializerG3D::initialize(TextureData* p_texture_data, void* p_
 
 void TextureDataInitializerG3D::initialize(TextureData* p_texture_data, nw::g3d::res::ResTexture& res_texture)
 {
-    // SEAD_ASSERT(p_texture_data != nullptr);
+    SEAD_ASSERT(p_texture_data != nullptr);
 
     GX2Texture texture = *res_texture.GetGfxTexture()->GetGX2Texture();
     texture.surface.imagePtr = res_texture.GetData();

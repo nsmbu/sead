@@ -2,6 +2,7 @@
 #include <detail/aglShaderTextUtil.h>
 #include <prim/seadMemUtil.h>
 #include <prim/seadSafeString.h>
+#include <basis/seadAssert.h>
 
 // TODO: Custom implementations of std::strchr && std::strspn
 #include <cstring>
@@ -10,7 +11,7 @@ namespace agl { namespace detail {
 
 s32 ShaderTextUtil::findLineFeedCode(const char* p_string, s32* p_length)
 {
-    // SEAD_ASSERT(p_string != nullptr);
+    SEAD_ASSERT(p_string != nullptr);
 
     s32 length;
 
@@ -49,12 +50,12 @@ s32 ShaderTextUtil::findLineFeedCode(const char* p_string, s32* p_length)
 
 void ShaderTextUtil::replaceMacro(sead::BufferedSafeString* p_text, const char* const* macro, const char* const* value, s32 macro_num, char* p_work, s32 worksize)
 {
-    // SEAD_ASSERT(p_text != nullptr);
-    // SEAD_ASSERT(p_work != nullptr);
-    // SEAD_ASSERT(macro != nullptr);
-    // SEAD_ASSERT(value != nullptr);
+    SEAD_ASSERT(p_text != nullptr);
+    SEAD_ASSERT(p_work != nullptr);
+    SEAD_ASSERT(macro != nullptr);
+    SEAD_ASSERT(value != nullptr);
 
-    // SEAD_ASSERT(macro_num < 1024);
+    SEAD_ASSERT(macro_num < 1024);
     bool macro_replaced[1024];
     for (s32 i_macro = 0; i_macro < macro_num; i_macro++)
         macro_replaced[i_macro] = false;
@@ -172,7 +173,7 @@ void ShaderTextUtil::replaceMacro(sead::BufferedSafeString* p_text, const char* 
     while (*p_src != '\0')
         *p_dst++ = *p_src++;
 
-    // SEAD_ASSERT(static_cast<int>(p_dst - p_work) <= worksize);
+    SEAD_ASSERT(static_cast<int>(p_dst - p_work) <= worksize);
     *p_dst = '\0';
 
     p_text->copy(sead::SafeString(p_work));
@@ -180,8 +181,8 @@ void ShaderTextUtil::replaceMacro(sead::BufferedSafeString* p_text, const char* 
 
 void ShaderTextUtil::replace(char* pSrc, const char* pValue, s32 begin, s32 end, void* pWork, s32 size)
 {
-    // SEAD_ASSERT(pSrc != nullptr);
-    // SEAD_ASSERT(pWork != nullptr);
+    SEAD_ASSERT(pSrc != nullptr);
+    SEAD_ASSERT(pWork != nullptr);
     char* const work = (char*)pWork;
 
     s32 i_count = 0;
@@ -190,7 +191,7 @@ void ShaderTextUtil::replace(char* pSrc, const char* pValue, s32 begin, s32 end,
         work[i_count] = pSrc[end + i_count];
         i_count++;
     }
-    // SEAD_ASSERT(i_count < size);
+    SEAD_ASSERT(i_count < size);
     work[i_count] = '\0';
 
     s32 i = 0;

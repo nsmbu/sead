@@ -3,6 +3,7 @@
 #include <detail/aglRootNode.h>
 #include <detail/aglShaderTextUtil.h>
 #include <time/seadTickTime.h>
+#include <basis/seadAssert.h>
 
 #ifdef cafe
 #include <cafe.h>
@@ -110,7 +111,7 @@ void ShaderProgramArchive::destroyResFile_()
 void ShaderProgramArchive::createWithOption(ResBinaryShaderArchive res_binary_archive, ResShaderArchive res_archive, u32 flag, sead::Heap* heap)
 {
     mResBinary = res_binary_archive;
-    // SEAD_ASSERT_MSG(uintptr_t(mResBinary.ptr()) % cShaderArchiveAlignment == 0, "agl::ResBinaryShaderArchive must be aligned agl::cShaderArchiveAlignment byte.");
+    SEAD_ASSERT_MSG(uintptr_t(mResBinary.ptr()) % cShaderArchiveAlignment == 0, "agl::ResBinaryShaderArchive must be aligned agl::cShaderArchiveAlignment byte.");
 
     if (flag & 2)
         mFlag.set(1);
@@ -174,14 +175,14 @@ void ShaderProgramArchive::createWithOption(ResBinaryShaderArchive res_binary_ar
                         if (index != 0xFFFFFFFF)
                         {
                             const ResShaderBinary binary = mResBinary.getResShaderBinaryArray().get(index);
-                            // SEAD_ASSERT(binary.isValid());
-                            // SEAD_ASSERT(binary.getShaderType() == type);
+                            SEAD_ASSERT(binary.isValid());
+                            SEAD_ASSERT(binary.getShaderType() == type);
 #ifdef cafe
                             DCFlushRangeNoSync(binary.getData(), binary.ref().mDataSize);
 #endif // cafe
                             shader->setBinary(binary.getData());
 
-                            // SEAD_ASSERT(verify_binary_num == index);
+                            SEAD_ASSERT(verify_binary_num == index);
                             verify_binary_num++;
                         }
                     }
@@ -195,7 +196,7 @@ void ShaderProgramArchive::createWithOption(ResBinaryShaderArchive res_binary_ar
             }
         }
 
-        // SEAD_ASSERT(verify_binary_num == mResBinary.getResShaderBinaryArray().getNum());
+        SEAD_ASSERT(verify_binary_num == mResBinary.getResShaderBinaryArray().getNum());
     }
 
     setResShaderArchive_(res_archive, heap);
@@ -206,7 +207,7 @@ void ShaderProgramArchive::createWithOption(ResBinaryShaderArchive res_binary_ar
     if (mProgram.size() > 0)
         return;
 
-    // SEAD_ASSERT_MSG(false, "No shader program.");
+    SEAD_ASSERT_MSG(false, "No shader program.");
 }
 
 bool ShaderProgramArchive::setUp()
@@ -261,7 +262,7 @@ void ShaderProgramArchive::setResShaderArchive_(ResShaderArchive res_archive, se
     }
     else
     {
-        // SEAD_ASSERT(mResText.getResShaderProgramNum() == mResBinary.getResBinaryShaderProgramNum());
+        SEAD_ASSERT(mResText.getResShaderProgramNum() == mResBinary.getResBinaryShaderProgramNum());
     }
 
     mSource.allocBuffer(mResText.getResShaderSourceNum(), heap);
@@ -487,7 +488,7 @@ void ShaderProgramArchive::ShaderSource::expand()
         mRawText = nullptr;
     }
 
-    // SEAD_ASSERT(mpArchive->mSource.size() < 1024);
+    SEAD_ASSERT(mpArchive->mSource.size() < 1024);
     bool source_is_used[1024];
 
     mRawText = detail::ShaderTextUtil::createRawText(

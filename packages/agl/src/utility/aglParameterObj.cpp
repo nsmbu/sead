@@ -2,6 +2,7 @@
 #include <utility/aglParameter.h>
 #include <utility/aglParameterList.h>
 #include <utility/aglParameterObj.h>
+#include <basis/seadAssert.h>
 
 namespace agl { namespace utl {
 
@@ -15,7 +16,7 @@ IParameterObj::IParameterObj()
 
 void IParameterObj::pushBackListNode(ParameterBase* p_node)
 {
-    // SEAD_ASSERT(p_node != nullptr);
+    SEAD_ASSERT(p_node != nullptr);
 
     u32 child_hash[1024];
     u32 child_num = 0;

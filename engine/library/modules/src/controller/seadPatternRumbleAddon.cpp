@@ -1,4 +1,5 @@
 #include <controller/seadPatternRumbleAddon.h>
+#include <basis/seadAssert.h>
 
 namespace sead {
 
@@ -18,7 +19,7 @@ bool PatternRumbleAddon::isPatternEnable() const
 
 void PatternRumbleAddon::startPattern(const char* pattern, u32 duration)
 {
-    //SEAD_ASSERT(pattern != nullptr);
+    SEAD_ASSERT(pattern != nullptr);
 
     mPattern = pattern;
     mPatternIdx = 0;

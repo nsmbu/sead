@@ -1,4 +1,5 @@
 #include <gfx/seadViewport.h>
+#include <basis/seadAssert.h>
 
 namespace sead {
 
@@ -23,7 +24,7 @@ void Viewport::setByFrameBuffer(const LogicalFrameBuffer& frame_buffer)
         set(0.0f, 0.0f, frame_buffer.getVirtualSize().y, frame_buffer.getVirtualSize().x);
         break;
     default:
-        // SEAD_ASSERT_MSG(false, "Undefined DevicePosture(%d)", s32(mDevicePos));
+        SEAD_ASSERT_MSG(false, "Undefined DevicePosture(%d)", s32(mDevicePos));
     }
 }
 
@@ -67,7 +68,7 @@ void Viewport::getOnFrameBufferPos(Vector2f* dst, const LogicalFrameBuffer& fb) 
         }
         break;
     default:
-        // SEAD_ASSERT_MSG(false, "Undefined DevicePosture(%d)", s32(mDevicePos));
+        SEAD_ASSERT_MSG(false, "Undefined DevicePosture(%d)", s32(mDevicePos));
     }
 
     dst->div(fb.getVirtualSize());
@@ -92,7 +93,7 @@ void Viewport::getOnFrameBufferSize(Vector2f* dst, const LogicalFrameBuffer& fb)
         dst->set(dst->y, dst->x);
         break;
     default:
-        // SEAD_ASSERT_MSG(false, "Undefined DevicePosture(%d)", s32(mDevicePos));
+        SEAD_ASSERT_MSG(false, "Undefined DevicePosture(%d)", s32(mDevicePos));
     }
 
     dst->div(fb.getVirtualSize());
@@ -108,7 +109,7 @@ void Viewport::apply(const LogicalFrameBuffer& frame_buffer) const
     sead::Vector2f real_size;
     getOnFrameBufferSize(&real_size, frame_buffer);
 
-    // SEAD_ASSERT(frame_buffer.getPhysicalArea().isInside(real_pos) && frame_buffer.getPhysicalArea().isInside(real_pos + real_size));
+    SEAD_ASSERT(frame_buffer.getPhysicalArea().isInside(real_pos) && frame_buffer.getPhysicalArea().isInside(real_pos + real_size));
 
     real_pos.y = (frame_buffer.getPhysicalArea().getSizeY() - real_size.y) - real_pos.y;
 

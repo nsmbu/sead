@@ -1,5 +1,6 @@
 #include <controller/seadControllerWrapperBase.h>
 #include <prim/seadMemUtil.h>
+#include <basis/seadAssert.h>
 
 namespace sead {
 
@@ -19,7 +20,7 @@ ControllerWrapperBase::~ControllerWrapperBase()
 
 void ControllerWrapperBase::registerWith(Controller* controller, bool copy_repeat_setting)
 {
-    //SEAD_ASSERT(controller);
+    SEAD_ASSERT(controller);
 
     unregister();
 

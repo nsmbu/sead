@@ -8,6 +8,7 @@
 #include <utility/aglImageFilter2D.h>
 #include <utility/aglPrimitiveShape.h>
 #include <utility/aglVertexAttributeHolder.h>
+#include <basis/seadAssert.h>
 
 namespace agl { namespace pfx {
 
@@ -339,7 +340,7 @@ void DepthOfField::initVertex_(sead::Heap* heap)
             }
         }
 
-        // SEAD_ASSERT(vtx_index == p_shape->mVertex.size());
+        SEAD_ASSERT(vtx_index == p_shape->mVertex.size());
 
         p_shape->mVertexBuffer.setUpBuffer(
             p_shape->mVertex.getBufferPtr(),
@@ -386,7 +387,7 @@ void DepthOfField::initIndex_(sead::Heap* heap)
             }
         }
 
-        // SEAD_ASSERT(idx_index == p_shape->mIndex.size());
+        SEAD_ASSERT(idx_index == p_shape->mIndex.size());
 
         p_shape->mIndexStream.setUpStream(
             p_shape->mIndex.getBufferPtr(),
@@ -398,7 +399,7 @@ void DepthOfField::initIndex_(sead::Heap* heap)
 
 ShaderMode DepthOfField::draw(s32 ctx_index, const RenderBuffer& render_buffer, f32 near, f32 far, ShaderMode mode) const
 {
-    // SEAD_ASSERT(render_buffer.getRenderTargetDepth() != nullptr);
+    SEAD_ASSERT(render_buffer.getRenderTargetDepth() != nullptr);
     return draw(ctx_index, render_buffer, render_buffer.getRenderTargetDepth()->getTextureData(), false, near, far, mode);
 }
 
@@ -406,7 +407,7 @@ ShaderMode DepthOfField::draw(s32 ctx_index, const RenderBuffer& render_buffer, 
 {
     if (isEnable())
     {
-        // SEAD_ASSERT(render_buffer.getRenderTargetColor() != nullptr);
+        SEAD_ASSERT(render_buffer.getRenderTargetColor() != nullptr);
         if (mContext[ctx_index].mIsInitialized)
         {
             DrawArg arg(mContext[ctx_index], render_buffer, depth, view_depth, near, far);
@@ -449,7 +450,7 @@ ShaderMode DepthOfField::draw(s32 ctx_index, const RenderBuffer& render_buffer, 
 void DepthOfField::allocBuffer(s32 ctx_index, const RenderBuffer& render_buffer) const
 {
     const RenderTargetColor* color = render_buffer.getRenderTargetColor();
-    // SEAD_ASSERT(color != nullptr);
+    SEAD_ASSERT(color != nullptr);
 
     allocBuffer(ctx_index, color->getTextureData().getTextureFormat(), color->getTextureData().getWidth(), color->getTextureData().getHeight());
 }
@@ -485,7 +486,7 @@ void DepthOfField::allocBuffer(s32 ctx_index, TextureFormat format, s32 width, s
         color_blur_height,
         color_blur_mipmap_num
     );
-    // SEAD_ASSERT(p_ctx->mpColorTextureData != nullptr);
+    SEAD_ASSERT(p_ctx->mpColorTextureData != nullptr);
     p_ctx->mColorTextureSampler.applyTextureData(*p_ctx->mpColorTextureData);
 
     if (enableDepthBlur_())
@@ -497,7 +498,7 @@ void DepthOfField::allocBuffer(s32 ctx_index, TextureFormat format, s32 width, s
             height / 2,
             roundUp_(*mDepthBlurAdd) + 1
         );
-        // SEAD_ASSERT(p_ctx->mpDepthTextureData != nullptr);
+        SEAD_ASSERT(p_ctx->mpDepthTextureData != nullptr);
         p_ctx->mDepthTextureSampler.applyTextureData(*p_ctx->mpDepthTextureData);
     }
 }
@@ -572,8 +573,8 @@ void DepthOfField::bindRenderBuffer_(RenderBuffer& render_buffer, s32 mip_level_
         s32 w_ = render_buffer.getRenderTargetDepth()->getTextureData().getWidth(mip_level);
         s32 h_ = render_buffer.getRenderTargetDepth()->getTextureData().getHeight(mip_level);
 
-        // SEAD_ASSERT(w == -1 || w == w_);
-        // SEAD_ASSERT(h == -1 || h == h_);
+        SEAD_ASSERT(w == -1 || w == w_);
+        SEAD_ASSERT(h == -1 || h == h_);
 
         w = w_;
         h = h_;

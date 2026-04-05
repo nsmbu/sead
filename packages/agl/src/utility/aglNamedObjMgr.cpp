@@ -1,6 +1,7 @@
 #include <detail/aglRootNode.h>
 #include <utility/aglNamedObjIndex.h>
 #include <utility/aglNamedObjMgr.h>
+#include <basis/seadAssert.h>
 
 namespace {
 
@@ -41,7 +42,7 @@ void INamedObjMgr::initialize(u32 obj_num, u32 group_num, sead::Heap* heap)
 
 void INamedObjMgr::pushBackNamedObj(INamedObj* p_obj)
 {
-  //SEAD_ASSERT(p_obj != nullptr);
+  SEAD_ASSERT(p_obj != nullptr);
     mObj.pushBack(p_obj);
 }
 

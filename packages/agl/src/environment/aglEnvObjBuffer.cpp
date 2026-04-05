@@ -1,4 +1,5 @@
 #include <environment/aglEnvObjBuffer.h>
+#include <basis/seadAssert.h>
 
 namespace {
 
@@ -21,8 +22,8 @@ EnvObjBuffer::~EnvObjBuffer()
 
 void EnvObjBuffer::allocBuffer(const AllocateArg& arg, sead::Heap* heap)
 {
-  //SEAD_ASSERT( 0 < arg.getContainTotal() );
-  //SEAD_ASSERT( 0 < EnvObj::getTypeNum() );
+  SEAD_ASSERT( 0 < arg.getContainTotal() );
+  SEAD_ASSERT( 0 < EnvObj::getTypeNum() );
     mEnvObjPtrBuffer.allocBuffer(arg.getContainTotal(), heap);
     mTypeInfo.allocBuffer(EnvObj::getTypeNum(), heap);
 
@@ -35,8 +36,8 @@ void EnvObjBuffer::allocBuffer(const AllocateArg& arg, sead::Heap* heap)
         ; ++itr
     )
     {
-      //SEAD_ASSERT( size_count <= 0xffff );
-      //SEAD_ASSERT( arg.getContainMax( itr.getIndex() ) <= 0xffff );
+      SEAD_ASSERT( size_count <= 0xffff );
+      SEAD_ASSERT( arg.getContainMax( itr.getIndex() ) <= 0xffff );
         itr->mStartIndex = size_count;
         itr->mMaxNum = arg.getContainMax(itr.getIndex());
         size_count += itr->mMaxNum;

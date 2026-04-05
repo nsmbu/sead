@@ -4,6 +4,7 @@
 #include <postfx/aglDepthOfField.h>
 #include <resource/seadArchiveRes.h>
 #include <utility/aglImageFilter2D.h>
+#include <basis/seadAssert.h>
 
 namespace agl { namespace detail {
 
@@ -20,7 +21,7 @@ ShaderHolder::~ShaderHolder()
 
 void ShaderHolder::initialize(sead::ArchiveRes* p_arc, sead::Heap* heap)
 {
-    // SEAD_ASSERT(p_arc != nullptr);
+    SEAD_ASSERT(p_arc != nullptr);
 
     static const char* sProgramArchiveNames[cArchiveType_Num] = {
         "agl_common",
@@ -173,10 +174,10 @@ void ShaderHolder::initialize(sead::ArchiveRes* p_arc, sead::Heap* heap)
 
         const char* const name = sShaders[i].name;
         s32 program_index = program_archive.searchShaderProgramIndex(name);
-        // SEAD_ASSERT_MSG(program_index >= 0, "Cannot find a shader program (name = %s) in the shader archieve (ArchiveType = %d).\n", name, s32(archive));
+        SEAD_ASSERT_MSG(program_index >= 0, "Cannot find a shader program (name = %s) in the shader archieve (ArchiveType = %d).\n", name, s32(archive));
 
         ShaderProgram* p = const_cast<ShaderProgram*>(program_archive.searchShaderProgram(program_index));
-        // SEAD_ASSERT(p != nullptr);
+        SEAD_ASSERT(p != nullptr);
         mProgram.pushBack(p);
 
         switch (ShaderType(i))

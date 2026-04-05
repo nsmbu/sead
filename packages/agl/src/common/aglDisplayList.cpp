@@ -1,5 +1,6 @@
 #include <common/aglDisplayList.h>
 #include <detail/aglPrivateResource.h>
+#include <basis/seadAssert.h>
 
 namespace agl {
 
@@ -57,7 +58,7 @@ size_t DisplayList::endDisplayList()
 
 bool DisplayList::beginDisplayListBuffer(u8* buffer, size_t size)
 {
-    // SEAD_ASSERT(0 < size);
+    SEAD_ASSERT(0 < size);
 #ifdef cafe
     DCInvalidateRange(buffer, size);
 #endif // cafe
@@ -97,7 +98,7 @@ size_t DisplayList::endDisplayListTemporary(sead::Heap* heap)
 
 size_t DisplayList::suspend(void** p_dl)
 {
-    // SEAD_ASSERT(p_dl != nullptr);
+    SEAD_ASSERT(p_dl != nullptr);
 
     *p_dl = nullptr;
     size_t size = 0;

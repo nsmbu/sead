@@ -1,6 +1,7 @@
 #ifndef SEAD_PTR_UTIL_H_
 #define SEAD_PTR_UTIL_H_
 
+#include <basis/seadAssert.h>
 #include <basis/seadTypes.h>
 
 namespace sead {
@@ -23,7 +24,7 @@ public:
 
     static bool isAligned(const void* ptr, s32 alignment)
     {
-      //SEAD_ASSERT(alignment != 0);
+      SEAD_ASSERT(alignment != 0);
         return reinterpret_cast<uintptr_t>(ptr) % static_cast<uintptr_t>(alignment) == 0;
     }
 

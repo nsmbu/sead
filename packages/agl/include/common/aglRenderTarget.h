@@ -2,6 +2,7 @@
 
 #include <common/aglTextureData.h>
 #include <gfx/cafe/seadFrameBufferCafe.h>
+#include <basis/seadAssert.h>
 
 namespace agl {
 
@@ -37,7 +38,7 @@ public:
 
     void setMipLevel(u32 mip_level)
     {
-        // SEAD_ASSERT(mip_level < cMipLevelMax);
+        SEAD_ASSERT(mip_level < cMipLevelMax);
         if (mMipLevel != mip_level)
         {
             mMipLevel = mip_level;

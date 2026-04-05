@@ -6,6 +6,7 @@
 #include <common/aglUniformBlock.h>
 #include <environment/aglEnvObjSet.h>
 #include <gfx/seadGraphicsContextMRT.h>
+#include <basis/seadAssert.h>
 
 namespace agl { namespace lght {
 
@@ -270,13 +271,13 @@ public:
 
     LightMap* get(s32 array_index)
     {
-      //SEAD_ASSERT(0 == array_index || array_index <= getChildNum());
+      SEAD_ASSERT(0 == array_index || array_index <= getChildNum());
         return array_index == 0 ? this : mChild[array_index - 1];
     }
 
     const LightMap* get(s32 array_index) const
     {
-      //SEAD_ASSERT(0 == array_index || array_index <= getChildNum());
+      SEAD_ASSERT(0 == array_index || array_index <= getChildNum());
         return array_index == 0 ? this : mChild[array_index - 1];
     }
 

@@ -1,4 +1,5 @@
 #include <controller/seadControllerBase.h>
+#include <basis/seadAssert.h>
 
 namespace sead {
 
@@ -33,7 +34,7 @@ ControllerBase::ControllerBase(s32 padBitMax, s32 leftStickCrossStartBit, s32 ri
 {
     if (cPadIdx_MaxBase < padBitMax)
     {
-        //SEAD_ASSERT_MSG(false, "illegal padBitMax[%d]", padBitMax);
+        SEAD_ASSERT_MSG(false, "illegal padBitMax[%d]", padBitMax);
         mPadBitMax = cPadIdx_MaxBase;
     }
 
@@ -136,7 +137,7 @@ void ControllerBase::updateDerivativeParams_(u32 prev_hold, bool prev_pointer_on
 
 u32 ControllerBase::getPadHoldCount(s32 bit) const
 {
-    //SEAD_ASSERT(bit < mPadBitMax);
+    SEAD_ASSERT(bit < mPadBitMax);
     return mPadHoldCounts[bit];
 }
 
@@ -163,7 +164,7 @@ void ControllerBase::setLeftStickCrossThreshold(f32 hold, f32 release)
     }
     else
     {
-        //SEAD_ASSERT_MSG(false, "hold[%f] must be larger than or equal to release[%f].", hold, release);
+        SEAD_ASSERT_MSG(false, "hold[%f] must be larger than or equal to release[%f].", hold, release);
     }
 }
 
@@ -176,7 +177,7 @@ void ControllerBase::setRightStickCrossThreshold(f32 hold, f32 release)
     }
     else
     {
-        //SEAD_ASSERT_MSG(false, "hold[%f] must be larger than or equal to release[%f].", hold, release);
+        SEAD_ASSERT_MSG(false, "hold[%f] must be larger than or equal to release[%f].", hold, release);
     }
 }
 

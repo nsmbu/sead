@@ -4,6 +4,7 @@
 #include <container/seadPtrArray.h>
 #include <container/seadSafeArray.h>
 #include <heap/seadDisposer.h>
+#include <basis/seadAssert.h>
 
 namespace sead {
 
@@ -140,7 +141,7 @@ public:
 
     ShaderProgram& getShader(ShaderType shader)
     {
-        // SEAD_ASSERT(mProgram[ shader ] != nullptr);
+        SEAD_ASSERT(mProgram[ shader ] != nullptr);
         return *mProgram[shader];
     }
 

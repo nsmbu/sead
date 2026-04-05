@@ -2,6 +2,7 @@
 #include <common/aglShaderEnum.h>
 #include <detail/aglShaderTextUtil.h>
 #include <detail/aglPrivateResource.h>
+#include <basis/seadAssert.h>
 
 namespace agl {
 
@@ -52,7 +53,7 @@ void ShaderCompileInfo::pushBackVariation(const char* name, const char* value)
 
 void ShaderCompileInfo::calcCompileSource(ShaderType type, sead::BufferedSafeString* p_buffer, Target target, bool) const
 {
-    // SEAD_ASSERT(p_buffer != nullptr);
+    SEAD_ASSERT(p_buffer != nullptr);
 
     p_buffer->copy("");
 
@@ -136,7 +137,7 @@ void ShaderCompileInfo::destroy()
     {
         mMacroName.freeBuffer();
 
-        // SEAD_ASSERT(mMacroValue.isBufferReady());
+        SEAD_ASSERT(mMacroValue.isBufferReady());
         mMacroValue.freeBuffer();
     }
 
@@ -144,7 +145,7 @@ void ShaderCompileInfo::destroy()
     {
         mVariationName.freeBuffer();
 
-        // SEAD_ASSERT(mVariationValue.isBufferReady());
+        SEAD_ASSERT(mVariationValue.isBufferReady());
         mVariationValue.freeBuffer();
     }
 }

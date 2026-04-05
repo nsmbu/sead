@@ -1,4 +1,5 @@
 #include <utility/aglPrimitiveShape.h>
+#include <basis/seadAssert.h>
 
 namespace agl { namespace utl {
 
@@ -62,7 +63,7 @@ void PrimitiveShape::initialize(sead::Heap* heap)
 
 void PrimitiveShape::setUpStreamQuad_(sead::Heap* heap)
 {
-    // SEAD_ASSERT(mIdxStreamQuad.getCount() == 0);
+    SEAD_ASSERT(mIdxStreamQuad.getCount() == 0);
 
     const u32 cVtxNum = 4;
     const u32 cIdxNum = 6;
@@ -151,7 +152,7 @@ void PrimitiveShape::setUpStreamQuad_(sead::Heap* heap)
 
 void PrimitiveShape::setUpStreamQuadTriangle_(sead::Heap* heap)
 {
-    // SEAD_ASSERT(mIdxStreamQuadTriangle.getCount() == 0);
+    SEAD_ASSERT(mIdxStreamQuadTriangle.getCount() == 0);
 
     const u32 cVtxNum = 3;
     const u32 cIdxNum = 3;

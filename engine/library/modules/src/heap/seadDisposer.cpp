@@ -1,6 +1,7 @@
 #include <heap/seadDisposer.h>
 #include <heap/seadHeap.h>
 #include <heap/seadHeapMgr.h>
+#include <basis/seadAssert.h>
 
 namespace {
 
@@ -27,7 +28,7 @@ IDisposer::~IDisposer()
 {
     if (*(uintptr_t*)&mDisposerHeap == cDestructedFlag)
     {
-        //SEAD_ASSERT_MSG(false, "Destruct twice. [%p] Your class has possibilities for wrong order of multipleinheritance.", this);
+        SEAD_ASSERT_MSG(false, "Destruct twice. [%p] Your class has possibilities for wrong order of multipleinheritance.", this);
     }
     else
     {

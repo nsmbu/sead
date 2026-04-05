@@ -1,4 +1,5 @@
 #include <basis/seadNew.h>
+#include <basis/seadAssert.h>
 #include <controller/seadControlDevice.h>
 #include <controller/seadControllerMgr.h>
 #include <prim/seadDelegate.h>
@@ -103,7 +104,7 @@ void ControllerMgr::finalizeDefault()
     //    }
     //    else
     //    {
-    //        //SEAD_ASSERT_MSG(false, "CafeDebugPadDevice is not found.");
+    //        SEAD_ASSERT_MSG(false, "CafeDebugPadDevice is not found.");
     //    }
     //
     //    {
@@ -115,7 +116,7 @@ void ControllerMgr::finalizeDefault()
     //        }
     //        else
     //        {
-    //            //SEAD_ASSERT_MSG(false, "CafeDebugController is not found.");
+    //            SEAD_ASSERT_MSG(false, "CafeDebugController is not found.");
     //        }
     //    }
     //}
@@ -129,7 +130,7 @@ void ControllerMgr::finalizeDefault()
         }
         else
         {
-            //SEAD_ASSERT_MSG(false, "CafeWPadDevice is not found.");
+            SEAD_ASSERT_MSG(false, "CafeWPadDevice is not found.");
         }
 
         for (u32 i = 0; i < 4; i++)
@@ -144,7 +145,7 @@ void ControllerMgr::finalizeDefault()
                 }
                 else
                 {
-                    //SEAD_ASSERT_MSG(false, "CafeRemotePatternRumbleAddon[%d] is not found.", i);
+                    SEAD_ASSERT_MSG(false, "CafeRemotePatternRumbleAddon[%d] is not found.", i);
                 }
 
                 mControllers.erase(mControllers.indexOf(controller));
@@ -152,7 +153,7 @@ void ControllerMgr::finalizeDefault()
             }
             else
             {
-                //SEAD_ASSERT_MSG(false, "CafeRemoteController[%d] is not found.", i);
+                SEAD_ASSERT_MSG(false, "CafeRemoteController[%d] is not found.", i);
             }
         }
     }
@@ -170,7 +171,7 @@ void ControllerMgr::finalizeDefault()
             }
             else
             {
-                //SEAD_ASSERT_MSG(false, "CafeDRCController is not found.");
+                SEAD_ASSERT_MSG(false, "CafeDRCController is not found.");
             }
         }
 
@@ -182,7 +183,7 @@ void ControllerMgr::finalizeDefault()
         }
         else
         {
-            //SEAD_ASSERT_MSG(false, "CafeVPadDevice is not found.");
+            SEAD_ASSERT_MSG(false, "CafeVPadDevice is not found.");
         }
     }
 #endif // cafe
@@ -239,7 +240,7 @@ ControllerAddon* ControllerMgr::getControllerAddon(s32 index, ControllerDefine::
 
 s32 ControllerMgr::findControllerPort(const Controller* controller) const
 {
-    //SEAD_ASSERT(controller);
+    SEAD_ASSERT(controller);
 
      s32 i = 0;
      for (PtrArray<Controller>::iterator it = mControllers.begin(); it != mControllers.end(); ++it)

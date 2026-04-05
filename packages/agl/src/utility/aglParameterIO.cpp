@@ -1,5 +1,6 @@
 #include <gfx/seadGraphics.h>
 #include <utility/aglParameterIO.h>
+#include <basis/seadAssert.h>
 
 namespace agl { namespace utl {
 
@@ -24,7 +25,7 @@ void IParameterIO::applyResParameterArchive(ResParameterArchive arc)
 {
     sead::Graphics::instance()->lockDrawContext();
     {
-        // SEAD_ASSERT(arc.isValid());
+        SEAD_ASSERT(arc.isValid());
 
         if (mVersion != arc.ref().mTypeVersion)
             callbackInvalidVersion_(arc);

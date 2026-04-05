@@ -1,6 +1,7 @@
 #include <stream/seadBinaryStreamFormat.h>
 #include <stream/seadStream.h>
 #include <stream/seadStreamSrc.h>
+#include <basis/seadAssert.h>
 
 namespace sead {
 
@@ -21,14 +22,14 @@ Stream::Stream()
 
 void Stream::skip(u32 size)
 {
-    // SEAD_ASSERT(mFormat);
-    // SEAD_ASSERT(mSrcStream);
+    SEAD_ASSERT(mFormat);
+    SEAD_ASSERT(mSrcStream);
     mFormat->skip(mSrcStream, size);
 }
 
 bool Stream::isEOF()
 {
-    // SEAD_ASSERT(mSrcStream);
+    SEAD_ASSERT(mSrcStream);
     return mSrcStream->isEOF();
 }
 
@@ -39,7 +40,7 @@ void Stream::setBinaryEndian(Endian::Types types)
 
 void Stream::setMode(Modes mode)
 {
-    // SEAD_ASSERT(0 <= mode && mode < cModeNum);
+    SEAD_ASSERT(0 <= mode && mode < cModeNum);
     setUserFormat(BASIC_STREAM_FORMAT[mode]);
 }
 
@@ -50,30 +51,30 @@ void Stream::setUserFormat(StreamFormat* format)
 
 u32 ReadStream::readU32()
 {
-    // SEAD_ASSERT(mFormat);
-    // SEAD_ASSERT(mSrcStream);
+    SEAD_ASSERT(mFormat);
+    SEAD_ASSERT(mSrcStream);
     return mFormat->readU32(mSrcStream, mSrcEndian);
 }
 
 s32 ReadStream::readS32()
 {
-    // SEAD_ASSERT(mFormat);
-    // SEAD_ASSERT(mSrcStream);
+    SEAD_ASSERT(mFormat);
+    SEAD_ASSERT(mSrcStream);
     return mFormat->readS32(mSrcStream, mSrcEndian);
 }
 
 f32 ReadStream::readF32()
 {
-    // SEAD_ASSERT(mFormat);
-    // SEAD_ASSERT(mSrcStream);
+    SEAD_ASSERT(mFormat);
+    SEAD_ASSERT(mSrcStream);
     return mFormat->readF32(mSrcStream, mSrcEndian);
 }
 
 void ReadStream::readString(BufferedSafeString* dst, u32 size)
 {
-    // SEAD_ASSERT(mFormat);
-    // SEAD_ASSERT(mSrcStream);
-    // SEAD_ASSERT(static_cast<u32>( dst->getBufferSize() ) >= size);
+    SEAD_ASSERT(mFormat);
+    SEAD_ASSERT(mSrcStream);
+    SEAD_ASSERT(static_cast<u32>( dst->getBufferSize() ) >= size);
     mFormat->readString(mSrcStream, dst, size);
 }
 

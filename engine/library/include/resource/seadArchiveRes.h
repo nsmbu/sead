@@ -1,6 +1,7 @@
 #ifndef SEAD_ARCHIVE_RES_H_
 #define SEAD_ARCHIVE_RES_H_
 
+#include <basis/seadAssert.h>
 #include <filedevice/seadFileDevice.h>
 #include <heap/seadHeap.h>
 #include <prim/seadSafeString.h>
@@ -63,51 +64,51 @@ public:
 
     u8* getFile(const SafeString& file_path, FileInfo* file_info = nullptr)
     {
-        // SEAD_ASSERT(mEnable);
+        SEAD_ASSERT(mEnable);
         return static_cast<u8*>(getFileImpl_(file_path, file_info));
     }
 
     u8* getFileFast(s32 entry_id, FileInfo* file_info = nullptr)
     {
-        // SEAD_ASSERT(mEnable);
+        SEAD_ASSERT(mEnable);
         return static_cast<u8*>(getFileFastImpl_(entry_id, file_info));
     }
 
     s32 convertPathToEntryID(const SafeString& file_path)
     {
-        // SEAD_ASSERT(mEnable);
+        SEAD_ASSERT(mEnable);
         return convertPathToEntryIDImpl_(file_path);
     }
 
     bool setCurrentDirectory(const SafeString& file_path)
     {
-        // SEAD_ASSERT(mEnable);
+        SEAD_ASSERT(mEnable);
         return setCurrentDirectoryImpl_(file_path);
     }
 
     bool openDirectory(HandleBuffer* handle_buffer, const SafeString& dir_path)
     {
-        // SEAD_ASSERT(handle_buffer);
+        SEAD_ASSERT(handle_buffer);
         return openDirectoryImpl_(handle_buffer, dir_path);
     }
 
     bool closeDirectory(HandleBuffer* handle_buffer)
     {
-        // SEAD_ASSERT(handle_buffer);
+        SEAD_ASSERT(handle_buffer);
         return closeDirectoryImpl_(handle_buffer);
     }
 
     u32 readDirectory(HandleBuffer* handle_buffer, DirectoryEntry* entry, u32 num)
     {
-        // SEAD_ASSERT(handle_buffer);
-        // SEAD_ASSERT(entry);
+        SEAD_ASSERT(handle_buffer);
+        SEAD_ASSERT(entry);
         return readDirectoryImpl_(handle_buffer, entry, num);
     }
 
 protected:
     void setFileInfo(FileInfo* file_info, u32 start_offset, u32 length)
     {
-        //SEAD_ASSERT(file_info);
+        SEAD_ASSERT(file_info);
         file_info->mStartOffset = start_offset;
         file_info->mLength      = length;
     }

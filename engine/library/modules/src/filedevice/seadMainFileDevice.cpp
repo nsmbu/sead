@@ -4,6 +4,7 @@
 
 #include <filedevice/seadMainFileDevice.h>
 #include <prim/seadSafeString.h>
+#include <basis/seadAssert.h>
 
 namespace sead {
 
@@ -17,7 +18,7 @@ MainFileDevice::MainFileDevice(Heap* heap)
     #error "Unknown platform"
 #endif // cafe
 
-    //SEAD_ASSERT(mFileDevice);
+    SEAD_ASSERT(mFileDevice);
 }
 
 MainFileDevice::~MainFileDevice()

@@ -6,6 +6,7 @@
 #include <prim/seadScopedLock.h>
 #include <resource/seadResourceMgr.h>
 #include <thread/seadDelegateThread.h>
+#include <basis/seadAssert.h>
 
 namespace sead {
 
@@ -32,7 +33,7 @@ bool TaskMgr::changeTaskState_(TaskBase* task, TaskBase::State state)
 
                 else
                 {
-                    //SEAD_ASSERT_MSG(false, "failed to wakeup prepare thread for[%s]", task->getName().cstr());
+                    SEAD_ASSERT_MSG(false, "failed to wakeup prepare thread for[%s]", task->getName().cstr());
                     return false;
                 }
             }
@@ -42,18 +43,18 @@ bool TaskMgr::changeTaskState_(TaskBase* task, TaskBase::State state)
             }
         }
 
-        //SEAD_ASSERT_MSG(false, "err");
+        SEAD_ASSERT_MSG(false, "err");
         return false;
 
     case TaskBase::cPrepareDone:
-        //SEAD_ASSERT(curr_state == TaskBase::cPrepare);
+        SEAD_ASSERT(curr_state == TaskBase::cPrepare);
         task->mState = TaskBase::cPrepareDone;
         task->mTaskListNode.erase();
 
         return true;
 
     case TaskBase::cRunning:
-        //SEAD_ASSERT(curr_state == TaskBase::cPrepareDone);
+        SEAD_ASSERT(curr_state == TaskBase::cPrepareDone);
         task->mState = TaskBase::cRunning;
         task->mTaskListNode.erase();
         appendToList_(mActiveList, task);
@@ -92,12 +93,12 @@ bool TaskMgr::changeTaskState_(TaskBase* task, TaskBase::State state)
         return true;
 
     case TaskBase::cCreated:
-        //SEAD_ASSERT_MSG(false, "Cannot Change State to cCreated\n");
+        SEAD_ASSERT_MSG(false, "Cannot Change State to cCreated\n");
         break;
 
     case TaskBase::cSleep: // ?
     default:
-        //SEAD_ASSERT_MSG(false, "Unknown State %d\n", (s32)state);
+        SEAD_ASSERT_MSG(false, "Unknown State %d\n", (s32)state);
     }
 
     return false;
@@ -106,7 +107,7 @@ bool TaskMgr::changeTaskState_(TaskBase* task, TaskBase::State state)
 void TaskMgr::destroyTaskSync(TaskBase* task)
 {
     bool b = getFramework()->getMethodTreeMgr()->getTreeCriticalSection()->tryLock();
-    //SEAD_ASSERT(b);
+    SEAD_ASSERT(b);
 
     if (b)
     {

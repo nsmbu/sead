@@ -1,6 +1,7 @@
 #ifndef SEAD_ENDIAN_H_
 #define SEAD_ENDIAN_H_
 
+#include <basis/seadAssert.h>
 #include <basis/seadTypes.h>
 
 namespace sead {
@@ -89,7 +90,7 @@ public:
 
         else
         {
-            //SEAD_ASSERT_MSG(false, "Undefined endian mark(0x%02x 0x%02x).", *((u8*)&mark), *((u8*)&mark + 1));
+            SEAD_ASSERT_MSG(false, "Undefined endian mark(0x%02x 0x%02x).", *((u8*)&mark), *((u8*)&mark + 1));
             return cLittle;
         }
     }

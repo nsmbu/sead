@@ -1,6 +1,7 @@
 #ifndef SEAD_HEAP_POLICIES_H_
 #define SEAD_HEAP_POLICIES_H_
 
+#include <basis/seadAssert.h>
 #include <heap/seadHeapMgr.h>
 
 namespace sead {
@@ -20,7 +21,7 @@ public:
         if (idx < HeapMgr::getRootHeapNum())
             return mHeaps[idx];
 
-        //SEAD_ASSERT_MSG(false, "illegal idx: %d", idx);
+        SEAD_ASSERT_MSG(false, "illegal idx: %d", idx);
         return mHeaps[0];
     }
 

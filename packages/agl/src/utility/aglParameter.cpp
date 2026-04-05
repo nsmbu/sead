@@ -1,6 +1,7 @@
 #include <codec/seadHashCRC32.h>
 #include <utility/aglParameter.h>
 #include <utility/aglParameterObj.h>
+#include <basis/seadAssert.h>
 
 namespace agl { namespace utl {
 
@@ -113,7 +114,7 @@ void ParameterBase::applyResource(ResParameter res, f32 t)
     case cType_curve4:
         break;
     default:
-        // SEAD_ASSERT_MSG(false, "%d", s32(getParameterType()));
+        SEAD_ASSERT_MSG(false, "%d", s32(getParameterType()));
     }
 
     postApplyResource_(res.getValue(), res.ptr()->mSize - sizeof(ResParameterData));
@@ -180,7 +181,7 @@ bool ParameterBase::copyLerp(const ParameterBase& src_a, const ParameterBase& sr
     case cType_curve4:
         break;
     default:
-        // SEAD_ASSERT_MSG(false, "%d", s32(getParameterType()));
+        SEAD_ASSERT_MSG(false, "%d", s32(getParameterType()));
     }
     return true;
 }

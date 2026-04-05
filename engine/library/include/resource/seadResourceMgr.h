@@ -1,6 +1,7 @@
 #ifndef SEAD_RESOURCEMGR_H_
 #define SEAD_RESOURCEMGR_H_
 
+#include <basis/seadAssert.h>
 #include <container/seadTList.h>
 #include <filedevice/seadFileDevice.h>
 #include <heap/seadDisposer.h>
@@ -127,7 +128,7 @@ public:
         ResourcePtr ret = tryLoadWithoutDecomp(arg);
         if (ret.isNull())
         {
-          //SEAD_ASSERT_MSG(false, "loadWithoutDecomp failed: %s", arg.path.cstr());
+          SEAD_ASSERT_MSG(false, "loadWithoutDecomp failed: %s", arg.path.cstr());
         }
         return ret;
     }

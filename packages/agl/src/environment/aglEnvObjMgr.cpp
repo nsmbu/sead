@@ -2,6 +2,7 @@
 #include <environment/aglEnvObjMgr.h>
 #include <gfx/seadGraphics.h>
 #include <utility/aglDevTools.h>
+#include <basis/seadAssert.h>
 
 namespace agl { namespace env {
 
@@ -21,7 +22,7 @@ EnvObjMgr::~EnvObjMgr()
 {
     for (sead::Buffer<EnvObj*>::iterator itr_obj = mEnvObjPtrBuffer.begin(), itr_obj_end = mEnvObjPtrBuffer.end(); itr_obj != itr_obj_end; ++itr_obj)
     {
-      //SEAD_ASSERT(*itr_obj != nullptr);
+      SEAD_ASSERT(*itr_obj != nullptr);
         delete *itr_obj;
     }
 
@@ -37,7 +38,7 @@ void EnvObjMgr::initialize(const InitArg& arg, sead::Heap* heap)
     allocBuffer(arg, heap);
     mEnvObjSet.allocBuffer(arg, heap);
     mEnvObjSet.bind(this);
-  //SEAD_ASSERT(0 < getContainTotal());
+  SEAD_ASSERT(0 < getContainTotal());
     mEnvObjPtrArray.allocBuffer(getContainTotal(), heap);
     mTypeNode.allocBuffer(EnvObj::getTypeNum(), heap);
     mViewInfo.allocBuffer(arg.getViewMax(), heap);
@@ -59,7 +60,7 @@ void EnvObjMgr::initialize(const InitArg& arg, sead::Heap* heap)
             p_obj->initialize_(i, arg.getViewMax(), this, heap);
             mEnvObjPtrBuffer[mTypeInfo[type].mStartIndex + i] = p_obj;
             bool result = mEnvObjSet.pushBack(p_obj);
-          //SEAD_ASSERT(result);
+          SEAD_ASSERT(result);
             type_node.addObj(
                 p_obj,
                 sead::FormatFixedSafeString<1024>(
@@ -265,7 +266,7 @@ void EnvObjMgr::applyResource_(utl::ResParameterArchive arc_a, utl::ResParameter
 
     sead::Graphics::instance()->lockDrawContext();
     {
-      //SEAD_ASSERT(arc_a.isValid());
+      SEAD_ASSERT(arc_a.isValid());
         utl::ResParameterList list_a = arc_a.getResParameterList();
         if (list_a.getResParameterListNum() > 0)
         {

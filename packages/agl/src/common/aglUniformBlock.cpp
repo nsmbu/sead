@@ -1,4 +1,5 @@
 #include <common/aglUniformBlock.h>
+#include <basis/seadAssert.h>
 
 // TODO: Move to the proper headers
 #define SEAD_MACRO_UTIL_ROUNDUP(x, y) ((x) + ((y) - 1) & ~((y) - 1))
@@ -44,8 +45,8 @@ UniformBlock::~UniformBlock()
 
 void UniformBlock::startDeclare(s32 num, sead::Heap* heap)
 {
-    // SEAD_ASSERT(0 < num);
-    // SEAD_ASSERT(mpHeader == nullptr);
+    SEAD_ASSERT(0 < num);
+    SEAD_ASSERT(mpHeader == nullptr);
 
     mpHeader = new (heap) Header;
     mpHeader->mpMember = new (heap) Member[num];
@@ -59,7 +60,7 @@ void UniformBlock::startDeclare(s32 num, sead::Heap* heap)
 
 void UniformBlock::declare(Type type, s32 num)
 {
-    // SEAD_ASSERT(0 < num);
+    SEAD_ASSERT(0 < num);
 
     Member& member = mpHeader->mpMember[mpHeader->mMemberCount];
     member.mType = type;
@@ -86,9 +87,9 @@ void UniformBlock::declare(Type type, s32 num)
 
 void UniformBlock::declare(const UniformBlock& block)
 {
-    // SEAD_ASSERT(block.mpHeader != nullptr);
-    // SEAD_ASSERT(mpHeader == nullptr);
-    // SEAD_ASSERT(mBlockSize == 0);
+    SEAD_ASSERT(block.mpHeader != nullptr);
+    SEAD_ASSERT(mpHeader == nullptr);
+    SEAD_ASSERT(mBlockSize == 0);
 
     mpHeader = block.mpHeader;
     mBlockSize = block.mBlockSize;
@@ -98,8 +99,8 @@ void UniformBlock::declare(const UniformBlock& block)
 
 void UniformBlock::create(sead::Heap* heap)
 {
-    // SEAD_ASSERT(mCurrentBuffer == nullptr);
-    // SEAD_ASSERT(mFlag.isOff(cFlag_OwnBuffer), "This buffer has original buffer.");
+    SEAD_ASSERT(mCurrentBuffer == nullptr);
+    SEAD_ASSERT(mFlag.isOff(cFlag_OwnBuffer), "This buffer has original buffer.");
 
     mBlockSize = SEAD_MACRO_UTIL_ROUNDUP(mBlockSize, cCPUCacheLineSize);
     mCurrentBuffer = new (heap, cUniformBlockAlignment) u8[mBlockSize];
@@ -190,14 +191,14 @@ bool UniformBlock::setUniform(const void* p_data, const UniformBlockLocation& lo
 
 void UniformBlock::setData_(void* p_memory, s32 index, const void* p_data, s32 array_index, s32 array_num) const
 {
-    // SEAD_ASSERT(mpHeader != nullptr && mpHeader->mpMember != nullptr);
-    // SEAD_ASSERT(0 <= index && index < mpHeader->mMemberNum);
-    // SEAD_ASSERT(p_memory != nullptr);
-    // SEAD_ASSERT(p_data != nullptr);
+    SEAD_ASSERT(mpHeader != nullptr && mpHeader->mpMember != nullptr);
+    SEAD_ASSERT(0 <= index && index < mpHeader->mMemberNum);
+    SEAD_ASSERT(p_memory != nullptr);
+    SEAD_ASSERT(p_data != nullptr);
 
     Member& member = mpHeader->mpMember[index];
 
-    // SEAD_ASSERT_MSG(member.mType <  6 ||
+    SEAD_ASSERT_MSG(member.mType <  6 ||
     //                 member.mType > 11, "not implemented yet.");
 
     u8 stride_array = sTypeInfo[member.mType][2];

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <basis/seadAssert.h>
+
 namespace agl {
 
 inline void
@@ -37,7 +39,7 @@ IndexStream::drawInstanced(u32 start, u32 count, u32 instance_num, u32 base_vert
 {
     if (count > 0)
     {
-        // SEAD_ASSERT(( start + count ) <= getCount());
+        SEAD_ASSERT(( start + count ) <= getCount());
         GX2DrawIndexedEx(mPrimitiveType, count, GX2IndexFormat(mFormat), getBufferPtr(start), base_vertex, instance_num);
     }
 }

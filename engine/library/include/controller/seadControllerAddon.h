@@ -1,6 +1,7 @@
 #ifndef SEAD_CONTROLLER_ADDON_H_
 #define SEAD_CONTROLLER_ADDON_H_
 
+#include <basis/seadAssert.h>
 #include <container/seadListImpl.h>
 #include <controller/seadControllerDefine.h>
 #include <prim/seadRuntimeTypeInfo.h>
@@ -19,7 +20,7 @@ public:
         , mId(ControllerDefine::cAddon_Null)
         , mController(controller)
     {
-        //SEAD_ASSERT(controller);
+        SEAD_ASSERT(controller);
     }
 
     virtual ~ControllerAddon()

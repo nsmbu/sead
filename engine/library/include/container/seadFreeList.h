@@ -1,6 +1,7 @@
 #ifndef SEAD_FREE_LIST_H_
 #define SEAD_FREE_LIST_H_
 
+#include <basis/seadAssert.h>
 #include <basis/seadTypes.h>
 
 namespace sead {
@@ -16,9 +17,9 @@ public:
 
     void init(void* work, s32 elem_size, s32 num)
     {
-        // SEAD_ASSERT(work);
-        // SEAD_ASSERT(elem_size > 0 && elem_size % 4 == 0);
-        // SEAD_ASSERT(num > 0);
+        SEAD_ASSERT(work);
+        SEAD_ASSERT(elem_size > 0 && elem_size % 4 == 0);
+        SEAD_ASSERT(num > 0);
 
         const s32 idx_multiplier = elem_size / 4;
 

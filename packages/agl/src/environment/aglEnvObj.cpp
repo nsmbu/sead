@@ -1,6 +1,7 @@
 #include <detail/aglRootNode.h>
 #include <environment/aglEnvObj.h>
 #include <environment/aglEnvObjMgr.h>
+#include <basis/seadAssert.h>
 
 #include <algorithm>
 
@@ -8,9 +9,9 @@ namespace {
 
 inline u8 getBoolParamValue(const agl::utl::Parameter<bool>& param)
 {
-    BOOL value = FALSE;
+    BOOL value = 0;
     if (*param)
-        value = TRUE;
+        value = 1;
 
     return value;
 }
@@ -104,7 +105,7 @@ s32* EnvObj::registClass(const sead::SafeString& name, const sead::SafeString& l
 
 void EnvObj::initialize_(s32 index, s32 view_max, EnvObjMgr* p_env_mgr, sead::Heap* heap)
 {
-  //SEAD_ASSERT(p_env_mgr != nullptr);
+  SEAD_ASSERT(p_env_mgr != nullptr);
     mpMgr = p_env_mgr;
     mIndex = index;
     getEnvObjName();

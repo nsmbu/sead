@@ -2,6 +2,7 @@
 #include <common/aglShaderProgram.h>
 #include <container/seadBuffer.h>
 #include <g3d/aglModelShaderAssign.h>
+#include <basis/seadAssert.h>
 
 namespace agl { namespace g3d {
 
@@ -13,7 +14,7 @@ ModelShaderAttribute::ModelShaderAttribute()
 ModelShaderAttribute::~ModelShaderAttribute()
 {
     if (mFetchShader.GetShaderPtr())
-        delete mFetchShader.GetShaderPtr(); // Nintendo forgot to do delete[] again
+        delete mFetchShader.GetShaderPtr(); //! Nintendo forgot to do delete[] again
 }
 
 void ModelShaderAttribute::create(sead::Heap* heap)
@@ -36,8 +37,8 @@ void ModelShaderAttribute::clear()
 
 void ModelShaderAttribute::bind(const nw::g3d::res::ResMaterial* p_res_mat, const nw::g3d::res::ResShape* p_res_shp, const ShaderProgram* p_program, bool use_res_assign, bool use_shader_symbol_id)
 {
-    // SEAD_ASSERT(p_res_mat != nullptr);
-    // SEAD_ASSERT(p_res_shp != nullptr);
+    SEAD_ASSERT(p_res_mat != nullptr);
+    SEAD_ASSERT(p_res_shp != nullptr);
 
     const nw::g3d::res::ResShaderAssign* p_res_shader_assign;
     if (use_res_assign)
@@ -88,7 +89,7 @@ void ModelShaderAttribute::bind(const nw::g3d::res::ResMaterial* p_res_mat, cons
 
 // void ModelShaderAttribute::bind_(const nw::g3d::res::ResVertex* p_res_vtx, const sead::UnsafeArray<Attribute, 16>& attribute, s32 attribute_num)
 {
-    // SEAD_ASSERT(p_res_vtx != nullptr);
+    SEAD_ASSERT(p_res_vtx != nullptr);
 
     mVertexBufferNum = 0;
 

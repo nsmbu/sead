@@ -7,6 +7,7 @@
 #include <utility/aglPrimitiveShape.h>
 #include <utility/aglPrimitiveTexture.h>
 #include <utility/aglVertexAttributeHolder.h>
+#include <basis/seadAssert.h>
 
 namespace agl { namespace lght {
 
@@ -494,8 +495,8 @@ ShaderMode LightMap::draw_(s32 view_index, const DrawArg& arg, ShaderMode mode) 
     }
     mode = program->activate(mode);
 
-  //SEAD_ASSERT( arg.mNormalMap[ getMappingType() ] != nullptr );
-  //SEAD_ASSERT( arg.mpLUT != nullptr );
+  SEAD_ASSERT( arg.mNormalMap[ getMappingType() ] != nullptr );
+  SEAD_ASSERT( arg.mpLUT != nullptr );
     arg.mNormalMap[getMappingType()]->activate(program->getSamplerLocation(cSampler_Normal));
     arg.mpLUT->activate(program->getSamplerLocation(cSampler_LUT));
 
@@ -598,7 +599,7 @@ void LightMap::initializeTexture_(u32 size_sphere, u32 size_cube)
     switch (*mMappingType)
     {
     default:
-      //SEAD_ASSERT(0);
+      SEAD_ASSERT(0);
         break;
     case cMappingType_Sphere:
         if (is_array)
@@ -622,8 +623,8 @@ void LightMap::constructMemory_(sead::Heap* heap)
 {
     if (mpParent == nullptr)
     {
-      //SEAD_ASSERT(mTextureData.getImagePtr() == nullptr);
-      //SEAD_ASSERT(mTextureData.getMipPtr() == nullptr);
+      SEAD_ASSERT(mTextureData.getImagePtr() == nullptr);
+      SEAD_ASSERT(mTextureData.getMipPtr() == nullptr);
         u8* image_ptr = new (heap, mTextureData.getAlignment()) u8[mTextureData.getImageByteSize()];
         u8* mip_ptr = new (heap, mTextureData.getAlignment()) u8[mTextureData.getMipByteSize()];
         DCFlushRangeNoSync(image_ptr, mTextureData.getImageByteSize());
@@ -778,7 +779,7 @@ void LightMap::callbackNotAppliable_(utl::IParameterObj* p_param_obj, utl::ResPa
 
 s32 LightMap::applyEnvObjData(const env::EnvObj* p_obj, const EnvObjEx* p_ex, s32 light_index)
 {
-  //SEAD_ASSERT(p_ex != nullptr);
+  SEAD_ASSERT(p_ex != nullptr);
 
     s32 type = p_obj->getTypeID();
     LightObj& light_obj = mLightObj[light_index];

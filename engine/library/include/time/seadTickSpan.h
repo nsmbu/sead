@@ -1,6 +1,7 @@
 #ifndef SEAD_TICK_SPAN_H_
 #define SEAD_TICK_SPAN_H_
 
+#include <basis/seadAssert.h>
 #include <basis/seadTypes.h>
 
 namespace sead {
@@ -39,13 +40,13 @@ public:
 
     void setMicroSeconds(s64 usec)
     {
-        //SEAD_ASSERT(LLONG_MIN / cFrequency <= mSpan && mSpan < LLONG_MAX / cFrequency);
+        SEAD_ASSERT(LLONG_MIN / cFrequency <= mSpan && mSpan < LLONG_MAX / cFrequency);
         mSpan = usec * cFrequency / 1000 / 1000;
     }
 
     void setMilliSeconds(s64 msec)
     {
-        //SEAD_ASSERT(LLONG_MIN / cFrequency <= mSpan && mSpan < LLONG_MAX / cFrequency);
+        SEAD_ASSERT(LLONG_MIN / cFrequency <= mSpan && mSpan < LLONG_MAX / cFrequency);
         mSpan = msec * cFrequency / 1000;
     }
 

@@ -1,6 +1,7 @@
 #include <common/aglRenderBuffer.h>
 #include <common/aglRenderTarget.h>
 #include <mc/seadCoreInfo.h>
+#include <basis/seadAssert.h>
 
 namespace agl {
 
@@ -28,7 +29,7 @@ void RenderBuffer::copyToDisplayBuffer(const sead::DisplayBuffer* display_buffer
 {
     const sead::DisplayBufferCafe* p_display_buffer_cafe = sead::DynamicCast<const sead::DisplayBufferCafe>(display_buffer);
 
-    // SEAD_ASSERT(mColorTarget[ 0 ] != nullptr);
+    SEAD_ASSERT(mColorTarget[ 0 ] != nullptr);
 
     mColorTarget[0]->invalidateGPUCache();
     mColorTarget[0]->getTextureData().invalidateGPUCache();

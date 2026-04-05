@@ -1,6 +1,7 @@
 #include <detail/aglFileIOMgr.h>
 #include <detail/aglPrivateResource.h>
 #include <prim/seadMemUtil.h>
+#include <basis/seadAssert.h>
 
 namespace agl { namespace detail {
 
@@ -8,7 +9,7 @@ FileIOMgr* FileIOMgr::sInstance = nullptr;
 
 bool FileIOMgr::showDialog(sead::hostio::FileInfo* p_info, const sead::SafeString& mode, const sead::SafeString& id, const sead::SafeString& filter, const sead::SafeString& filename) const
 {
-    // SEAD_ASSERT(p_info != nullptr);
+    SEAD_ASSERT(p_info != nullptr);
 
     sead::SafeString id_ = (!id.isEqual("")) // Why not use id.isEmpty() ??
                                     ? id
@@ -116,7 +117,7 @@ s32 FileIOMgr::load(const DialogArg& arg)
                 break;
             }
         }
-        // SEAD_ASSERT(0 <= index);
+        SEAD_ASSERT(0 <= index);
 
         sead::hostio::FileInfo file_info;
 
@@ -135,7 +136,7 @@ s32 FileIOMgr::load(const DialogArg& arg)
         load_arg.heap = PrivateResource::instance()->getDebugHeap();
         load_arg.alignment = arg.mLoadAlignment;
 
-        // SEAD_ASSERT(pBinary->mpData == nullptr);
+        SEAD_ASSERT(pBinary->mpData == nullptr);
         pBinary->mpData = mFileDevice->tryLoad(load_arg);
         if (pBinary->mpData)
         {

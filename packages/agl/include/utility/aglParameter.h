@@ -1,5 +1,6 @@
 #pragma once
 
+#include <basis/seadAssert.h>
 #include <container/seadListImpl.h>
 #include <prim/seadSafeString.h>
 
@@ -60,19 +61,19 @@ public:
 public:
     sead::SafeString getParameterName() const
     {
-        // SEAD_ASSERT_MSG(false, "Can\'t use this string.");
+        SEAD_ASSERT_MSG(false, "Can\'t use this string.");
         return sead::SafeString::cEmptyString;
     }
 
     sead::SafeString getLabel() const
     {
-        // SEAD_ASSERT_MSG(false, "Can\'t use this string.");
+        SEAD_ASSERT_MSG(false, "Can\'t use this string.");
         return sead::SafeString::cEmptyString;
     }
 
     sead::SafeString getMeta() const
     {
-        // SEAD_ASSERT_MSG(false, "Can\'t use this string.");
+        SEAD_ASSERT_MSG(false, "Can\'t use this string.");
         return sead::SafeString::cEmptyString;
     }
 

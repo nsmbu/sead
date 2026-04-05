@@ -1,6 +1,7 @@
 #include <detail/aglRootNode.h>
 #include <environment/aglEnvObjMgr.h>
 #include <environment/aglEnvObjSet.h>
+#include <basis/seadAssert.h>
 
 namespace agl { namespace env {
 
@@ -44,7 +45,7 @@ void EnvObjSet::allocBuffer(const AllocateArg& arg, sead::Heap* heap)
             env_index.setCallback(this);
         }
     }
-  //SEAD_ASSERT(count == getContainTotal());
+  SEAD_ASSERT(count == getContainTotal());
 
     sead::FixedSafeString<32> name_value("EnvSet");
     mName.initialize(name_value, "name", "名前", &mSetting);
@@ -61,7 +62,7 @@ void EnvObjSet::allocBuffer(const AllocateArg& arg, sead::Heap* heap)
         s32 index = itr.getIndex();
 
         s32 type = searchType(index);
-      //SEAD_ASSERT(type != -1);
+      SEAD_ASSERT(type != -1);
         {
             sead::FixedSafeString<32> value(EnvObj::getTypeName(type));
             ref.mType.initialize(value, "type", "タイプ", &ref);
@@ -113,7 +114,7 @@ void EnvObjSet::postRead_()
 
 void EnvObjSet::callbackSyncNameToIndex(utl::INamedObjIndex* p_index)
 {
-  //SEAD_ASSERT(p_index != nullptr);
+  SEAD_ASSERT(p_index != nullptr);
     EnvObj::Index* p_env_index = static_cast<EnvObj::Index*>(p_index);
     for (
         sead::Buffer<Ref>::iterator
@@ -142,7 +143,7 @@ void EnvObjSet::callbackSyncNameToIndex(utl::INamedObjIndex* p_index)
 
 void EnvObjSet::callbackSyncIndexToName(utl::INamedObjIndex* p_index)
 {
-  //SEAD_ASSERT(p_index != nullptr);
+  SEAD_ASSERT(p_index != nullptr);
     EnvObj::Index* p_env_index = static_cast<EnvObj::Index*>(p_index);
     for (
         sead::Buffer<Ref>::iterator
@@ -183,7 +184,7 @@ bool EnvObjSet::pushBack(EnvObj* p_obj)
 
                 env_index.setValue(p_obj->getEnvObjName());
                 env_index.syncNameToIndex();
-              //SEAD_ASSERT(env_index.getIndex() == p_obj->getIndex());
+              SEAD_ASSERT(env_index.getIndex() == p_obj->getIndex());
 
                 return true;
             }

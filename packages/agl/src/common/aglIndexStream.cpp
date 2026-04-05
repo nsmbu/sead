@@ -1,4 +1,5 @@
 #include <common/aglIndexStream.h>
+#include <basis/seadAssert.h>
 
 namespace agl {
 
@@ -25,8 +26,8 @@ void IndexStream::cleanUp_()
 
 void IndexStream::setUpStream_(const void* addr, IndexStreamFormat format, u32 count)
 {
-    // SEAD_ASSERT(count != 0);
-    // SEAD_ASSERT(addr != nullptr);
+    SEAD_ASSERT(count != 0);
+    SEAD_ASSERT(addr != nullptr);
 
     cleanUp_();
 

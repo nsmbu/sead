@@ -1,6 +1,7 @@
 #ifndef SEAD_BUFFER_H_
 #define SEAD_BUFFER_H_
 
+#include <basis/seadAssert.h>
 #include <basis/seadNew.h>
 #include <heap/seadHeap.h>
 #include <heap/seadHeapMgr.h>
@@ -29,7 +30,7 @@ public:
         }
         else
         {
-            // SEAD_ASSERT_MSG(false, "illegal param: size[%d] bufferptr[0x%x]", size, bufferptr);
+            SEAD_ASSERT_MSG(false, "illegal param: size[%d] bufferptr[0x%x]", size, bufferptr);
             size = 0;
             bufferptr = nullptr;
         }
@@ -174,7 +175,7 @@ public:
         }
         else
         {
-            // SEAD_ASSERT_MSG(false, "range over [0,%d] : %d", mSize, x);
+            SEAD_ASSERT_MSG(false, "range over [0,%d] : %d", mSize, x);
             return end();
         }
     }
@@ -187,7 +188,7 @@ public:
         }
         else
         {
-            // SEAD_ASSERT_MSG(false, "range over [0,%d] : %d", mSize, x);
+            SEAD_ASSERT_MSG(false, "range over [0,%d] : %d", mSize, x);
             return end();
         }
     }
@@ -204,7 +205,7 @@ public:
         }
         else
         {
-            // SEAD_ASSERT_MSG(false, "range over [0,%d] : %d", mSize, x);
+            SEAD_ASSERT_MSG(false, "range over [0,%d] : %d", mSize, x);
             return constEnd();
         }
     }
@@ -227,7 +228,7 @@ public:
 public:
     void allocBuffer(s32 size, s32 alignment = 4)
     {
-        // SEAD_ASSERT(mBuffer == nullptr);
+        SEAD_ASSERT(mBuffer == nullptr);
 
         if (size > 0)
         {
@@ -241,13 +242,13 @@ public:
         }
         else
         {
-            // SEAD_ASSERT_MSG(false, "size[%d] must be larger than zero", size);
+            SEAD_ASSERT_MSG(false, "size[%d] must be larger than zero", size);
         }
     }
 
     void allocBuffer(s32 size, Heap* heap, s32 alignment = 4)
     {
-        // SEAD_ASSERT(mBuffer == nullptr);
+        SEAD_ASSERT(mBuffer == nullptr);
 
         if (size > 0)
         {
@@ -261,13 +262,13 @@ public:
         }
         else
         {
-            // SEAD_ASSERT_MSG(false, "size[%d] must be larger than zero", size);
+            SEAD_ASSERT_MSG(false, "size[%d] must be larger than zero", size);
         }
     }
 
     bool tryAllocBuffer(s32 size, s32 alignment = 4)
     {
-        // SEAD_ASSERT(mBuffer == nullptr);
+        SEAD_ASSERT(mBuffer == nullptr);
 
         if (size > 0)
         {
@@ -282,14 +283,14 @@ public:
         }
         else
         {
-            // SEAD_ASSERT_MSG(false, "size[%d] must be larger than zero", size);
+            SEAD_ASSERT_MSG(false, "size[%d] must be larger than zero", size);
             return false;
         }
     }
 
     bool tryAllocBuffer(s32 size, Heap* heap, s32 alignment = 4)
     {
-        // SEAD_ASSERT(mBuffer == nullptr);
+        SEAD_ASSERT(mBuffer == nullptr);
 
         if (size > 0)
         {
@@ -304,7 +305,7 @@ public:
         }
         else
         {
-            // SEAD_ASSERT_MSG(false, "size[%d] must be larger than zero", size);
+            SEAD_ASSERT_MSG(false, "size[%d] must be larger than zero", size);
             return false;
         }
     }
@@ -335,12 +336,12 @@ public:
             }
             else
             {
-                //SEAD_ASSERT_MSG(false, "bufferptr is null");
+                SEAD_ASSERT_MSG(false, "bufferptr is null");
             }
         }
         else
         {
-            //SEAD_ASSERT_MSG(false, "size[%d] must be larger than zero", size);
+            SEAD_ASSERT_MSG(false, "size[%d] must be larger than zero", size);
         }
     }
 
@@ -357,7 +358,7 @@ public:
         }
         else
         {
-            //SEAD_ASSERT_MSG(false, "index exceeded [%d/%d]", x, mSize);
+            SEAD_ASSERT_MSG(false, "index exceeded [%d/%d]", x, mSize);
             return mBuffer[0];
         }
     }
@@ -370,7 +371,7 @@ public:
         }
         else
         {
-            //SEAD_ASSERT_MSG(false, "index exceeded [%u/%d]", x, mSize);
+            SEAD_ASSERT_MSG(false, "index exceeded [%u/%d]", x, mSize);
             return mBuffer[0];
         }
     }
@@ -383,7 +384,7 @@ public:
         }
         else
         {
-            //SEAD_ASSERT_MSG(false, "index exceeded [%d/%d]", x, mSize);
+            SEAD_ASSERT_MSG(false, "index exceeded [%d/%d]", x, mSize);
             return mBuffer[0];
         }
     }
@@ -396,7 +397,7 @@ public:
         }
         else
         {
-            //SEAD_ASSERT_MSG(false, "index exceeded [%u/%d]", x, mSize);
+            SEAD_ASSERT_MSG(false, "index exceeded [%u/%d]", x, mSize);
             return mBuffer[0];
         }
     }
@@ -409,7 +410,7 @@ public:
         }
         else
         {
-            //SEAD_ASSERT_MSG(false, "index exceeded [%d/%d]", x, mSize);
+            SEAD_ASSERT_MSG(false, "index exceeded [%d/%d]", x, mSize);
             return nullptr;
         }
     }
@@ -422,20 +423,20 @@ public:
         }
         else
         {
-            //SEAD_ASSERT_MSG(false, "index exceeded [%d/%d]", x, mSize);
+            SEAD_ASSERT_MSG(false, "index exceeded [%d/%d]", x, mSize);
             return nullptr;
         }
     }
 
     T* unsafeGet(s32 x)
     {
-        //SEAD_ASSERT_MSG(static_cast<u32>(x) < static_cast<u32>(mSize), "index exceeded [%d/%d]", x, mSize);
+        SEAD_ASSERT_MSG(static_cast<u32>(x) < static_cast<u32>(mSize), "index exceeded [%d/%d]", x, mSize);
         return &mBuffer[x];
     }
 
     const T* unsafeGet(s32 x) const
     {
-        //SEAD_ASSERT_MSG(static_cast<u32>(x) < static_cast<u32>(mSize), "index exceeded [%d/%d]", x, mSize);
+        SEAD_ASSERT_MSG(static_cast<u32>(x) < static_cast<u32>(mSize), "index exceeded [%d/%d]", x, mSize);
         return &mBuffer[x];
     }
 
