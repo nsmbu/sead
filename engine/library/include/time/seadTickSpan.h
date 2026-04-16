@@ -4,6 +4,8 @@
 #include <basis/seadAssert.h>
 #include <basis/seadTypes.h>
 
+#include <climits>
+
 namespace sead {
 
 class TickSpan
