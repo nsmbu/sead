@@ -180,6 +180,8 @@ public:
     Vector4(T x_, T y_, T z_, T w_);
     Vector4(const Vec2& vec2, T z_, T w_);
     Vector4(const Vec3& vec3, T w_);
+    
+    Vector4(const Vector4& other) = default;
 
     Self operator*(T t) const;
     Self operator/(T t) const;
