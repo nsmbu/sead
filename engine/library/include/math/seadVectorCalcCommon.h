@@ -1,6 +1,7 @@
 #ifndef SEAD_VECTORCALCCOMMON_H_
 #define SEAD_VECTORCALCCOMMON_H_
 
+#include <basis/seadTypes.h>
 #include <math/seadMathPolicies.h>
 
 namespace sead {
