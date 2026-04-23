@@ -1,6 +1,6 @@
 PROJECT_NAME           = "sead"
 OUTPUT_DIRECTORY       = docs
-INPUT                  = .
+INPUT                  = engine/ packages/
 EXCLUDE_PATTERNS       =
 EXCLUDE_SYMBOLS        =
 PREDEFINED             =
