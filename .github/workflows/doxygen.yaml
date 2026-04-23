@@ -25,7 +25,12 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install Doxygen
-        run: sudo apt-get update && sudo apt-get install -y doxygen graphviz
+        run: |
+          sudo apt-get update && sudo apt-get install -y graphviz
+          wget https://github.com/doxygen/doxygen/releases/download/Release_1_14_0/doxygen-1.14.0.linux.bin.tar.gz
+          tar -xzf doxygen-1.14.0.linux.bin.tar.gz
+          sudo mv doxygen-1.14.0/bin/doxygen /usr/local/bin/doxygen
+          doxygen -v
 
       - name: Generate Documentation
         run: doxygen
