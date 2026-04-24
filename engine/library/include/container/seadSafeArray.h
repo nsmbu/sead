@@ -18,11 +18,11 @@ template <typename T, s32 N>
 class SafeArray
 {
 public:
-    SafeArray()
+    constexpr SafeArray()
     {
     }
 
-    T& operator[](s32 x)
+    constexpr T& operator[](s32 x)
     {
         if (static_cast<u32>(x) < static_cast<u32>(N))
         {
@@ -35,7 +35,7 @@ public:
         }
     }
     
-    T& operator[](u32 x)
+    constexpr T& operator[](u32 x)
     {
         if (x < static_cast<u32>(N))
         {
@@ -48,7 +48,7 @@ public:
         }
     }
 
-    const T& operator[](s32 x) const
+    constexpr const T& operator[](s32 x) const
     {
         if (static_cast<u32>(x) < static_cast<u32>(N))
         {
@@ -61,7 +61,7 @@ public:
         }
     }
     
-    const T& operator[](u32 x) const
+    constexpr const T& operator[](u32 x) const
     {
         if (x < static_cast<u32>(N))
         {
@@ -83,8 +83,8 @@ public:
     T& back() { return mBuffer[N - 1]; }
     const T& back() const { return mBuffer[N - 1]; }
 
-    s32 size() const { return N; }
-    u32 getByteSize() const { return N * sizeof(T); }
+    constexpr s32 size() const { return N; }
+    constexpr u32 getByteSize() const { return N * sizeof(T); }
     T* getBufferPtr() { return mBuffer; }
     const T* getBufferPtr() const { return mBuffer; }
 
