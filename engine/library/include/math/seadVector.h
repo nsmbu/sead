@@ -16,21 +16,21 @@ public:
     typedef T ValueType;
 
 public:
-    Vector2()
+    constexpr Vector2()
     {
     }
     
-    Vector2(const Vector2& other) = default;
+    constexpr Vector2(const Vector2& other) = default;
 
     //Vector2(const Self& v)
     //{
     //    operator=(v);
     //}
 
-    Vector2(T x_, T y_);
+    constexpr Vector2(T x_, T y_);
 
     template <typename VectorType>
-    Vector2(const VectorType& v);
+    constexpr Vector2(const VectorType& v);
 
     Self operator*(T t) const;
     Self operator/(T t) const;
@@ -96,19 +96,19 @@ public:
     typedef T ValueType;
 
 public:
-    Vector3()
+    constexpr Vector3()
     {
     }
     
-    Vector3(const Vector3& other) = default;
+    constexpr Vector3(const Vector3& other) = default;
 
     //Vector3(const Self& v)
     //{
     //    operator=(v);
     //}
 
-    Vector3(T x_, T y_, T z_);
-    Vector3(const Vec2& vec2, T z_);
+    constexpr Vector3(T x_, T y_, T z_);
+    constexpr Vector3(const Vec2& vec2, T z_);
 
     Self operator*(T t) const;
     Self operator/(T t) const;
@@ -168,7 +168,7 @@ public:
     typedef T ValueType;
 
 public:
-    Vector4()
+    constexpr Vector4()
     {
     }
 
@@ -177,11 +177,11 @@ public:
     //    operator=(v);
     //}
 
-    Vector4(T x_, T y_, T z_, T w_);
-    Vector4(const Vec2& vec2, T z_, T w_);
-    Vector4(const Vec3& vec3, T w_);
+    constexpr Vector4(T x_, T y_, T z_, T w_);
+    constexpr Vector4(const Vec2& vec2, T z_, T w_);
+    constexpr Vector4(const Vec3& vec3, T w_);
     
-    Vector4(const Vector4& other) = default;
+    constexpr Vector4(const Vector4& other) = default;
 
     Self operator*(T t) const;
     Self operator/(T t) const;

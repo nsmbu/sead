@@ -153,7 +153,7 @@ T Vector2CalcCommon<T>::setNormalize(Base& o, const Base& v)
 }
 
 template <typename T>
-inline void
+inline constexpr void
 Vector2CalcCommon<T>::set(Base& o, const Base& v)
 {
     o.x = v.x;
@@ -161,7 +161,7 @@ Vector2CalcCommon<T>::set(Base& o, const Base& v)
 }
 
 template <typename T>
-inline void
+inline constexpr void
 Vector2CalcCommon<T>::set(Base& v, T x, T y)
 {
     v.x = x;
@@ -459,7 +459,7 @@ T Vector3CalcCommon<T>::setNormalize(Base& o, const Base& v)
 }
 
 template <typename T>
-inline void
+inline constexpr void
 Vector3CalcCommon<T>::set(Base& o, const Base& v)
 {
     o.x = v.x;
@@ -468,7 +468,7 @@ Vector3CalcCommon<T>::set(Base& o, const Base& v)
 }
 
 template <typename T>
-inline void
+inline constexpr void
 Vector3CalcCommon<T>::set(Base& v, T x, T y, T z)
 {
     v.x = x;
@@ -616,7 +616,7 @@ T Vector4CalcCommon<T>::setNormalize(Base& o, const Base& v)
 }
 
 template <typename T>
-inline void
+inline constexpr void
 Vector4CalcCommon<T>::set(Base& o, const Base& v)
 {
     o.x = v.x;
@@ -626,7 +626,7 @@ Vector4CalcCommon<T>::set(Base& o, const Base& v)
 }
 
 template <typename T>
-inline void
+inline constexpr void
 Vector4CalcCommon<T>::set(Base& v, T x, T y, T z, T w)
 {
     v.x = x;

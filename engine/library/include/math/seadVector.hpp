@@ -5,7 +5,7 @@
 namespace sead {
 
 template <typename T>
-inline
+inline constexpr
 Vector2<T>::Vector2(T x_, T y_)
 {
     Vector2CalcCommon<T>::set(*this, x_, y_);
@@ -13,7 +13,7 @@ Vector2<T>::Vector2(T x_, T y_)
 
 template <typename T>
 template <typename VectorType>
-inline
+inline constexpr
 Vector2<T>::Vector2(const VectorType& v)
 {
     Vector2CalcCommon<T>::set(*this, static_cast<T>(v.x), static_cast<T>(v.y));
@@ -239,14 +239,14 @@ Vector2<T>::setLerp(const Self& a, const Self& b, f32 ratio)
 }
 
 template <typename T>
-inline
+inline constexpr
 Vector3<T>::Vector3(T x_, T y_, T z_)
 {
     Vector3CalcCommon<T>::set(*this, x_, y_, z_);
 }
 
 template <typename T>
-inline
+inline constexpr
 Vector3<T>::Vector3(const Vec2& vec2, T z_)
 {
     Vector3CalcCommon<T>::set(*this, vec2.x, vec2.y, z_);
@@ -505,21 +505,21 @@ Vector3<T>::setScaleAdd(T t, const Self& a, const Self& b)
 }
 
 template <typename T>
-inline
+inline constexpr
 Vector4<T>::Vector4(T x_, T y_, T z_, T w_)
 {
     Vector4CalcCommon<T>::set(*this, x_, y_, z_, w_);
 }
 
 template <typename T>
-inline
+inline constexpr
 Vector4<T>::Vector4(const Vec2& vec2, T z_, T w_)
 {
     Vector4CalcCommon<T>::set(*this, vec2.x, vec2.y, z_, w_);
 }
 
 template <typename T>
-inline
+inline constexpr
 Vector4<T>::Vector4(const Vec3& vec3, T w_)
 {
     Vector4CalcCommon<T>::set(*this, vec3.x, vec3.y, vec3.z, w_);

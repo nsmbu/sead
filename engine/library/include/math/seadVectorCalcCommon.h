@@ -35,8 +35,8 @@ public:
     static T normalize(Base& v);
     static T setNormalize(Base& o, const Base& v);
 
-    static void set(Base& o, const Base& v);
-    static void set(Base& v, T x, T y);
+    static constexpr void set(Base& o, const Base& v);
+    static constexpr void set(Base& v, T x, T y);
 };
 
 template <typename T>
@@ -74,8 +74,8 @@ public:
     static T normalize(Base& v);
     static T setNormalize(Base& o, const Base& v);
 
-    static void set(Base& o, const Base& v);
-    static void set(Base& v, T x, T y, T z);
+    static constexpr void set(Base& o, const Base& v);
+    static constexpr void set(Base& v, T x, T y, T z);
 };
 
 template <typename T>
@@ -106,8 +106,8 @@ public:
     static T normalize(Base& v);
     static T setNormalize(Base& o, const Base& v);
 
-    static void set(Base& o, const Base& v);
-    static void set(Base& v, T x, T y, T z, T w);
+    static constexpr void set(Base& o, const Base& v);
+    static constexpr void set(Base& v, T x, T y, T z, T w);
 };
 
 }  // namespace sead
