@@ -18,9 +18,9 @@ template <typename T, s32 N>
 class SafeArray
 {
 public:
-    constexpr SafeArray()
-    {
-    }
+    // constexpr SafeArray()
+    // {
+    // }
 
     constexpr T& operator[](s32 x)
     {
@@ -248,7 +248,7 @@ public:
 
     reverseConstIterator toReverseConstIterator(s32) const;
 
-private:
+//private:
     T mBuffer[N];
 };
 
