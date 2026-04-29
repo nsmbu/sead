@@ -4,7 +4,7 @@ INPUT                  = engine/ packages/
 EXCLUDE_PATTERNS       =
 EXCLUDE_SYMBOLS        =
 PREDEFINED             = cafe
-TAGFILES               =
+TAGFILES               = Sys.tag=https://nsmbu.github.io/Sys/ Eft.tag=https://nsmbu.github.io/Eft/ FFL.tag=https://nsmbu.github.io/FFL/ G3d.tag=https://nsmbu.github.io/G3d/ Lyt.tag=https://nsmbu.github.io/Lyt/ Snd.tag=https://nsmbu.github.io/Snd/
 GENERATE_TAGFILE       = docs/html/sead.tag
 RECURSIVE              = YES
 JAVADOC_BANNER         = YES
