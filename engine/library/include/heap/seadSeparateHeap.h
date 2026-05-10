@@ -9,6 +9,8 @@ namespace sead {
 
 class SeparateHeap : public Heap
 {
+    SEAD_RTTI_OVERRIDE(SeparateHeap, Heap)
+
 public:
     SeparateHeap(const SafeString& name, Heap* parent, void* management_area, u32 management_area_size, void* allocate_area, u32 allocate_area_size, bool enable_lock);
     ~SeparateHeap() override;
