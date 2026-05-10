@@ -9,6 +9,8 @@ namespace sead {
 
 class ExpHeap : public Heap
 {
+    SEAD_RTTI_OVERRIDE(ExpHeap, Heap)
+
 public:
     ExpHeap(const SafeString& name, Heap* parent, void* start, u32 size, HeapDirection direction, bool enable_lock);
     ~ExpHeap() override;
