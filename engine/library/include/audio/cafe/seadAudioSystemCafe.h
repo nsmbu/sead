@@ -13,21 +13,21 @@ public:
     AudioSystemCafe();
     virtual ~AudioSystemCafe() { }
 
-    virtual void initialize();
-    virtual void finalize();
-    virtual bool setOutputMode(AudioGlobal::OutputMode);
-    virtual AudioGlobal::OutputMode getOutputMode() const;
-    virtual bool appendEffect(AudioGlobal::AuxBus, AudioFx*);
-    virtual void clearEffect(AudioGlobal::AuxBus, s32);
-    virtual bool isFinishedClearEffect(AudioGlobal::AuxBus);
-    virtual void appendSoundFrameCallback(ISoundFrameCallback&);
-    virtual void removeSoundFrameCallback(ISoundFrameCallback&);
-    virtual void clearSoundFrameCallback();
+    void initialize() override;
+    void finalize() override;
+    bool setOutputMode(AudioGlobal::OutputMode) override;
+    AudioGlobal::OutputMode getOutputMode() const override;
+    bool appendEffect(AudioGlobal::AuxBus, AudioFx*) override;
+    void clearEffect(AudioGlobal::AuxBus, s32) override;
+    bool isFinishedClearEffect(AudioGlobal::AuxBus) override;
+    void appendSoundFrameCallback(ISoundFrameCallback&) override;
+    void removeSoundFrameCallback(ISoundFrameCallback&) override;
+    void clearSoundFrameCallback() override;
 
 protected:
-    virtual void initializeSdk_();
-    virtual void finalizeSdk_();
-    virtual void initializeNw_();
+    void initializeSdk_() override;
+    void finalizeSdk_() override;
+    void initializeNw_() override;
 
 public:
     void forceQuit();
