@@ -21,7 +21,16 @@ class HeapMgr : public hostio::Node
 {
 public:
   //struct AllocCallbackArg;
-    struct AllocFailedCallbackArg;
+
+    struct AllocFailedCallbackArg
+    {
+        Heap* heap;
+        size_t request_size;
+        s32 request_alignment;
+        size_t alloc_size;
+        s32 alloc_alignment;
+    };
+
   //struct FreeCallbackArg;
   //struct CreateCallbackArg;
   //struct DestroyCallbackArg;
