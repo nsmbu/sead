@@ -6,8 +6,7 @@
 #include <container/seadFreeList.h>
 #include <container/seadPtrArray.h>
 
-namespace sead
-{
+namespace sead {
 
 // An ObjArray is a container that allocates elements using a FreeList and also keeps an array of pointers for fast access to each element.
 template <typename T>
@@ -17,7 +16,7 @@ public:
     ObjArray() = default;
     ObjArray(s32 max_num, void* buf) { setBuffer(max_num, buf); }
 
-    void allocBuffer(s32 capacity, Heap* heap, s32 alignment = sizeof(void*))
+    void allocBuffer(s32 capacity, Heap* heap, s32 alignment = cDefaultAlignment)
     {
         SEAD_ASSERT(mPtrs == nullptr);
 
@@ -30,7 +29,7 @@ public:
         setBuffer(capacity, new (heap, alignment) u8[calculateWorkBufferSize(capacity)]);
     }
 
-    bool tryAllocBuffer(s32 capacity, Heap* heap, s32 alignment = sizeof(void*))
+    bool tryAllocBuffer(s32 capacity, Heap* heap, s32 alignment = cDefaultAlignment)
     {
         SEAD_ASSERT(mPtrs == nullptr);
 
@@ -266,8 +265,8 @@ public:
 
     // These do not make sense for a *fixed* array.
     void setBuffer(s32 ptrNumMax, void* buf) = delete;
-    void allocBuffer(s32 ptrNumMax, Heap* heap, s32 alignment = sizeof(void*)) = delete;
-    bool tryAllocBuffer(s32 ptrNumMax, Heap* heap, s32 alignment = sizeof(void*)) = delete;
+    void allocBuffer(s32 ptrNumMax, Heap* heap, s32 alignment = cDefaultAlignment) = delete;
+    bool tryAllocBuffer(s32 ptrNumMax, Heap* heap, s32 alignment = cDefaultAlignment) = delete;
     void freeBuffer() = delete;
 
 private:
