@@ -21,6 +21,18 @@ Graphics::~Graphics()
 {
 }
 
+void Graphics::initialize()
+{
+    lockDrawContext();
+    {
+        initializeImpl();
+
+        sead::GraphicsContext context;
+        context.apply();
+    }
+    unlockDrawContext();
+}
+
 void Graphics::lockDrawContext()
 {
     sead::Thread* current = ThreadMgr::instance()->getCurrentThread();
