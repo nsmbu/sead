@@ -35,6 +35,17 @@ public:
     };
     static_assert(sizeof(CreateArg) == 0x24, "sead::GameFrameworkCafe::CreateArg size mismatch");
 
+    enum DrawOrder
+    {
+        cDrawOrder_TV_DRC = 0,
+        cDrawOrder_DRC_TV,
+        cDrawOrder_Num
+    };
+    static_assert(sizeof(DrawOrder) == 4, "sead::GameFrameworkCafe::DrawOrder size mismatch");
+    static_assert(cDrawOrder_Num == 2);
+
+    typedef void (*DeferredCopyCallback)(s32 stage); // 0 = begin, 1 = end
+
 public:
     GameFrameworkCafe(const CreateArg& arg);
     virtual ~GameFrameworkCafe();
@@ -56,9 +67,9 @@ public:
 
     virtual void setCaption(const SafeString&) { }
 
-    void setCurrentDisplaybuffer(void (*currentDisplaybuffer)(u32))
+    void setDeferredCopyCallback(DeferredCopyCallback callback)
     {
-        mCurrentDisplaybuffer = currentDisplaybuffer;
+        mDeferredCopyCallback = callback;
     }
 
     void set36c(bool b)
@@ -74,6 +85,12 @@ protected:
     virtual void waitForNextFrame_();
     virtual void swapBuffer_();
     virtual void clearFrameBuffers_(s32);
+
+    void drawTV_();
+    void copyToTV_();
+
+    void drawDRC_();
+    void copyToDRC_();
 
 public:
     void initializeGraphicsSystem(
@@ -100,7 +117,7 @@ protected:
     FrameBuffer* mDefaultFrameBufferDRC;
     LogicalFrameBuffer mLogicalFrameBuffer;
     LogicalFrameBuffer mLogicalFrameBufferDRC;
-    u32 _c0;
+    DrawOrder mDrawOrder;
     void* mCommandBuffer;
     GX2ColorBuffer mColorBuffer;
     GX2ColorBuffer mColorBufferDRC;
@@ -110,7 +127,7 @@ protected:
     DisplayBuffer* mDisplayBufferDRC;
     FrameBuffer* mFrameBuffer;
     FrameBuffer* mFrameBufferDRC;
-    void (*mCurrentDisplaybuffer)(u32);
+    DeferredCopyCallback mDeferredCopyCallback;
     bool _36c;
     u64* mGpuCounters;
     u32 _374[4 / sizeof(u32)];
