@@ -62,7 +62,7 @@ public:
     void* alloc(size_t size, s32 alignment)
     {
         void* ptr = tryAlloc(size, alignment);
-        // SEAD_ASSERT_MSG(ptr != nullptr, "alloc failed. size: %d, heap: %s", size, getName().cstr());
+        SEAD_ASSERT_MSG(ptr != nullptr, "alloc failed. size: %d, heap: %s", size, getName().cstr());
         return ptr;
     }
 
