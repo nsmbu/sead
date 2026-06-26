@@ -83,9 +83,9 @@ public:
         mDeferredCopyCallback = callback;
     }
 
-    void set36c(bool b)
+    void setCopyPostDrawAll(bool b)
     {
-        _36c = b;
+        mCopyPostDrawAll = b;
     }
 
 protected:
