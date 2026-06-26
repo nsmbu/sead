@@ -51,7 +51,7 @@ public:
     virtual ~GameFrameworkCafe();
 
     FrameBuffer* getMethodFrameBuffer(s32 method_type) const override;
-    LogicalFrameBuffer* getMethodLogicalFrameBuffer(s32 method_type) const override;
+    const LogicalFrameBuffer* getMethodLogicalFrameBuffer(s32 method_type) const override;
 
 protected:
     void initRun_(Heap*) override;
