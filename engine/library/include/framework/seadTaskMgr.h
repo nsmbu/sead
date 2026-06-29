@@ -78,7 +78,7 @@ public:
     {
         TaskBase* task = createTaskSync(arg);
         T* derived = DynamicCast<T>(task);
-        // SEAD_ASSERT(derived != nullptr);
+        SEAD_ASSERT(derived != nullptr);
         return derived;
     }
 
