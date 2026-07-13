@@ -14,7 +14,6 @@ class CafeDebugPadDevice : public ControlDevice
 
 public:
     explicit CafeDebugPadDevice(ControllerMgr* mgr);
-    virtual ~CafeDebugPadDevice() { }
 
     void calc() override;
 
