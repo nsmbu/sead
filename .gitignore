@@ -2,7 +2,10 @@
 .DS_Store
 .vscode
 .cache
-docs
+docs/html/
+doxygen-1.14.0/
+doxygen-1.14.0.linux.bin.tar.gz
+*.tag
 
 # Prerequisites
 *.d
