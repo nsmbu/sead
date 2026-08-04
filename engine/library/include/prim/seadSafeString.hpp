@@ -168,8 +168,8 @@ template <typename CharType>
 inline typename SafeStringBase<CharType>::token_iterator&
 SafeStringBase<CharType>::token_iterator::operator++()
 {
-    s32 index = getIndex();
-    s32 length = mString->calcLength();
+    s32 index = this->getIndex();
+    s32 length = this->mString->calcLength();
     if (!(0 <= index && index <= length))
     {
         SEAD_ASSERT_MSG(false, "index(%d) out of range [0, %d].\n", index, length);
@@ -178,13 +178,13 @@ SafeStringBase<CharType>::token_iterator::operator++()
     for (;;)
     {
         SEAD_ASSERT(0 <= index && index <= length);
-        const CharType& c = mString->unsafeAt_(index);
+        const CharType& c = this->mString->unsafeAt_(index);
         if (c == 0 || mDelimiter.include(c))
             break;
 
         index++;
     }
-    mIndex = index + 1;
+    this->mIndex = index + 1;
     return *this;
 }
 
@@ -194,16 +194,16 @@ SafeStringBase<CharType>::token_iterator::get(BufferedSafeStringBase<CharType>* 
 {
     token_iterator next_delim = *this;
     ++next_delim;
-    s32 size = next_delim.getIndex() - getIndex() - 1;
-    return out->copy(mString->getPart(*this), size);
+    s32 size = next_delim.getIndex() - this->getIndex() - 1;
+    return out->copy(this->mString->getPart(*this), size);
 }
 
 template <typename CharType>
 inline s32
 SafeStringBase<CharType>::token_iterator::getAndForward(BufferedSafeStringBase<CharType>* out)
 {
-    s32 index = getIndex();
-    s32 length = mString->calcLength();
+    s32 index = this->getIndex();
+    s32 length = this->mString->calcLength();
     if (!(0 <= index && index <= length))
     {
         SEAD_ASSERT_MSG(false, "index(%d) out of range [0, %d].\n", index, length);
@@ -214,7 +214,7 @@ SafeStringBase<CharType>::token_iterator::getAndForward(BufferedSafeStringBase<C
     for (;;)
     {
         SEAD_ASSERT(0 <= index && index <= length);
-        const CharType& c = mString->unsafeAt_(index);
+        const CharType& c = this->mString->unsafeAt_(index);
         if (c == 0 || mDelimiter.include(c))
         {
             raw_out[i] = 0;
@@ -224,7 +224,7 @@ SafeStringBase<CharType>::token_iterator::getAndForward(BufferedSafeStringBase<C
         ++i;
         ++index;
     }
-    mIndex = index + 1;
+    this->mIndex = index + 1;
     return i;
 }
 
