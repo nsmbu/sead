@@ -66,6 +66,12 @@ public:
     void unmount(const SafeString& drive);
     void unmount(FileDevice* device);
 
+    //? Added
+    const DeviceList& getDeviceList() const
+    {
+        return mDeviceList;
+    }
+
     FileDevice* setDefaultFileDevice(FileDevice* device)
     {
         FileDevice* old = mDefaultFileDevice;
