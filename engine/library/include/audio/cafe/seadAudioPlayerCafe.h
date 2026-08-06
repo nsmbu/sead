@@ -51,6 +51,9 @@ public:
         return mRmtSpeakerMgr;
     }
 
+    void setupDataManagement(u32 stream_buffer_size, u32 stream_read_cache_size, u32 user_param_size_per_sound, Heap* heap);
+    void createSoundHeap(u32 size, Heap* heap);
+
 protected:
     u8* mPlayerBuffer;
     u32 mPlayerBufferSize;
