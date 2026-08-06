@@ -18,7 +18,7 @@ public:
     void resolveFilePath(BufferedSafeString* out, const SafeString& path) const override;
     void resolveDirectoryPath(BufferedSafeString* out, const SafeString& path) const override;
 
-private:
+protected:
     bool doIsAvailable_() const override;
     FileDevice* doOpen_(FileHandle* handle, const SafeString& filename, FileOpenFlag flag) override;
     bool doClose_(FileHandle* handle) override;
@@ -37,7 +37,7 @@ private:
     bool isMatchDevice_(const HandleBase* handle) const override;
     RawErrorCode doGetLastRawError_() const override;
 
-private:
+protected:
     FileDevice* mFileDevice;
     FixedSafeString<256> mPath;
 };
