@@ -26,6 +26,9 @@ public:
     void resolveFilePath(BufferedSafeString* out, const SafeString& path) const override;
     void resolveDirectoryPath(BufferedSafeString* out, const SafeString& path) const override;
 
+    //? Added
+    const FileDeviceList& getFileDeviceList() const { return mFileDeviceList; }
+
 private:
     bool doIsAvailable_() const override;
     u8* doLoad_(LoadArg& arg) override;
