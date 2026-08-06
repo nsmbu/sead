@@ -1,5 +1,5 @@
-#ifndef SEAD_CAFE_FSA_FILEDEVICE_H_
-#define SEAD_CAFE_FSA_FILEDEVICE_H_
+#ifndef SEAD_CAFE_SAVE_FILEDEVICE_H_
+#define SEAD_CAFE_SAVE_FILEDEVICE_H_
 
 #include <filedevice/seadFileDevice.h>
 
@@ -92,4 +92,4 @@ static_assert(sizeof(CafeSaveFileDevice) == 0x6C, "sead::CafeSaveFileDevice size
 
 } // namespace sead
 
-#endif // SEAD_CAFE_FSA_FILEDEVICE_H_
+#endif // SEAD_CAFE_SAVE_FILEDEVICE_H_
