@@ -22,6 +22,8 @@ public:
     AudioMgr();
     virtual ~AudioMgr();
 
+    void calc();
+
     AudioSystem* getAudioSystem() const
     {
         return mAudioSystem;
