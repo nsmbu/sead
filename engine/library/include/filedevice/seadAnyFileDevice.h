@@ -29,7 +29,7 @@ public:
     //? Added
     const FileDeviceList& getFileDeviceList() const { return mFileDeviceList; }
 
-private:
+protected:
     bool doIsAvailable_() const override;
     u8* doLoad_(LoadArg& arg) override;
 
@@ -53,7 +53,7 @@ private:
     bool isMatchDevice_(const HandleBase* handle) const override;
     RawErrorCode doGetLastRawError_() const override;
 
-private:
+protected:
     FileDeviceList mFileDeviceList;
     FileDevice* mLastFileDevice;
 };
