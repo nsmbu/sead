@@ -2,6 +2,8 @@
 
 #include <prim/seadSafeString.h>
 
+#include <nw/snd/snd_SoundArchive.h>
+
 namespace sead {
 
 class AudioSoundHeapCafe;
@@ -15,6 +17,8 @@ public:
 
     bool loadData(u32 id, u32 load_flag, u32 load_block_size, AudioSoundHeapCafe* sound_heap);
     bool loadData(const char* item_name, u32 load_flag, u32 load_block_size, AudioSoundHeapCafe* sound_heap);
+
+    nw::snd::SoundArchive* getSoundArchive() const;
 };
 
 } // namespace sead
