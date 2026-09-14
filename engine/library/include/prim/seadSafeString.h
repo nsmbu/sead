@@ -439,7 +439,7 @@ public:
     explicit FixedSafeString(const SafeString& rhs)
         : FixedSafeStringBase<char, N>()
     {
-        copy(rhs);
+        this->copy(rhs);
     }
 
     // Nintendo did not implement this
@@ -447,7 +447,7 @@ public:
     //FixedSafeString(const FixedSafeString<N>& rhs)
     //    : FixedSafeStringBase<char, N>()
     //{
-    //    copy(rhs);
+    //    this->copy(rhs);
     //}
 
     FixedSafeString<N>& operator=(const FixedSafeString<N>& rhs)
@@ -475,7 +475,7 @@ public:
     explicit WFixedSafeString(const WSafeString& rhs)
         : FixedSafeStringBase<char16, N>()
     {
-        copy(rhs);
+        this->copy(rhs);
     }
 
     // Nintendo did not implement this
