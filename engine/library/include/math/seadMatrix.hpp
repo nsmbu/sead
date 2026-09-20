@@ -212,7 +212,7 @@ Matrix33<T>::transpose()
 
 template <typename T>
 inline void
-Matrix33<T>::fromQuat(const Quat& q)
+Matrix33<T>::makeQ(const Quat& q)
 {
     Matrix33CalcCommon<T>::makeQ(*this, q);
 }
@@ -406,7 +406,7 @@ Matrix34<T>::transpose()
 
 template <typename T>
 inline void
-Matrix34<T>::fromQuat(const Quat& q)
+Matrix34<T>::makeQ(const Quat& q)
 {
     Matrix34CalcCommon<T>::makeQ(*this, q);
 }
@@ -903,7 +903,7 @@ Matrix44<T>::transpose()
 
 template <typename T>
 inline void
-Matrix44<T>::fromQuat(const Quat& q)
+Matrix44<T>::makeQ(const Quat& q)
 {
     Matrix44CalcCommon<T>::makeQ(*this, q);
 }
