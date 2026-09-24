@@ -476,6 +476,22 @@ MathCalcCommon<s32>::ceil(s32 val)
 
 template <>
 inline constexpr s32
+MathCalcCommon<s32>::roundUpN(s32 val, s32 multNumber)
+{
+    SEAD_ASSERT(multNumber > 0);
+    return (val >= 0 ? (val + multNumber - 1) / multNumber : (val - multNumber + 1) / multNumber) * multNumber;
+}
+
+template <>
+inline constexpr u16
+MathCalcCommon<u16>::roundUpPow2(u16 val, s32 base)
+{
+    SEAD_ASSERT_MSG(base > 0 && (base - 1u & base) == 0, "illegal param[base:%d]", base);
+    return val + (base - 1u) & ~(base - 1u);
+}
+
+template <>
+inline constexpr s32
 MathCalcCommon<s32>::roundUpPow2(s32 val, s32 base)
 {
     SEAD_ASSERT_MSG(val >= 0 && (base - 1u & base) == 0, "illegal param[val:%d, base:%d]", val, base);
@@ -488,6 +504,30 @@ MathCalcCommon<u32>::roundUpPow2(u32 val, s32 base)
 {
     SEAD_ASSERT_MSG((base - 1u & base) == 0, "illegal param[base:%d]", base);
     return val + (static_cast<u32>(base) - 1u) & ~(static_cast<u32>(base) - 1u);
+}
+
+template <>
+inline constexpr u64
+MathCalcCommon<u64>::roundUpPow2(u64 val, s32 base)
+{
+    SEAD_ASSERT_MSG(base > 0 && (base - 1u & base) == 0, "illegal param[base:%d]", base);
+    return val + (base - 1llu) & ~(base - 1llu);
+}
+
+template <>
+inline constexpr u32
+MathCalcCommon<u32>::roundDownPow2(u32 val, s32 base)
+{
+    SEAD_ASSERT_MSG(base > 0 && (base - 1u & base) == 0, "illegal param[base:%d]", base);
+    return val & ~(base - 1u);
+}
+
+template <>
+inline constexpr u64
+MathCalcCommon<u64>::roundDownPow2(u64 val, s32 base)
+{
+    SEAD_ASSERT_MSG(base > 0 && (base - 1u & base) == 0, "illegal param[base:%d]", base);
+    return val & ~(base - 1llu);
 }
 
 template <typename T>
